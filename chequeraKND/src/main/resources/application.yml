@@ -1,0 +1,19 @@
+spring:
+  banner:
+    location: auxiliares/banner.txt
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: knd
+    password: 1234
+    driver-class-name: oracle.jdbc.OracleDriver
+  
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      #naming:
+       # implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+        #physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    #properties:
+     # hibernate:
+      #  dialect: org.hibernate.dialect.Oracle11gDialect
