@@ -1,16 +1,23 @@
 package com.KND.chequera.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+@Entity
 @Table(name = "clientes")
 public class Clientes {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "Idclientes")
+	@Column(name = "idclientes")
 	private int idclientes;
 	@Column(name = "c_nombre")
 	private String c_nombre;
@@ -34,6 +41,9 @@ public class Clientes {
 	private String c_rfc;
 	@Column(name = "c_status")
 	private boolean c_status;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="clientes")
+	private Set<Chequera> chequera = new HashSet<>();
 
 	public Clientes() {
 
@@ -151,19 +161,6 @@ public class Clientes {
 
 	public void setC_status(boolean c_status) {
 		this.c_status = c_status;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Clientes [idclientes=" + idclientes + ", c_nombre=" + c_nombre + ", c_apaterno=" + c_apaterno
-				+ ", c_amaterno=" + c_amaterno + ", c_direccion=" + c_direccion + ", c_estado=" + c_estado
-				+ ", c_codigo_postal=" + c_codigo_postal + ", c_telefono=" + c_telefono + ", c_correo=" + c_correo
-				+ ", c_fecha_nacimiento=" + c_fecha_nacimiento + ", c_rfc=" + c_rfc + ", c_status=" + c_status + "]";
 	}
 
 }
