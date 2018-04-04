@@ -74,6 +74,8 @@ public class Bancos {
 		this.b_direccion = b_direccion;
 	}
 
+	
+
 	public boolean isB_status() {
 		return b_status;
 	}
