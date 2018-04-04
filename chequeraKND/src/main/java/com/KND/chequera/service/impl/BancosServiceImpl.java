@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.KND.chequera.converter.BancoConverter;
 import com.KND.chequera.entity.Bancos;
+import com.KND.chequera.model.BancoModel;
 import com.KND.chequera.repository.BancosRepository;
 import com.KND.chequera.service.BancosService;
 
@@ -17,6 +19,10 @@ public class BancosServiceImpl implements BancosService{
 	@Qualifier("bancosRepository")
 	private BancosRepository bancosRepository;
 
+	@Autowired
+	@Qualifier("bancoConverter")
+	private BancoConverter bancoConverter;
+	
 	@Override
 	public Bancos findByidbanco(int idbancos) {
 		// TODO Auto-generated method stub
@@ -29,8 +35,9 @@ public class BancosServiceImpl implements BancosService{
 	}
 
 	@Override
-	public Bancos addBanco(Bancos banco) {
-		return bancosRepository.save(banco);
+	public BancoModel addBanco(BancoModel bancoModel) {
+		Bancos banco = bancosRepository.save(bancoConverter.bancoModelToBancos(bancoModel));
+		return bancoConverter.bancoToBancoModel(banco);
 	}
 
 	@Override

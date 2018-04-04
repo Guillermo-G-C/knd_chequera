@@ -5,28 +5,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Bancos</h1>
-	
-	<table>
-		<thead>
-			<tr>
-				<th>ID Banco</th>
-				<th>Sucursal</th>
-				<th>Entidad</th>
-				<th>Dirección</th>
-				<th>Status</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="banco : ${listbancos}">
-				<th><span th:text="${banco.idbancos}"></span></th>
-				<th><span th:text="${banco.b_sucursal}"></span></th>
-				<th><span th:text="${banco.b_entidad}"></span></th>
-				<th><span th:text="${banco.b_direccion}"></span></th>
-				<th><span th:text="${banco.b_status}"></span></th>
-			</tr>
-		</tbody>
-	</table>
-	
+	<form action="" th:action="@{/bancos/addbanco}" th:object="${bancoModel}" method="post">
+		Sucursal: <input type="text" th:field="*{b_sucursalMod}"/>
+		<br/>
+		Entidad: <input type="text" th:field="*{c_entidadMod}"/>
+		<br/>
+		Dirección: <input type="text" th:field="*{b_direccionMod}"/>
+		<br/>
+		Status: <input type="text" th:field="*{b_statusMod}"/>
+		<br/>
+		<button type="submit">
+			Guardar
+		</button>
+	</form>
 </body>
 </html>

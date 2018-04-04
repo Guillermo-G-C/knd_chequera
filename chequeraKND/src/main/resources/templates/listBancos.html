@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Bancos</h1>
+	
+	<div th:if="${result==1}">Agregado Correctamente!</div>
+	<div th:if="${result==0}">Erro al agregar Banco</div>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>ID Banco</th>
+				<th>Sucursal</th>
+				<th>Entidad</th>
+				<th>Dirección</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="banco : ${listbancos}">
+				<th><span th:text="${banco.idbancos}"></span></th>
+				<th><span th:text="${banco.b_sucursal}"></span></th>
+				<th><span th:text="${banco.b_entidad}"></span></th>
+				<th><span th:text="${banco.b_direccion}"></span></th>
+				<th><span th:text="${banco.b_status}"></span></th>
+			</tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>

@@ -63,8 +63,11 @@ public class BancoModel {
 	public void setB_statusMod(boolean b_statusMod) {
 		this.b_statusMod = b_statusMod;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "BancoModel [idbancosMod=" + idbancosMod + ", b_sucursalMod=" + b_sucursalMod + ", c_entidadMod="
+				+ c_entidadMod + ", b_direccionMod=" + b_direccionMod + ", b_statusMod=" + b_statusMod + "]";
+	}
 	
 }
