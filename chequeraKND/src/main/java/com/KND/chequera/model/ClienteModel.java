@@ -15,6 +15,9 @@ public class ClienteModel {
 	private String c_rfc;
 	private boolean c_status;
 	
+	public ClienteModel() {
+	}
+	
 	public ClienteModel(int idclientes, String c_nombre, String c_apaterno, String c_amaterno, String c_direccion,
 			String c_estado, int c_codigo_postal, int c_telefono, String c_correo, String c_fecha_nacimiento,
 			String c_rfc, boolean c_status) {
@@ -31,9 +34,6 @@ public class ClienteModel {
 		this.c_fecha_nacimiento = c_fecha_nacimiento;
 		this.c_rfc = c_rfc;
 		this.c_status = c_status;
-	}
-
-	public ClienteModel() {
 	}
 
 	public int getIdclientes() {

@@ -18,7 +18,7 @@ public class MovimientosServiceImpl implements MovimientosService {
 	private MovimientosRepository movimientosRepository;
 	
 	@Override
-	public Movimientos findByidmovimiento() {
+	public Movimientos findByidmovimiento(int idmovimientos) {
 		// TODO Auto-generated method stub
 		return null;
 	}

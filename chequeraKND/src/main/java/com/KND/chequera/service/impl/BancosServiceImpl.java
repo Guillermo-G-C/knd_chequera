@@ -18,7 +18,7 @@ public class BancosServiceImpl implements BancosService{
 	private BancosRepository bancosRepository;
 
 	@Override
-	public Bancos findByidbanco() {
+	public Bancos findByidbanco(int idbancos) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,6 +45,4 @@ public class BancosServiceImpl implements BancosService{
 		return null;
 	}
 
-	
-	
 }

@@ -19,7 +19,7 @@ public class BancoConverter {
 		banmod.setB_direccionMod(ban.getB_direccion());
 		banmod.setB_statusMod(ban.isB_status());
 		banmod.setB_sucursalMod(ban.getB_sucursal());
-		banmod.setC_entidadMod(ban.getC_entidad());
+		banmod.setC_entidadMod(ban.getB_entidad());
 		LOG.info("Banco Entity Convetido con exito a Model ");
 		return banmod;
 	}
@@ -30,7 +30,7 @@ public class BancoConverter {
 		ban.setB_direccion(banmod.getB_direccionMod());
 		ban.setB_status(banmod.isB_statusMod());
 		ban.setB_sucursal(banmod.getB_sucursalMod());
-		ban.setC_entidad(banmod.getC_entidadMod());
+		ban.setB_entidad(banmod.getC_entidadMod());
 		ban.setIdbancos(banmod.getIdbancosMod());
 		LOG.info("BancosModel convertido a Banco con exito ");
 		return ban;

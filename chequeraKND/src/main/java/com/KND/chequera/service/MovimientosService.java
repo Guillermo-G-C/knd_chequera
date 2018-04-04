@@ -6,7 +6,7 @@ import com.KND.chequera.entity.Movimientos;
 
 public interface MovimientosService {
 
-	public abstract Movimientos findByidmovimiento();
+	public abstract Movimientos findByidmovimiento(int idmovimientos);
 	public abstract List<Movimientos> listAllMovimientos();
 	
 }

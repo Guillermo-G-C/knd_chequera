@@ -6,6 +6,8 @@ public class Tipo_MovimientoModel {
 	private String tm_operacion;
 	private String tm_descripcion;
 	
+	public Tipo_MovimientoModel() {}
+	
 	public Tipo_MovimientoModel(int idtipo_movimiento, String tm_operacion, String tm_descripcion) {
 		super();
 		this.idtipo_movimiento = idtipo_movimiento;

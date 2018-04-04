@@ -6,7 +6,7 @@ import com.KND.chequera.entity.Bancos;
 
 public interface BancosService {
 
-	public abstract Bancos findByidbanco();
+	public abstract Bancos findByidbanco(int idbancos);
 	public abstract List<Bancos> listAllBancos();
 	public abstract Bancos addBanco(Bancos banco);
 	public abstract int removeBancos(int idbancos);

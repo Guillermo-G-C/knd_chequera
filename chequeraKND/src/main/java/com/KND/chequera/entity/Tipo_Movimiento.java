@@ -17,8 +17,8 @@ public class Tipo_Movimiento {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "idtipo_movimiento")
-	private int idtipo_movimiento;
+	@Column(name = "idtipoMovimiento")
+	private int idtipoMovimiento;
 	@Column(name = "tm_operacion")
 	private String tm_operacion;
 	@Column(name = "tm_descripcion")
@@ -30,19 +30,29 @@ public class Tipo_Movimiento {
 	public Tipo_Movimiento() {
 	}
 
-	public Tipo_Movimiento(int idtipo_movimiento, String tm_operacion, String tm_descripcion) {
+	public Tipo_Movimiento(int idtipoMovimiento, String tm_operacion, String tm_descripcion,
+			Set<Movimientos> movimientos) {
 		super();
-		this.idtipo_movimiento = idtipo_movimiento;
+		this.idtipoMovimiento = idtipoMovimiento;
 		this.tm_operacion = tm_operacion;
 		this.tm_descripcion = tm_descripcion;
+		this.movimientos = movimientos;
 	}
 
-	public int getIdtipo_movimiento() {
-		return idtipo_movimiento;
+	public int getIdtipoMovimiento() {
+		return idtipoMovimiento;
 	}
 
-	public void setIdtipo_movimiento(int idtipo_movimiento) {
-		this.idtipo_movimiento = idtipo_movimiento;
+	public void setIdtipoMovimiento(int idtipoMovimiento) {
+		this.idtipoMovimiento = idtipoMovimiento;
+	}
+
+	public Set<Movimientos> getMovimientos() {
+		return movimientos;
+	}
+
+	public void setMovimientos(Set<Movimientos> movimientos) {
+		this.movimientos = movimientos;
 	}
 
 	public String getTm_operacion() {
