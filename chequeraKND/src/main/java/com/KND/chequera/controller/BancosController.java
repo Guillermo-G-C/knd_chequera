@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KND.chequera.constant.ViewConstant;
@@ -45,14 +46,20 @@ public class BancosController {
 		LOG.info("METHOD: addBanco() --PARAMS "+bancoModel.toString());
 
 		if(null != bancoService.addBanco(bancoModel)) {
-			model.addAttribute("result", 1);
-			LOG.info("Result: 1");
+			//model.addAttribute("result", 1);
+			//LOG.info("Result: 1");
 		}else {
-			model.addAttribute("result", 0);
-			LOG.info("Result: 0");
+			//model.addAttribute("result", 0);
+			//LOG.info("Result: 0");
 		}
 		
 		return ViewConstant.LIST_BANCOS_VIEW;
+	}
+	
+	@GetMapping("removebanco")
+	public ModelAndView removeBanco(@RequestParam(name="id", required=true) int id) {
+		bancoService.removeBancos(id);
+		return listAllBancos();
 	}
 	
 }

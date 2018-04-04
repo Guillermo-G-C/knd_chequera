@@ -1,5 +1,6 @@
 package com.KND.chequera.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,15 @@ public class BancosServiceImpl implements BancosService{
 	}
 
 	@Override
-	public List<Bancos> listAllBancos() {
-		return bancosRepository.findAll();
+	public List<BancoModel> listAllBancos() {
+		List<Bancos> bancos = bancosRepository.findAll();
+		List<BancoModel> bancoModel = new ArrayList<BancoModel>();
+		
+		for(Bancos banco : bancos) {
+			bancoModel.add(bancoConverter.bancoToBancoModel(banco));
+		}
+		
+		return bancoModel;
 	}
 
 	@Override

@@ -5,69 +5,67 @@ package com.KND.chequera.model;
 public class BancoModel {
 	
 	
-	private int idbancosMod;
-	private String b_sucursalMod;
-	private String c_entidadMod;
-	private String b_direccionMod;
-	private boolean b_statusMod;
+	private int idbancos;
+	private String b_sucursal;
+	private String b_entidad;
+	private String b_direccion;
+	private boolean b_status;
 	
 	public BancoModel() {
 	}
 
-	public BancoModel(int idbancosMod, String b_sucursalMod, String c_entidadMod, String b_direccionMod,
-			boolean b_statusMod) {
+	public BancoModel(int idbancos, String b_sucursal, String b_entidad, String b_direccion, boolean b_status) {
 		super();
-		this.idbancosMod = idbancosMod;
-		this.b_sucursalMod = b_sucursalMod;
-		this.c_entidadMod = c_entidadMod;
-		this.b_direccionMod = b_direccionMod;
-		this.b_statusMod = b_statusMod;
+		this.idbancos = idbancos;
+		this.b_sucursal = b_sucursal;
+		this.b_entidad = b_entidad;
+		this.b_direccion = b_direccion;
+		this.b_status = b_status;
 	}
 
-	public int getIdbancosMod() {
-		return idbancosMod;
+	public int getIdbancos() {
+		return idbancos;
 	}
 
-	public void setIdbancosMod(int idbancosMod) {
-		this.idbancosMod = idbancosMod;
+	public void setIdbancos(int idbancos) {
+		this.idbancos = idbancos;
 	}
 
-	public String getB_sucursalMod() {
-		return b_sucursalMod;
+	public String getB_sucursal() {
+		return b_sucursal;
 	}
 
-	public void setB_sucursalMod(String b_sucursalMod) {
-		this.b_sucursalMod = b_sucursalMod;
+	public void setB_sucursal(String b_sucursal) {
+		this.b_sucursal = b_sucursal;
 	}
 
-	public String getC_entidadMod() {
-		return c_entidadMod;
+	public String getB_entidad() {
+		return b_entidad;
 	}
 
-	public void setC_entidadMod(String c_entidadMod) {
-		this.c_entidadMod = c_entidadMod;
+	public void setB_entidad(String b_entidad) {
+		this.b_entidad = b_entidad;
 	}
 
-	public String getB_direccionMod() {
-		return b_direccionMod;
+	public String getB_direccion() {
+		return b_direccion;
 	}
 
-	public void setB_direccionMod(String b_direccionMod) {
-		this.b_direccionMod = b_direccionMod;
+	public void setB_direccion(String b_direccion) {
+		this.b_direccion = b_direccion;
 	}
 
-	public boolean isB_statusMod() {
-		return b_statusMod;
+	public boolean isB_status() {
+		return b_status;
 	}
 
-	public void setB_statusMod(boolean b_statusMod) {
-		this.b_statusMod = b_statusMod;
+	public void setB_status(boolean b_status) {
+		this.b_status = b_status;
 	}
 
 	@Override
 	public String toString() {
-		return "BancoModel [idbancosMod=" + idbancosMod + ", b_sucursalMod=" + b_sucursalMod + ", c_entidadMod="
-				+ c_entidadMod + ", b_direccionMod=" + b_direccionMod + ", b_statusMod=" + b_statusMod + "]";
-	}
-	
+		return "BancoModel [idbancos=" + idbancos + ", b_sucursal=" + b_sucursal + ", b_entidad=" + b_entidad
+				+ ", b_direccion=" + b_direccion + ", b_status=" + b_status + "]";
+	}	
 }

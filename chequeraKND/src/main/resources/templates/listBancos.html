@@ -18,6 +18,7 @@
 				<th>Entidad</th>
 				<th>Dirección</th>
 				<th>Status</th>
+				<th>Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,6 +28,14 @@
 				<th><span th:text="${banco.b_entidad}"></span></th>
 				<th><span th:text="${banco.b_direccion}"></span></th>
 				<th><span th:text="${banco.b_status}"></span></th>
+				<th>
+					<a >
+						<button>Editar</button>
+					</a>
+					<a th:href="@{/bancos/removebanco?id=__${banco.idbancos}__}">
+						<button>Eliminar</button>
+					</a>
+				</th>
 			</tr>
 		</tbody>
 	</table>

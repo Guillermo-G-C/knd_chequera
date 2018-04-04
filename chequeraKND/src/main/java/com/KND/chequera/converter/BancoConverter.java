@@ -15,11 +15,11 @@ public class BancoConverter {
 	//Entity -->to --> Model
 	public BancoModel bancoToBancoModel(Bancos ban) {
 		BancoModel banmod= new BancoModel();
-		banmod.setIdbancosMod(ban.getIdbancos());
-		banmod.setB_direccionMod(ban.getB_direccion());
-		banmod.setB_statusMod(ban.isB_status());
-		banmod.setB_sucursalMod(ban.getB_sucursal());
-		banmod.setC_entidadMod(ban.getB_entidad());
+		banmod.setIdbancos(ban.getIdbancos());
+		banmod.setB_direccion(ban.getB_direccion());
+		banmod.setB_status(ban.isB_status());
+		banmod.setB_sucursal(ban.getB_sucursal());
+		banmod.setB_entidad(ban.getB_entidad());
 		LOG.info("Banco Entity Convetido con exito a Model ");
 		return banmod;
 	}
@@ -27,11 +27,11 @@ public class BancoConverter {
 	//Model --> to -->Entity
 	public Bancos bancoModelToBancos(BancoModel banmod) {
 		Bancos ban = new Bancos();
-		ban.setB_direccion(banmod.getB_direccionMod());
-		ban.setB_status(banmod.isB_statusMod());
-		ban.setB_sucursal(banmod.getB_sucursalMod());
-		ban.setB_entidad(banmod.getC_entidadMod());
-		ban.setIdbancos(banmod.getIdbancosMod());
+		ban.setB_direccion(banmod.getB_direccion());
+		ban.setB_status(banmod.isB_status());
+		ban.setB_sucursal(banmod.getB_sucursal());
+		ban.setB_entidad(banmod.getB_entidad());
+		ban.setIdbancos(banmod.getIdbancos());
 		LOG.info("BancosModel convertido a Banco con exito ");
 		return ban;
 	}
