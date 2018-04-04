@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h1>Tipo de Movimientos</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID Tipo Movimientos</th>
+				<th>Operación</th>
+				<th>Descripción</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="t_m : ${listTipoMovimientos}">
+				<th><span th:text="${t_m.idtipo_movimiento}"></span></th>
+				<th><span th:text="${t_m.tm_operacion}"></span></th>
+				<th><span th:text="${t_m.tm_descripcion}"></span></th>
+				<th>
+					<a >
+						<button>Editar</button>
+					</a>
+					<a >
+						<button>Eliminar</button>
+					</a>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.KND.chequera.entity.Tipo_Movimiento;
 import com.KND.chequera.model.Tipo_MovimientoModel;
 
-@Component("Tipo_MovimientoConverterConverter")
+@Component("tipo_MovimientoConverter")
 public class Tipo_MovimientoConverter {
 
 	private static final Log LOG = LogFactory.getLog(Tipo_MovimientoConverter.class);
