@@ -15,35 +15,34 @@ import javax.persistence.Table;
 @Table(name="bancos")
 public class Bancos {
 
-	@Id
-	@GeneratedValue
-	@Column(name="idbancos")
+	//@Column(name="idbancos")
 	private int idbancos;
-	@Column(name="b_sucursal")
+	//@Column(name="b_sucursal")
 	private String b_sucursal;
-	@Column(name="b_entidad")
+	//@Column(name="b_entidad")
 	private String b_entidad;
-	@Column(name="b_direccion")
+	//@Column(name="b_direccion")
 	private String b_direccion;
-	@Column(name="b_status")
+	//@Column(name="b_status")
 	private boolean b_status;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="bancos")
-	private Set<Bancos> bancos = new HashSet<>();
+	//private Set<Chequera> chequera = new HashSet<>();
 	
 	public Bancos() {}
 
-	
-
-	public Bancos(int idbancos, String b_sucursal, String b_entidad, String b_direccion, boolean b_status) {
+	public Bancos(int idbancos, String b_sucursal, String b_entidad, String b_direccion, boolean b_status,
+			Set<Chequera> chequera) {
 		super();
 		this.idbancos = idbancos;
 		this.b_sucursal = b_sucursal;
 		this.b_entidad = b_entidad;
 		this.b_direccion = b_direccion;
 		this.b_status = b_status;
+		//this.chequera = chequera;
 	}
 	
+	@Id
+	@GeneratedValue
 	public int getIdbancos() {
 		return idbancos;
 	}
@@ -76,8 +75,6 @@ public class Bancos {
 		this.b_direccion = b_direccion;
 	}
 
-	
-
 	public boolean isB_status() {
 		return b_status;
 	}
@@ -85,5 +82,14 @@ public class Bancos {
 	public void setB_status(boolean b_status) {
 		this.b_status = b_status;
 	}
+
+	/*@OneToMany(fetch = FetchType.EAGER, mappedBy="bancos")
+	public Set<Chequera> getChequera() {
+		return chequera;
+	}
+
+	public void setChequera(Set<Chequera> chequera) {
+		this.chequera = chequera;
+	}*/
 	
 }

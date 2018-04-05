@@ -6,13 +6,13 @@
 </head>
 <body>
 	<form action="" th:action="@{/bancos/addbanco}" th:object="${bancoModel}" method="post">
-		Sucursal: <input type="text" th:field="*{b_sucursalMod}"/>
+		Sucursal: <input type="text" th:field="*{b_sucursal}"/>
 		<br/>
-		Entidad: <input type="text" th:field="*{c_entidadMod}"/>
+		Entidad: <input type="text" th:field="*{b_entidad}"/>
 		<br/>
-		Dirección: <input type="text" th:field="*{b_direccionMod}"/>
+		Dirección: <input type="text" th:field="*{b_direccion}"/>
 		<br/>
-		Status: <input type="text" th:field="*{b_statusMod}"/>
+		Status: <input type="text" th:field="*{b_status}"/>
 		<br/>
 		<button type="submit">
 			Guardar

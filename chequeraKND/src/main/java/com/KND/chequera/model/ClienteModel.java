@@ -1,5 +1,7 @@
 package com.KND.chequera.model;
 
+import java.util.Date;
+
 public class ClienteModel {
 
 	private int idclientes;
@@ -11,7 +13,7 @@ public class ClienteModel {
 	private int c_codigo_postal;
 	private int c_telefono;
 	private String c_correo;
-	private String c_fecha_nacimiento;
+	private Date c_fecha_nacimiento;
 	private String c_rfc;
 	private boolean c_status;
 	
@@ -19,7 +21,7 @@ public class ClienteModel {
 	}
 	
 	public ClienteModel(int idclientes, String c_nombre, String c_apaterno, String c_amaterno, String c_direccion,
-			String c_estado, int c_codigo_postal, int c_telefono, String c_correo, String c_fecha_nacimiento,
+			String c_estado, int c_codigo_postal, int c_telefono, String c_correo, Date c_fecha_nacimiento,
 			String c_rfc, boolean c_status) {
 		super();
 		this.idclientes = idclientes;
@@ -108,11 +110,11 @@ public class ClienteModel {
 		this.c_correo = c_correo;
 	}
 
-	public String getC_fecha_nacimiento() {
+	public Date getC_fecha_nacimiento() {
 		return c_fecha_nacimiento;
 	}
 
-	public void setC_fecha_nacimiento(String c_fecha_nacimiento) {
+	public void setC_fecha_nacimiento(Date c_fecha_nacimiento) {
 		this.c_fecha_nacimiento = c_fecha_nacimiento;
 	}
 

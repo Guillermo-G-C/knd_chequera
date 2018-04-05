@@ -7,4 +7,6 @@ public class ViewConstant {
 	
 	public static final String LIST_TM_VIEW = "listTipoMovimientos";
 
+	public static final String LIST_CH_CLIENTE_VIEW = "listChequerasClientes";
+	public static final String ADD_CH_VIEW = "addChequera";
 }

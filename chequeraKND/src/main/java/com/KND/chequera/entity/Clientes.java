@@ -1,5 +1,6 @@
 package com.KND.chequera.entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,48 +11,55 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "clientes")
 public class Clientes {
-
-	@Id
-	@GeneratedValue
+	
 	@Column(name = "idclientes")
 	private int idclientes;
 	@Column(name = "c_nombre")
+	@Size(min = 10, max = 50)
 	private String c_nombre;
 	@Column(name = "c_apaterno")
+	@Size(min = 10, max = 50)
 	private String c_apaterno;
 	@Column(name = "c_amaterno")
+	@Size(min = 10, max = 50)
 	private String c_amaterno;
 	@Column(name = "c_direccion")
+	@Size(min = 10, max = 100)
 	private String c_direccion;
 	@Column(name = "c_estado")
+	@Size(min = 10, max = 50)
 	private String c_estado;
 	@Column(name = "c_codigo_postal")
 	private int c_codigo_postal;
 	@Column(name = "c_telefono")
 	private int c_telefono;
 	@Column(name = "c_correo")
+	@Size(min = 10, max = 100)
 	private String c_correo;
 	@Column(name = "c_fecha_nacimiento")
-	private String c_fecha_nacimiento;
+	private Date c_fecha_nacimiento;
 	@Column(name = "c_rfc")
+	@Size(min = 10, max = 20)
 	private String c_rfc;
 	@Column(name = "c_status")
 	private boolean c_status;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="clientes")
-	private Set<Chequera> chequera = new HashSet<>();
+	//private Set<Chequera> chequera = new HashSet<>();
 
 	public Clientes() {
 
 	}
 
-	public Clientes(int idclientes, String c_nombre, String c_apaterno, String c_amaterno, String c_direccion,
-			String c_estado, int c_codigo_postal, int c_telefono, String c_correo, String c_fecha_nacimiento,
-			String c_rfc, boolean c_status) {
+	public Clientes(int idclientes, @Size(min = 10, max = 50) String c_nombre,
+			@Size(min = 10, max = 50) String c_apaterno, @Size(min = 10, max = 50) String c_amaterno,
+			@Size(min = 10, max = 100) String c_direccion, @Size(min = 10, max = 50) String c_estado,
+			int c_codigo_postal, int c_telefono, @Size(min = 10, max = 100) String c_correo, Date c_fecha_nacimiento,
+			@Size(min = 10, max = 20) String c_rfc, boolean c_status) {
 		super();
 		this.idclientes = idclientes;
 		this.c_nombre = c_nombre;
@@ -66,7 +74,9 @@ public class Clientes {
 		this.c_rfc = c_rfc;
 		this.c_status = c_status;
 	}
-
+	
+	@Id
+	@GeneratedValue
 	public int getIdclientes() {
 		return idclientes;
 	}
@@ -139,11 +149,11 @@ public class Clientes {
 		this.c_correo = c_correo;
 	}
 
-	public String getC_fecha_nacimiento() {
+	public Date getC_fecha_nacimiento() {
 		return c_fecha_nacimiento;
 	}
 
-	public void setC_fecha_nacimiento(String c_fecha_nacimiento) {
+	public void setC_fecha_nacimiento(Date c_fecha_nacimiento) {
 		this.c_fecha_nacimiento = c_fecha_nacimiento;
 	}
 
@@ -162,5 +172,16 @@ public class Clientes {
 	public void setC_status(boolean c_status) {
 		this.c_status = c_status;
 	}
+	/*
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="clientes")
+	public Set<Chequera> getChequera() {
+		return chequera;
+	}
+
+	public void setChequera(Set<Chequera> chequera) {
+		this.chequera = chequera;
+	}
+	*/
+	
 
 }

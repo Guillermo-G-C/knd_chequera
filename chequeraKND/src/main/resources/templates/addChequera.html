@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>AGregar Chequera</h1>
+
+	<form action="" th:action="@{/chequeras/addChequera}" th:object="${chequeraModel}" method="post">
+		Fecha apertura: <input type="text" />
+		Saldo: <input type="text" />
+		Abono: <input type="text" />
+		Cargo: <input type="text" />
+		Cliente<input type="text" />
+		Banco<input type="text" />
+		Status<input type="text" />
+	</form>
+
+</body>
+</html>

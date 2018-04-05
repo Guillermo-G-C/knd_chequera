@@ -47,13 +47,13 @@ public class BancosController {
 
 		if(null != bancoService.addBanco(bancoModel)) {
 			//model.addAttribute("result", 1);
-			//LOG.info("Result: 1");
+			LOG.info("Result: 1");
 		}else {
 			//model.addAttribute("result", 0);
-			//LOG.info("Result: 0");
+			LOG.info("Result: 0");
 		}
-		
-		return ViewConstant.LIST_BANCOS_VIEW;
+		return "redirect:/bancos/listbancos";
+		//return ViewConstant.LIST_BANCOS_VIEW;
 	}
 	
 	@GetMapping("removebanco")

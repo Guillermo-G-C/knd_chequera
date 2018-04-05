@@ -15,35 +15,30 @@ import javax.persistence.Table;
 @Table(name="chequera")
 public class Chequera {
 
-	@Id
-	@GeneratedValue
-	@Column(name="idchequera")
+	
+	//@Column(name="idchequera")
 	private int idchequera;
-	@Column(name="ch_fecha_apertura")
+	//@Column(name="ch_fecha_apertura")
 	private Date ch_fecha_apertura;
-	@Column(name="ch_saldo")
+	//@Column(name="ch_saldo")
 	private double  ch_saldo;
-	@Column(name="ch_abono")
+	//@Column(name="ch_abono")
 	private double ch_abono;
-	@Column(name="ch_cargo")
+	//@Column(name="ch_cargo")
 	private String ch_cargo;
-	@Column(name="ch_status")
+	//@Column(name="ch_status")
 	private boolean ch_status;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="b_idclientes")
 	private Clientes clientes;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="b_idbancos")
-	private Bancos Bancos;
+	private Bancos bancos;
 	
 	
 	public Chequera() {
 	}
 
 	public Chequera(int idchequera, Date ch_fecha_apertura, double ch_saldo, double ch_abono, String ch_cargo,
-			boolean ch_status) {
+			boolean ch_status, Clientes clientes, Bancos bancos) {
 		super();
 		this.idchequera = idchequera;
 		this.ch_fecha_apertura = ch_fecha_apertura;
@@ -51,8 +46,12 @@ public class Chequera {
 		this.ch_abono = ch_abono;
 		this.ch_cargo = ch_cargo;
 		this.ch_status = ch_status;
+		this.clientes = clientes;
+		this.bancos = bancos;
 	}
 	
+	@Id
+	@GeneratedValue
 	public int getIdchequera() {
 		return idchequera;
 	}
@@ -99,6 +98,26 @@ public class Chequera {
 
 	public void setCh_status(boolean ch_status) {
 		this.ch_status = ch_status;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="idclientes")
+	public Clientes getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(Clientes clientes) {
+		this.clientes = clientes;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="idbancos")
+	public Bancos getBancos() {
+		return bancos;
+	}
+
+	public void setBancos(Bancos bancos) {
+		this.bancos = bancos;
 	}
 	
 }

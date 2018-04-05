@@ -33,13 +33,13 @@ public class BancosServiceImpl implements BancosService{
 	@Override
 	public List<BancoModel> listAllBancos() {
 		List<Bancos> bancos = bancosRepository.findAll();
-		List<BancoModel> bancoModel = new ArrayList<BancoModel>();
+		List<BancoModel> bancosModel = new ArrayList<BancoModel>();
 		
 		for(Bancos banco : bancos) {
-			bancoModel.add(bancoConverter.bancoToBancoModel(banco));
+			bancosModel.add(bancoConverter.bancoToBancoModel(banco));
 		}
 		
-		return bancoModel;
+		return bancosModel;
 	}
 
 	@Override

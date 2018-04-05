@@ -2,6 +2,9 @@ package com.KND.chequera.model;
 
 import java.util.Date;
 
+import com.KND.chequera.entity.Bancos;
+import com.KND.chequera.entity.Clientes;
+
 public class ChequeraModel {
 
 	private int idchequera;
@@ -10,12 +13,14 @@ public class ChequeraModel {
 	private double ch_abono;
 	private String ch_cargo;
 	private boolean ch_status;
+	private Clientes clientes;
+	private Bancos bancos;
 	
 	public ChequeraModel() {
 	}
 
 	public ChequeraModel(int idchequera, Date ch_fecha_apertura, double ch_saldo, double ch_abono, String ch_cargo,
-			boolean ch_status) {
+			boolean ch_status, Clientes clientes, Bancos bancos) {
 		super();
 		this.idchequera = idchequera;
 		this.ch_fecha_apertura = ch_fecha_apertura;
@@ -23,6 +28,8 @@ public class ChequeraModel {
 		this.ch_abono = ch_abono;
 		this.ch_cargo = ch_cargo;
 		this.ch_status = ch_status;
+		this.clientes = clientes;
+		this.bancos = bancos;
 	}
 
 	public int getIdchequera() {
@@ -72,9 +79,21 @@ public class ChequeraModel {
 	public void setCh_status(boolean ch_status) {
 		this.ch_status = ch_status;
 	}
-	
-	
-	
-	
+
+	public Clientes getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(Clientes clientes) {
+		this.clientes = clientes;
+	}
+
+	public Bancos getBancos() {
+		return bancos;
+	}
+
+	public void setBancos(Bancos bancos) {
+		this.bancos = bancos;
+	}
 	
 }

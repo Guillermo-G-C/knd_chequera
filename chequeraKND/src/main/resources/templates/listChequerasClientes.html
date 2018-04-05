@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Chequeras clientes</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID Chequera</th>
+				<th>Fecha apertura</th>
+				<th>Saldo</th>
+				<th>Abonos</th>
+				<th>Cargos</th>
+				<th>Banco</th>
+				<th>Status</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="chequera : ${listChequerasCliente}">
+				<th><span th:text="${chequera.idchequera}"></span></th>
+				<th><span th:text="${chequera.ch_fecha_apertura}"></span></th>
+				<th><span th:text="${chequera.ch_saldo}"></span></th>
+				<th><span th:text="${chequera.ch_abono}"></span></th>
+				<th><span th:text="${chequera.ch_cargo}"></span></th>
+				<th><span th:text="${chequera.getBancos().getB_entidad()}"></span></th>
+				<th><span th:text="${chequera.ch_status}"></span></th>
+				<th>
+					<a >
+						<button>Editar</button>
+					</a>
+					<a >
+						<button>Eliminar</button>
+					</a>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
