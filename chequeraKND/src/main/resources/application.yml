@@ -2,10 +2,15 @@ spring:
   banner:
     location: auxiliares/banner.txt
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:xe
-    username: knd
+    url: jdbc:mysql://localhost:3306/knd?useSSL=false
+    username: root
     password: 1234
-    driver-class-name: oracle.jdbc.OracleDriver
+    driver-class-name: com.mysql.jdbc.Driver
+    #url: jdbc:oracle:thin:@localhost:1521:xe
+    #username: knd
+    #password: 1234
+    #driver-class-name: oracle.jdbc.OracleDriver
+    #com.mysql.jdbc.Driver
   
   jpa:
     show-sql: true

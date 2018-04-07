@@ -8,10 +8,10 @@ import com.KND.chequera.entity.Clientes;
 public class ChequeraModel {
 
 	private int idchequera;
-	private Date ch_fecha_apertura;
+	private String ch_fecha_apertura;
 	private double  ch_saldo;
 	private double ch_abono;
-	private String ch_cargo;
+	private double ch_cargo;
 	private boolean ch_status;
 	private Clientes clientes;
 	private Bancos bancos;
@@ -19,7 +19,7 @@ public class ChequeraModel {
 	public ChequeraModel() {
 	}
 
-	public ChequeraModel(int idchequera, Date ch_fecha_apertura, double ch_saldo, double ch_abono, String ch_cargo,
+	public ChequeraModel(int idchequera, String ch_fecha_apertura, double ch_saldo, double ch_abono, double ch_cargo,
 			boolean ch_status, Clientes clientes, Bancos bancos) {
 		super();
 		this.idchequera = idchequera;
@@ -40,11 +40,11 @@ public class ChequeraModel {
 		this.idchequera = idchequera;
 	}
 
-	public Date getCh_fecha_apertura() {
+	public String getCh_fecha_apertura() {
 		return ch_fecha_apertura;
 	}
 
-	public void setCh_fecha_apertura(Date ch_fecha_apertura) {
+	public void setCh_fecha_apertura(String ch_fecha_apertura) {
 		this.ch_fecha_apertura = ch_fecha_apertura;
 	}
 
@@ -64,11 +64,11 @@ public class ChequeraModel {
 		this.ch_abono = ch_abono;
 	}
 
-	public String getCh_cargo() {
+	public double getCh_cargo() {
 		return ch_cargo;
 	}
 
-	public void setCh_cargo(String ch_cargo) {
+	public void setCh_cargo(double ch_cargo) {
 		this.ch_cargo = ch_cargo;
 	}
 

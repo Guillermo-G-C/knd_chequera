@@ -10,8 +10,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.KND.chequera.converter.ChequeraCoverter;
+import com.KND.chequera.converter.ClientesConverter;
+import com.KND.chequera.entity.Bancos;
 import com.KND.chequera.entity.Chequera;
+import com.KND.chequera.entity.Clientes;
 import com.KND.chequera.model.ChequeraModel;
+import com.KND.chequera.repository.BancosRepository;
 import com.KND.chequera.repository.ChequeraRepository;
 import com.KND.chequera.repository.ClientesRepository;
 import com.KND.chequera.service.ChequeraService;
@@ -28,8 +32,16 @@ public class ChequeraServiceImpl implements ChequeraService{
 	private ClientesRepository clientesRepository;
 	
 	@Autowired
+	@Qualifier("bancosRepository")
+	private BancosRepository bancosRepository;
+	
+	@Autowired
 	@Qualifier("chequeraConverter")
 	private ChequeraCoverter chequeraCoverter;
+	
+	@Autowired
+	@Qualifier("clientesConverter")
+	private ClientesConverter clientesConverter;
 
 	private static final Log LOG = LogFactory.getLog(ChequeraServiceImpl.class);
 	
@@ -46,7 +58,7 @@ public class ChequeraServiceImpl implements ChequeraService{
 		
 		for(Chequera chequera : chequeras) {
 			chequerasModel.add(chequeraCoverter.chequeraToChequeraModel(chequera));
-			//LOG.info("Chequera.Cliente: "+chequera.getClientes().getC_nombre());
+			//LOG.info("Cliente: "+chequera.getClientes().getC_nombre());
 		}
 		LOG.info("METHOD: listAllChequeras(), PARAMS: "+chequerasModel.size());
 		//LOG.info("Chequera by Cliente"+chequeraRepository.findByclientes(clientesRepository.findByidclientes(1)));
@@ -54,7 +66,14 @@ public class ChequeraServiceImpl implements ChequeraService{
 	}
 
 	@Override
-	public ChequeraModel addChequera(ChequeraModel chequeraModel) {
+	public ChequeraModel addChequera(ChequeraModel chequeraModel, int idCliente, int idBanco) {
+		LOG.info("addChequera() -- ChequeraServiceImpl");
+		Clientes cliente = clientesRepository.findByidclientes(idCliente);
+		Bancos banco = bancosRepository.findByidbancos(idBanco);
+		
+		chequeraModel.setClientes(cliente);
+		chequeraModel.setBancos(banco);
+		LOG.info("ChequeraModel: "+chequeraModel.toString());
 		Chequera chequera = chequeraRepository.save(chequeraCoverter.chequeraModelToChequera(chequeraModel));
 		return chequeraCoverter.chequeraToChequeraModel(chequera);
 	}

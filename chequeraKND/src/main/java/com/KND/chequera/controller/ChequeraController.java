@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,15 +41,17 @@ public class ChequeraController {
 		return ViewConstant.ADD_CH_VIEW;
 	}
 	
-	@GetMapping("/addChequera")
-	public String addChequera(@ModelAttribute("chequeraModel") ChequeraModel chequeramodel, Model model) {
-
-		if(null != chequeraService.addChequera(chequeramodel)) {
+	@PostMapping("/addchequera")
+	public String addChequera(@ModelAttribute("chequeraModel") ChequeraModel chequeraModel, Model model,
+			@RequestParam(name="idBanco", required=true) int idBanco,
+			@RequestParam(name="idCliente", required=true)int idCliente) {
+		LOG.info("METHOD: addChuequera() --PARAMS "+chequeraModel.toString()+" IdCliente: "+idCliente+" IdBanco: "+idBanco);
+		if(null != chequeraService.addChequera(chequeraModel, idBanco, idCliente)) {
 			LOG.info("Result: 1");
 		}else {
 			LOG.info("Result: 0");
 		}
 		
-		return "redirect:/chequeras/listChequerasbycliente";
+		return "redirect:/chequeras/listChequerasbycliente?cliente="+idCliente;
 	}
 }

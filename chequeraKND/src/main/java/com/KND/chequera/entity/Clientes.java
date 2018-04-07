@@ -49,7 +49,7 @@ public class Clientes {
 	@Column(name = "c_status")
 	private boolean c_status;
 	
-	//private Set<Chequera> chequera = new HashSet<>();
+	private Set<Chequera> chequera = new HashSet<>();
 
 	public Clientes() {
 
@@ -59,7 +59,7 @@ public class Clientes {
 			@Size(min = 10, max = 50) String c_apaterno, @Size(min = 10, max = 50) String c_amaterno,
 			@Size(min = 10, max = 100) String c_direccion, @Size(min = 10, max = 50) String c_estado,
 			int c_codigo_postal, int c_telefono, @Size(min = 10, max = 100) String c_correo, Date c_fecha_nacimiento,
-			@Size(min = 10, max = 20) String c_rfc, boolean c_status) {
+			@Size(min = 10, max = 20) String c_rfc, boolean c_status, Set<Chequera> chequera) {
 		super();
 		this.idclientes = idclientes;
 		this.c_nombre = c_nombre;
@@ -73,6 +73,7 @@ public class Clientes {
 		this.c_fecha_nacimiento = c_fecha_nacimiento;
 		this.c_rfc = c_rfc;
 		this.c_status = c_status;
+		this.chequera = chequera;
 	}
 	
 	@Id
@@ -172,7 +173,7 @@ public class Clientes {
 	public void setC_status(boolean c_status) {
 		this.c_status = c_status;
 	}
-	/*
+	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="clientes")
 	public Set<Chequera> getChequera() {
 		return chequera;
@@ -181,7 +182,5 @@ public class Clientes {
 	public void setChequera(Set<Chequera> chequera) {
 		this.chequera = chequera;
 	}
-	*/
-	
 
 }

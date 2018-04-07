@@ -10,23 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="chequera")
 public class Chequera {
 
 	
-	//@Column(name="idchequera")
+	@Column(name="idchequera")
 	private int idchequera;
-	//@Column(name="ch_fecha_apertura")
-	private Date ch_fecha_apertura;
-	//@Column(name="ch_saldo")
+	@Column(name="ch_fecha_apertura")
+	//@Size(min = 1, max = 50)
+	private String ch_fecha_apertura;
+	@Column(name="ch_saldo")
 	private double  ch_saldo;
-	//@Column(name="ch_abono")
+	@Column(name="ch_abono")
 	private double ch_abono;
-	//@Column(name="ch_cargo")
-	private String ch_cargo;
-	//@Column(name="ch_status")
+	@Column(name="ch_cargo")
+	private double ch_cargo;
+	@Column(name="ch_status")
 	private boolean ch_status;
 	
 	private Clientes clientes;
@@ -37,7 +39,7 @@ public class Chequera {
 	public Chequera() {
 	}
 
-	public Chequera(int idchequera, Date ch_fecha_apertura, double ch_saldo, double ch_abono, String ch_cargo,
+	public Chequera(int idchequera, String ch_fecha_apertura, double ch_saldo, double ch_abono, double ch_cargo,
 			boolean ch_status, Clientes clientes, Bancos bancos) {
 		super();
 		this.idchequera = idchequera;
@@ -49,7 +51,7 @@ public class Chequera {
 		this.clientes = clientes;
 		this.bancos = bancos;
 	}
-	
+
 	@Id
 	@GeneratedValue
 	public int getIdchequera() {
@@ -60,11 +62,11 @@ public class Chequera {
 		this.idchequera = idchequera;
 	}
 
-	public Date getCh_fecha_apertura() {
+	public String getCh_fecha_apertura() {
 		return ch_fecha_apertura;
 	}
 
-	public void setCh_fecha_apertura(Date ch_fecha_apertura) {
+	public void setCh_fecha_apertura(String ch_fecha_apertura) {
 		this.ch_fecha_apertura = ch_fecha_apertura;
 	}
 
@@ -84,11 +86,11 @@ public class Chequera {
 		this.ch_abono = ch_abono;
 	}
 
-	public String getCh_cargo() {
+	public double getCh_cargo() {
 		return ch_cargo;
 	}
 
-	public void setCh_cargo(String ch_cargo) {
+	public void setCh_cargo(double ch_cargo) {
 		this.ch_cargo = ch_cargo;
 	}
 
