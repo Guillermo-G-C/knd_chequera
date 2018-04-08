@@ -50,7 +50,7 @@ public class ClientesServieImpl  implements ClientesService{
 
 	@Override
 	public int removeClientes(int idclientes) {
-		// TODO Auto-generated method stub
+		clientesRepository.deleteById(idclientes);
 		return 0;
 	}
 

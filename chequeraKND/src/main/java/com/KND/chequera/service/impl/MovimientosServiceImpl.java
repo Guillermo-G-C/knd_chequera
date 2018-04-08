@@ -3,6 +3,8 @@ package com.KND.chequera.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,8 @@ public class MovimientosServiceImpl implements MovimientosService {
 	@Qualifier("tipo_MovimientoRepository")
 	private Tipo_MovimientoRepository tipo_MovimientoRepository;
 	
+	private static final Log LOG = LogFactory.getLog(MovimientosServiceImpl.class);
+	
 	@Override
 	public MovimientosModel findByidmovimiento(int idmovimientos) {
 		// TODO Auto-generated method stub
@@ -59,16 +63,40 @@ public class MovimientosServiceImpl implements MovimientosService {
 		Chequera chequera = chequeraRepository.findByidchequera(idChequera);
 		Tipo_Movimiento tipo_Movimiento = tipo_MovimientoRepository.findByidtipoMovimiento(idTipoMovimiento);
 		
+		String operacion = tipo_Movimiento.getTm_operacion();
+		double monto = movimientosModel.getM_monto();
+		double saldo = chequera.getCh_saldo();
+		double newsaldo = 0;
+		
+		LOG.info("Saldo: "+saldo+", Operación: "+operacion+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
+		
+		if(operacion.equals("Cargo")) {
+			newsaldo = saldo-monto;
+			
+			chequera.setCh_saldo(newsaldo);
+		}else if (operacion.equals("Abono")) {
+			LOG.info("If Abono");
+			newsaldo = saldo+monto;
+			chequera.setCh_saldo(newsaldo);
+		}
+		
+		LOG.info("Nuevo Saldo: "+newsaldo);
+		
 		movimientosModel.setChequera(chequera);
 		movimientosModel.setTipo_Movimiento(tipo_Movimiento);
 		
+		//Guardar Movimiento
 		Movimientos movimiento = movimientosRepository.save(movimientosConverter.movimientosModelToMovimientos(movimientosModel));
+		
+		//Guardar Saldo
+		chequeraRepository.save(chequera);
+		
 		return movimientosConverter.movimientosToMovimientoModel(movimiento);
 	}
 
 	@Override
 	public int removeChequera(int idMovimiento) {
-		// TODO Auto-generated method stub
+		movimientosRepository.deleteById(idMovimiento);
 		return 0;
 	}
 

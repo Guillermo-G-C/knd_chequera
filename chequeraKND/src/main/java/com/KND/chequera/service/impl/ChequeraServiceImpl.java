@@ -86,7 +86,7 @@ public class ChequeraServiceImpl implements ChequeraService{
 	}
 
 	@Override
-	public ChequeraModel updateChequera() {
+	public ChequeraModel updateChequera(ChequeraModel chequeraModel) {
 		// TODO Auto-generated method stub
 		return null;
 	}

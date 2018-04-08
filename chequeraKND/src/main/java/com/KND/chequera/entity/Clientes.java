@@ -20,31 +20,31 @@ public class Clientes {
 	@Column(name = "idclientes")
 	private int idclientes;
 	@Column(name = "c_nombre")
-	//@Size(min = 10, max = 50)
+	@Size(min = 1, max = 50)
 	private String c_nombre;
 	@Column(name = "c_apaterno")
-	//@Size(min = 10, max = 50)
+	@Size(min = 1, max = 50)
 	private String c_apaterno;
 	@Column(name = "c_amaterno")
-	//@Size(min = 10, max = 50)
+	@Size(min = 1, max = 50)
 	private String c_amaterno;
 	@Column(name = "c_direccion")
-	//@Size(min = 10, max = 100)
+	@Size(min = 1, max = 100)
 	private String c_direccion;
 	@Column(name = "c_estado")
-	@Size(min = 10, max = 50)
+	@Size(min = 5, max = 50)
 	private String c_estado;
 	@Column(name = "c_codigo_postal")
 	private int c_codigo_postal;
 	@Column(name = "c_telefono")
 	private Long c_telefono;
 	@Column(name = "c_correo")
-	@Size(min = 10, max = 100)
+	@Size(min = 5, max = 100)
 	private String c_correo;
 	@Column(name = "c_fecha_nacimiento")
-	private Date c_fecha_nacimiento;
+	private String c_fecha_nacimiento;
 	@Column(name = "c_rfc")
-	@Size(min = 10, max = 20)
+	@Size(min = 5, max = 20)
 	private String c_rfc;
 	@Column(name = "c_status")
 	private boolean c_status;
@@ -58,7 +58,7 @@ public class Clientes {
 	public Clientes(int idclientes, @Size(min = 10, max = 50) String c_nombre,
 			@Size(min = 10, max = 50) String c_apaterno, @Size(min = 10, max = 50) String c_amaterno,
 			@Size(min = 10, max = 100) String c_direccion, @Size(min = 10, max = 50) String c_estado,
-			int c_codigo_postal, Long c_telefono, @Size(min = 10, max = 100) String c_correo, Date c_fecha_nacimiento,
+			int c_codigo_postal, Long c_telefono, @Size(min = 10, max = 100) String c_correo, String c_fecha_nacimiento,
 			@Size(min = 10, max = 20) String c_rfc, boolean c_status, Set<Chequera> chequeras) {
 		super();
 		this.idclientes = idclientes;
@@ -150,11 +150,11 @@ public class Clientes {
 		this.c_correo = c_correo;
 	}
 
-	public Date getC_fecha_nacimiento() {
+	public String getC_fecha_nacimiento() {
 		return c_fecha_nacimiento;
 	}
 
-	public void setC_fecha_nacimiento(Date c_fecha_nacimiento) {
+	public void setC_fecha_nacimiento(String c_fecha_nacimiento) {
 		this.c_fecha_nacimiento = c_fecha_nacimiento;
 	}
 

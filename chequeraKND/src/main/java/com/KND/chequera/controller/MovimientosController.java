@@ -71,4 +71,12 @@ public class MovimientosController {
 		return "redirect:/movimientos/listmovimientoschequera?chequera="+idChequera;
 	}
 	
+	@GetMapping("removemovimientochequera")
+	public String removeMovimientoChequera(
+			@RequestParam(name="idChequera", required=true) int idChequera,
+			@RequestParam(name="idMovimiento", required=true) int idMovimiento) {
+		movimientoService.removeChequera(idMovimiento);
+		return "redirect:/movimientos/listmovimientoschequera?chequera="+idChequera;
+	} 
+	
 }

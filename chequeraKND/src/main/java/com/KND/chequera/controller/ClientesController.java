@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KND.chequera.constant.ViewConstant;
@@ -51,6 +52,12 @@ public class ClientesController {
 		}
 		
 		return "redirect:/clientes/listclientes";
+	}
+	
+	@GetMapping("removecliente")
+	public ModelAndView removeCliente(@RequestParam(name="cliente", required=true) int idCliente){
+		clientesService.removeClientes(idCliente);
+		return listAllCliente();
 	}
 	
 }
