@@ -1,6 +1,7 @@
 package com.KND.chequera.entity;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -35,12 +37,13 @@ public class Chequera {
 	
 	private Bancos bancos;
 	
+	private Set<Movimientos> movimientos = new HashSet<>();
 	
 	public Chequera() {
 	}
 
 	public Chequera(int idchequera, String ch_fecha_apertura, double ch_saldo, double ch_abono, double ch_cargo,
-			boolean ch_status, Clientes clientes, Bancos bancos) {
+			boolean ch_status, Clientes clientes, Bancos bancos, Set<Movimientos> movimientos) {
 		super();
 		this.idchequera = idchequera;
 		this.ch_fecha_apertura = ch_fecha_apertura;
@@ -50,6 +53,7 @@ public class Chequera {
 		this.ch_status = ch_status;
 		this.clientes = clientes;
 		this.bancos = bancos;
+		this.movimientos = movimientos;
 	}
 
 	@Id
@@ -120,6 +124,15 @@ public class Chequera {
 
 	public void setBancos(Bancos bancos) {
 		this.bancos = bancos;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="chequera")
+	public Set<Movimientos> getMovimientos() {
+		return movimientos;
+	}
+
+	public void setMovimientos(Set<Movimientos> movimientos) {
+		this.movimientos = movimientos;
 	}
 	
 }

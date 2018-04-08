@@ -47,8 +47,8 @@ public class ChequeraServiceImpl implements ChequeraService{
 	
 	@Override
 	public ChequeraModel findByidchequera(int idchequera) {
-		// TODO Auto-generated method stub
-		return null;
+		ChequeraModel chequeraModel = chequeraCoverter.chequeraToChequeraModel(chequeraRepository.findByidchequera(idchequera));
+		return chequeraModel;
 	}
 
 	@Override
@@ -67,8 +67,9 @@ public class ChequeraServiceImpl implements ChequeraService{
 
 	@Override
 	public ChequeraModel addChequera(ChequeraModel chequeraModel, int idCliente, int idBanco) {
-		LOG.info("addChequera() -- ChequeraServiceImpl");
+		LOG.info("addChequera() -- ChequeraServiceImpl, IdCliente: "+idCliente);
 		Clientes cliente = clientesRepository.findByidclientes(idCliente);
+		//LOG.info("Cliente repository: "+cliente.toString());
 		Bancos banco = bancosRepository.findByidbancos(idBanco);
 		
 		chequeraModel.setClientes(cliente);
@@ -80,7 +81,7 @@ public class ChequeraServiceImpl implements ChequeraService{
 
 	@Override
 	public int removeChequera(int idchequera) {
-		// TODO Auto-generated method stub
+		chequeraRepository.deleteById(idchequera);
 		return 0;
 	}
 

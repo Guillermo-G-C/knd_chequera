@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.KND.chequera.constant.ViewConstant;
 import com.KND.chequera.model.ChequeraModel;
 import com.KND.chequera.service.ChequeraService;
+import com.KND.chequera.service.ClientesService;
 
 @Controller
 @RequestMapping("/chequeras")
@@ -25,19 +26,25 @@ public class ChequeraController {
 	@Qualifier("chequeraService")
 	private ChequeraService chequeraService;
 
+	@Autowired
+	@Qualifier("clientesService")
+	private ClientesService clientesService;
+	
 	private static final Log LOG = LogFactory.getLog(ChequeraService.class);
 	
 	@GetMapping("/listChequerasbycliente")
 	public ModelAndView listChequerasClientes(@RequestParam(name="cliente", required=false) int idcliente) {
 		ModelAndView mav = new ModelAndView(ViewConstant.LIST_CH_CLIENTE_VIEW);
-		mav.addObject("listChequerasCliente", chequeraService.listAllChequeras());
+		mav.addObject("cliente", clientesService.findByidclientes(idcliente));
 		
 		return mav;
 	}
 	
 	@GetMapping("/chequeraform")
-	public String chequeraForm(Model model) {
+	public String chequeraForm(Model model,
+			@RequestParam(name="cliente", required=true) int idcliente) {
 		model.addAttribute("chequeraModel", new ChequeraModel());
+		model.addAttribute("cliente", idcliente);
 		return ViewConstant.ADD_CH_VIEW;
 	}
 	
@@ -46,12 +53,22 @@ public class ChequeraController {
 			@RequestParam(name="idBanco", required=true) int idBanco,
 			@RequestParam(name="idCliente", required=true)int idCliente) {
 		LOG.info("METHOD: addChuequera() --PARAMS "+chequeraModel.toString()+" IdCliente: "+idCliente+" IdBanco: "+idBanco);
-		if(null != chequeraService.addChequera(chequeraModel, idBanco, idCliente)) {
+		if(null != chequeraService.addChequera(chequeraModel, idCliente, idBanco)) {
 			LOG.info("Result: 1");
 		}else {
 			LOG.info("Result: 0");
 		}
 		
 		return "redirect:/chequeras/listChequerasbycliente?cliente="+idCliente;
+	}
+	
+	@GetMapping("removechequeracliente")
+	public String removeChequeraCliente(
+				@RequestParam(name="chequera",required=true)int chequera,
+				@RequestParam(name="cliente", required=true)int cliente
+			) {
+		LOG.info("IdChequera: "+chequera+", Idcliente: "+cliente);
+		chequeraService.removeChequera(chequera);
+		return "redirect:/chequeras/listChequerasbycliente?cliente="+cliente;
 	}
 }

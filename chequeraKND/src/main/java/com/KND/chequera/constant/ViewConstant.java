@@ -9,4 +9,6 @@ public class ViewConstant {
 
 	public static final String LIST_CH_CLIENTE_VIEW = "listChequerasClientes";
 	public static final String ADD_CH_VIEW = "addChequera";
+	
+	public static final String LIST_MOVIMIENTOS_CHEQUERAS_VIEW = "listMovimientosChequeras";
 }

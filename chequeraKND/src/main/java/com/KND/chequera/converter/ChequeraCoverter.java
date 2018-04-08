@@ -23,6 +23,7 @@ public class ChequeraCoverter {
 		chem.setIdchequera(ch.getIdchequera());
 		chem.setClientes(ch.getClientes());
 		chem.setBancos(ch.getBancos());
+		chem.setMovimientos(ch.getMovimientos());
 		LOG.info("Chequera Convertido a Model Exitosamente");
 		return chem;
 	}
@@ -38,6 +39,7 @@ public class ChequeraCoverter {
 		ch.setIdchequera(chem.getIdchequera());
 		ch.setClientes(chem.getClientes());
 		ch.setBancos(chem.getBancos());
+		ch.setMovimientos(chem.getMovimientos());
 		LOG.info("Chequera Model Convetido a Chequera Entity");
 		return ch;
 	}

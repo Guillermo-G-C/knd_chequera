@@ -16,9 +16,13 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+                #create-drop
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
       #naming:
-       # implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
-        #physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-    #properties:
-     # hibernate:
-      #  dialect: org.hibernate.dialect.Oracle11gDialect
+       # implicit-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        #dialect: org.hibernate.dialect.Oracle11gDialect

@@ -2,14 +2,14 @@ package com.KND.chequera.service;
 
 import java.util.List;
 
-import com.KND.chequera.entity.Clientes;
+import com.KND.chequera.model.ClienteModel;
 
 public interface ClientesService {
 
-	public abstract Clientes findByidclientes(int idclientes);
-	public abstract List<Clientes> listAllClientes();
-	public abstract Clientes addClientes(Clientes cliente);
+	public abstract ClienteModel findByidclientes(int idclientes);
+	public abstract List<ClienteModel> listAllClientes();
+	public abstract ClienteModel addClientes(ClienteModel cliente);
 	public abstract int removeClientes(int idclientes);
-	public abstract Clientes updateClientes(Clientes clientes);
+	public abstract ClienteModel updateClientes(ClienteModel clientes);
 	
 }

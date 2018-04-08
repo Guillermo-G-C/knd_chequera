@@ -1,9 +1,12 @@
 package com.KND.chequera.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.KND.chequera.entity.Bancos;
 import com.KND.chequera.entity.Clientes;
+import com.KND.chequera.entity.Movimientos;
 
 public class ChequeraModel {
 
@@ -15,12 +18,13 @@ public class ChequeraModel {
 	private boolean ch_status;
 	private Clientes clientes;
 	private Bancos bancos;
+	private Set<Movimientos> movimientos = new HashSet<>();
 	
 	public ChequeraModel() {
 	}
-
+	
 	public ChequeraModel(int idchequera, String ch_fecha_apertura, double ch_saldo, double ch_abono, double ch_cargo,
-			boolean ch_status, Clientes clientes, Bancos bancos) {
+			boolean ch_status, Clientes clientes, Bancos bancos, Set<Movimientos> movimientos) {
 		super();
 		this.idchequera = idchequera;
 		this.ch_fecha_apertura = ch_fecha_apertura;
@@ -30,8 +34,9 @@ public class ChequeraModel {
 		this.ch_status = ch_status;
 		this.clientes = clientes;
 		this.bancos = bancos;
+		this.movimientos = movimientos;
 	}
-
+	
 	public int getIdchequera() {
 		return idchequera;
 	}
@@ -94,6 +99,14 @@ public class ChequeraModel {
 
 	public void setBancos(Bancos bancos) {
 		this.bancos = bancos;
+	}
+
+	public Set<Movimientos> getMovimientos() {
+		return movimientos;
+	}
+
+	public void setMovimientos(Set<Movimientos> movimientos) {
+		this.movimientos = movimientos;
 	}
 	
 }

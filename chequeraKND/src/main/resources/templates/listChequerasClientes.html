@@ -5,7 +5,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Chequeras clientes</h1>
+	<h1>Chequeras de <span th:text="${cliente.c_nombre}+' '+${cliente.c_apaterno}+' '+${cliente.c_amaterno}"></span></h1>
+	
+	<a th:href="@{/chequeras/chequeraform(cliente=${cliente.idclientes})}"><button>Nueva Chequera +</button></a>
+	
 	<table>
 		<thead>
 			<tr>
@@ -18,12 +21,13 @@
 				<th>Banco</th>
 				<th>Status</th>
 				<th>Acciones</th>
+				<th>Movimientos</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="chequera : ${listChequerasCliente}">
+			<tr th:each="chequera : ${cliente.getChequeras()}">
 				<th><span th:text="${chequera.idchequera}"></span></th>
-				<th><span th:text="${chequera.getClientes().getC_nombre()}"></span></th>
+				<th><span th:text="${cliente.c_nombre}"></span></th>
 				<th><span th:text="${chequera.ch_fecha_apertura}"></span></th>
 				<th><span th:text="${chequera.ch_saldo}"></span></th>
 				<th><span th:text="${chequera.ch_abono}"></span></th>
@@ -34,8 +38,13 @@
 					<a >
 						<button>Editar</button>
 					</a>
-					<a >
+					<a th:href="@{/chequeras/removechequeracliente(chequera=${chequera.idchequera},cliente=${cliente.idclientes})}">
 						<button>Eliminar</button>
+					</a>
+				</th>
+				<th>
+					<a href="">
+						<button>Movimientos...</button>
 					</a>
 				</th>
 			</tr>

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.KND.chequera.entity.Clientes;
 
 @Repository("clientesRepository")
-public interface ClientesRepository  extends JpaRepository<Clientes, Serializable>{
+public interface ClientesRepository  extends JpaRepository<Clientes, Serializable> {
 
-	public abstract Clientes findByidclientes(int idclientes);
+	public abstract Clientes findByidclientes(int idClientes);
 	public abstract List<Clientes> findAll();
 	
 }

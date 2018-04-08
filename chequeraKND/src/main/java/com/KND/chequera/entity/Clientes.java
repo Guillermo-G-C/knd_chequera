@@ -37,7 +37,7 @@ public class Clientes {
 	@Column(name = "c_codigo_postal")
 	private int c_codigo_postal;
 	@Column(name = "c_telefono")
-	private int c_telefono;
+	private Long c_telefono;
 	@Column(name = "c_correo")
 	@Size(min = 10, max = 100)
 	private String c_correo;
@@ -49,17 +49,17 @@ public class Clientes {
 	@Column(name = "c_status")
 	private boolean c_status;
 	
-	private Set<Chequera> chequera = new HashSet<>();
+	private Set<Chequera> chequeras = new HashSet<>();
 
 	public Clientes() {
 
 	}
-
+	
 	public Clientes(int idclientes, @Size(min = 10, max = 50) String c_nombre,
 			@Size(min = 10, max = 50) String c_apaterno, @Size(min = 10, max = 50) String c_amaterno,
 			@Size(min = 10, max = 100) String c_direccion, @Size(min = 10, max = 50) String c_estado,
-			int c_codigo_postal, int c_telefono, @Size(min = 10, max = 100) String c_correo, Date c_fecha_nacimiento,
-			@Size(min = 10, max = 20) String c_rfc, boolean c_status, Set<Chequera> chequera) {
+			int c_codigo_postal, Long c_telefono, @Size(min = 10, max = 100) String c_correo, Date c_fecha_nacimiento,
+			@Size(min = 10, max = 20) String c_rfc, boolean c_status, Set<Chequera> chequeras) {
 		super();
 		this.idclientes = idclientes;
 		this.c_nombre = c_nombre;
@@ -73,9 +73,9 @@ public class Clientes {
 		this.c_fecha_nacimiento = c_fecha_nacimiento;
 		this.c_rfc = c_rfc;
 		this.c_status = c_status;
-		this.chequera = chequera;
+		this.chequeras = chequeras;
 	}
-	
+
 	@Id
 	@GeneratedValue
 	public int getIdclientes() {
@@ -133,12 +133,12 @@ public class Clientes {
 	public void setC_codigo_postal(int c_codigo_postal) {
 		this.c_codigo_postal = c_codigo_postal;
 	}
-
-	public int getC_telefono() {
+	
+	public Long getC_telefono() {
 		return c_telefono;
 	}
 
-	public void setC_telefono(int c_telefono) {
+	public void setC_telefono(Long c_telefono) {
 		this.c_telefono = c_telefono;
 	}
 
@@ -173,14 +173,14 @@ public class Clientes {
 	public void setC_status(boolean c_status) {
 		this.c_status = c_status;
 	}
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="clientes")
-	public Set<Chequera> getChequera() {
-		return chequera;
+	public Set<Chequera> getChequeras() {
+		return chequeras;
 	}
 
-	public void setChequera(Set<Chequera> chequera) {
-		this.chequera = chequera;
+	public void setChequeras(Set<Chequera> chequeras) {
+		this.chequeras = chequeras;
 	}
 
 }

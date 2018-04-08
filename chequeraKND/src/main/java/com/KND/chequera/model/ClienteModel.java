@@ -1,6 +1,12 @@
 package com.KND.chequera.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.KND.chequera.entity.Chequera;
 
 public class ClienteModel {
 
@@ -11,18 +17,19 @@ public class ClienteModel {
 	private String c_direccion;
 	private String c_estado;
 	private int c_codigo_postal;
-	private int c_telefono;
+	private Long c_telefono;
 	private String c_correo;
 	private Date c_fecha_nacimiento;
 	private String c_rfc;
 	private boolean c_status;
+	private Set<Chequera> chequeras = new HashSet<>();
 	
 	public ClienteModel() {
 	}
 	
 	public ClienteModel(int idclientes, String c_nombre, String c_apaterno, String c_amaterno, String c_direccion,
-			String c_estado, int c_codigo_postal, int c_telefono, String c_correo, Date c_fecha_nacimiento,
-			String c_rfc, boolean c_status) {
+			String c_estado, int c_codigo_postal, Long c_telefono, String c_correo, Date c_fecha_nacimiento,
+			String c_rfc, boolean c_status, Set<Chequera> chequeras) {
 		super();
 		this.idclientes = idclientes;
 		this.c_nombre = c_nombre;
@@ -36,6 +43,7 @@ public class ClienteModel {
 		this.c_fecha_nacimiento = c_fecha_nacimiento;
 		this.c_rfc = c_rfc;
 		this.c_status = c_status;
+		this.chequeras = chequeras;
 	}
 
 	public int getIdclientes() {
@@ -93,12 +101,12 @@ public class ClienteModel {
 	public void setC_codigo_postal(int c_codigo_postal) {
 		this.c_codigo_postal = c_codigo_postal;
 	}
-
-	public int getC_telefono() {
+	
+	public Long getC_telefono() {
 		return c_telefono;
 	}
 
-	public void setC_telefono(int c_telefono) {
+	public void setC_telefono(Long c_telefono) {
 		this.c_telefono = c_telefono;
 	}
 
@@ -134,6 +142,12 @@ public class ClienteModel {
 		this.c_status = c_status;
 	}
 
-	
+	public Set<Chequera> getChequeras() {
+		return chequeras;
+	}
+
+	public void setChequeras(Set<Chequera> chequeras) {
+		this.chequeras = chequeras;
+	}
 	
 }

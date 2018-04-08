@@ -13,7 +13,7 @@ public class ClientesConverter {
 	private static final Log LOG =LogFactory.getLog(ClientesConverter.class);
 	
 	//Entity -->to --> Model
-	public ClienteModel cientesModelToCliente(Clientes cli) {
+	public ClienteModel cientesToClienteModel(Clientes cli) {
 		ClienteModel climod=new ClienteModel();
 		climod.setC_amaterno(cli.getC_amaterno());
 		climod.setC_apaterno(cli.getC_apaterno());
@@ -27,13 +27,14 @@ public class ClientesConverter {
 		climod.setC_status(cli.isC_status());
 		climod.setC_telefono(cli.getC_telefono());
 		climod.setIdclientes(cli.getIdclientes());
+		climod.setChequeras(cli.getChequeras());
 		LOG.info("Cliente Convertido a Cliente Model");
 		return climod;
 	}
 	
 	//Model --> to -->Entity
 
-	public Clientes clientesToClienteModel(ClienteModel cm) {
+	public Clientes clientesModelToCliente(ClienteModel cm) {
 		Clientes cli= new Clientes();
 		cli.setC_amaterno(cm.getC_amaterno());
 		cli.setC_apaterno(cm.getC_apaterno());
@@ -47,6 +48,7 @@ public class ClientesConverter {
 		cli.setC_status(cm.isC_status());
 		cli.setC_telefono(cm.getC_telefono());
 		cli.setIdclientes(cm.getIdclientes());
+		cli.setChequeras(cm.getChequeras());
 		LOG.info("Cliente Modelo convertido a Clientes Entity");
 		return cli;
 	}

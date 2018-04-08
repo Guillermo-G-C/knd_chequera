@@ -25,7 +25,7 @@ public class BancosServiceImpl implements BancosService{
 	private BancoConverter bancoConverter;
 	
 	@Override
-	public Bancos findByidbanco(int idbancos) {
+	public BancoModel findByidbanco(int idbancos) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -55,8 +55,8 @@ public class BancosServiceImpl implements BancosService{
 	}
 
 	@Override
-	public Bancos updateBanco(Bancos banco) {
-		bancosRepository.save(banco);
+	public BancoModel updateBanco(BancoModel bancoModel) {
+		bancosRepository.save(bancoConverter.bancoModelToBancos(bancoModel));
 		return null;
 	}
 
