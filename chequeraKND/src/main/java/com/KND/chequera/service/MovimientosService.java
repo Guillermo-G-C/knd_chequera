@@ -9,6 +9,6 @@ public interface MovimientosService {
 	public abstract MovimientosModel findByidmovimiento(int idmovimientos);
 	public abstract List<MovimientosModel> listAllMovimientos();
 	public abstract MovimientosModel addMovimiento(MovimientosModel movimientosModel, int idChequera, int idTipoMovimiento);
-	public abstract int removeChequera(int idMovimiento);
+	public abstract int removeMovimiento(int idMovimiento);
 	public abstract MovimientosModel updateMovimiento();
 }

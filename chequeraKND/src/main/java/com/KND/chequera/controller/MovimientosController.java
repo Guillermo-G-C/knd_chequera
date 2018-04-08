@@ -75,7 +75,7 @@ public class MovimientosController {
 	public String removeMovimientoChequera(
 			@RequestParam(name="idChequera", required=true) int idChequera,
 			@RequestParam(name="idMovimiento", required=true) int idMovimiento) {
-		movimientoService.removeChequera(idMovimiento);
+		movimientoService.removeMovimiento(idMovimiento);
 		return "redirect:/movimientos/listmovimientoschequera?chequera="+idChequera;
 	} 
 	

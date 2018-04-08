@@ -68,19 +68,14 @@ public class MovimientosServiceImpl implements MovimientosService {
 		double saldo = chequera.getCh_saldo();
 		double newsaldo = 0;
 		
-		LOG.info("Saldo: "+saldo+", Operación: "+operacion+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
-		
 		if(operacion.equals("Cargo")) {
 			newsaldo = saldo-monto;
-			
 			chequera.setCh_saldo(newsaldo);
 		}else if (operacion.equals("Abono")) {
-			LOG.info("If Abono");
 			newsaldo = saldo+monto;
 			chequera.setCh_saldo(newsaldo);
 		}
-		
-		LOG.info("Nuevo Saldo: "+newsaldo);
+		LOG.info("Saldo: "+saldo+", Operación: "+operacion+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
 		
 		movimientosModel.setChequera(chequera);
 		movimientosModel.setTipo_Movimiento(tipo_Movimiento);
@@ -95,7 +90,29 @@ public class MovimientosServiceImpl implements MovimientosService {
 	}
 
 	@Override
-	public int removeChequera(int idMovimiento) {
+	public int removeMovimiento(int idMovimiento) {
+		Movimientos movimiento = movimientosRepository.findByidmovimiento(idMovimiento);
+		Chequera chequera = movimiento.getChequera();
+		
+		String operacion = movimiento.getTipo_movimiento().getTm_operacion();
+		double monto = movimiento.getM_monto();
+		double saldo = chequera.getCh_saldo();
+		double newSaldo = 0;
+		
+		if(operacion.equals("Cargo")) {
+			newSaldo = saldo+monto;
+			
+			chequera.setCh_saldo(newSaldo);
+		}else if (operacion.equals("Abono")) {
+			LOG.info("If Abono");
+			newSaldo = saldo-monto;
+			chequera.setCh_saldo(newSaldo);
+		}
+		LOG.info("Eliminar movimiento, Saldo: "+saldo+", Operación: "+operacion+", Monto: "+monto+", Nuevo Saldo: "+newSaldo);
+		
+		
+		chequeraRepository.save(chequera);
+		
 		movimientosRepository.deleteById(idMovimiento);
 		return 0;
 	}
