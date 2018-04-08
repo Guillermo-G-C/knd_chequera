@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>Agregar Banco</h1>
 	<form action="" th:action="@{/bancos/addbanco}" th:object="${bancoModel}" method="post">
 		Sucursal: <input type="text" th:field="*{b_sucursal}"/>
 		<br/>

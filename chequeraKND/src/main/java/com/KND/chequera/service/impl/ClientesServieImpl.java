@@ -1,5 +1,6 @@
 package com.KND.chequera.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,14 @@ public class ClientesServieImpl  implements ClientesService{
 
 	@Override
 	public List<ClienteModel> listAllClientes() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Clientes> clientes = clientesRepository.findAll();
+		List<ClienteModel> clienteModel = new ArrayList<ClienteModel>();
+		
+		for(Clientes cliente : clientes) {
+			clienteModel.add(clientesConverter.cientesToClienteModel(cliente));
+		}
+		
+		return clienteModel;
 	}
 
 	@Override

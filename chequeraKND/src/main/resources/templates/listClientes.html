@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Clientes</h1>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>ID Cliente</th>
+				<th>Nombre</th>
+				<th>Dirección</th>
+				<th>Estado</th>
+				<th>Codigo Postal</th>
+				<th>Telefono</th>
+				<th>Email</th>
+				<th>Fecha Nacimiento</th>
+				<th>RFC</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cliente : ${listClientes}">
+				<th><span th:text="${cliente.idclientes}"></span></th>
+				<th><span th:text="${cliente.c_nombre}+' '+${cliente.c_apaterno}+' '+${cliente.c_amaterno}"></span></th>
+				<th><span th:text="${cliente.c_direccion}"></span></th>
+				<th><span th:text="${cliente.c_estado}"></span></th>
+				<th><span th:text="${cliente.c_codigo_postal}"></span></th>
+				<th><span th:text="${cliente.c_telefono}"></span></th>
+				<th><span th:text="${cliente.c_correo}"></span></th>
+				<th><span th:text="${cliente.c_fecha_nacimiento}"></span></th>
+				<th><span th:text="${cliente.c_rfc}"></span></th>
+				<th><span th:text="${cliente.c_status}"></span></th>
+				<th>
+					<a >
+						<button>Editar</button>
+					</a>
+					<a >
+						<button>Eliminar</button>
+					</a>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
