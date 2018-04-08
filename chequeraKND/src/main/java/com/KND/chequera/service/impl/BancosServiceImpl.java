@@ -13,7 +13,7 @@ import com.KND.chequera.model.BancoModel;
 import com.KND.chequera.repository.BancosRepository;
 import com.KND.chequera.service.BancosService;
 
-@Service("bancoService")
+@Service("bancosService")
 public class BancosServiceImpl implements BancosService{
 	
 	@Autowired

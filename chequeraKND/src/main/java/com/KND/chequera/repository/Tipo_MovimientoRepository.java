@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.KND.chequera.entity.Tipo_Movimiento;
 
-@Repository("tipo_movimientoRepository")
+@Repository("tipo_MovimientoRepository")
 public interface Tipo_MovimientoRepository extends JpaRepository<Tipo_Movimiento, Serializable> {
 
 	public abstract Tipo_Movimiento findByidtipoMovimiento(int idtipomovimiento);

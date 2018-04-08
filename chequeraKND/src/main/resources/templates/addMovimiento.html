@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Agregar Movimiento</h1>
+	
+	<form action="" th:action="@{/movimientos/addmovimiento}" th:object="${movimientoModel}" method="post">
+			Concepto: <input type="text" th:field="*{m_concepto}"/>
+			<br />
+			Monto: <input type="text" th:field="*{m_monto}"/>
+			<br />
+			Fecha: <input type="date" th:field="*{m_fecha}"/>
+			<br />
+			Tipo Movimiento: <select required="required" name="idTipoMovimiento">
+				<option value="">---Tipo de movimient---</option>
+				<option th:each="tm : ${tiposMovimientos}" th:value="${tm.idtipo_movimiento}" th:text="${tm.tm_operacion}">Operación</option>
+			</select>
+			<br />
+			IdChequera: <input type="text" name="idChequera" th:value="${chequera}"/>
+			<br />
+			Status: <input type="text" th:field="*{m_status}"/>
+			<br />
+			<button type="submit">
+				Guardar
+			</button>
+	</form>
+	
+</body>
+</html>

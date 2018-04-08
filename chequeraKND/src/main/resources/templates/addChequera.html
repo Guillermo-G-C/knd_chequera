@@ -6,7 +6,7 @@
 </head>
 <body>
 
-	<h1>AGregar Chequera</h1>
+	<h1>Agregar Chequera</h1>
 
 	<form action="" th:action="@{/chequeras/addchequera}" th:object="${chequeraModel}" method="post">
 		Fecha apertura: <input type="date" th:field="*{ch_fecha_apertura}"/>
@@ -17,11 +17,14 @@
 		<br />
 		Cargo: <input type="text" th:field="*{ch_cargo}"/>
 		<br />
-		Cliente<input type="text" name="idCliente" th:value="${cliente}"/>
+		Cliente: <input type="text" name="idCliente" th:value="${cliente}"/>
 		<br />
-		Banco<input type="text" name="idBanco"/>
+		Banco: <select name="idBanco" required="required">
+			<option value="">---Banco---</option>
+			<option th:each="banco : ${bancos}" th:value="${banco.idbancos}" th:text="${banco.b_entidad}">Banco</option>
+		</select>
 		<br />
-		Status<input type="text" th:field="*{ch_status}"/>
+		Status: <input type="text" th:field="*{ch_status}"/>
 		<br />
 		<button type="submit">
 			Guardar

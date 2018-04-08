@@ -22,7 +22,7 @@ import com.KND.chequera.service.BancosService;
 public class BancosController {
 
 	@Autowired
-	@Qualifier("bancoService")
+	@Qualifier("bancosService")
 	private BancosService bancoService;
 	
 	private static final Log LOG = LogFactory.getLog(BancosController.class);

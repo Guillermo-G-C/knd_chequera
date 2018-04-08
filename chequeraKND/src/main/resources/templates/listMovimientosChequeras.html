@@ -7,7 +7,7 @@
 <body>
 	<h1>Movimientos de la Chequera: <span th:text="${chequera.idchequera}"></span></h1>
 
-	<a href="">
+	<a th:href="@{/movimientos/movimientosform(chequera=${chequera.idchequera})}">
 		<button>Nuevo Movimiento</button>
 	</a>
 	

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.KND.chequera.constant.ViewConstant;
 import com.KND.chequera.model.ChequeraModel;
+import com.KND.chequera.service.BancosService;
 import com.KND.chequera.service.ChequeraService;
 import com.KND.chequera.service.ClientesService;
 
@@ -30,7 +31,11 @@ public class ChequeraController {
 	@Qualifier("clientesService")
 	private ClientesService clientesService;
 	
-	private static final Log LOG = LogFactory.getLog(ChequeraService.class);
+	@Autowired
+	@Qualifier("bancosService")
+	private BancosService bancosService;
+	
+	private static final Log LOG = LogFactory.getLog(ChequeraController.class);
 	
 	@GetMapping("/listChequerasbycliente")
 	public ModelAndView listChequerasClientes(@RequestParam(name="cliente", required=false) int idcliente) {
@@ -44,6 +49,7 @@ public class ChequeraController {
 	public String chequeraForm(Model model,
 			@RequestParam(name="cliente", required=true) int idcliente) {
 		model.addAttribute("chequeraModel", new ChequeraModel());
+		model.addAttribute("bancos", bancosService.listAllBancos());
 		model.addAttribute("cliente", idcliente);
 		return ViewConstant.ADD_CH_VIEW;
 	}

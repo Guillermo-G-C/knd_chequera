@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.KND.chequera.model.Tipo_MovimientoModel;
 
-public interface Tipo_MobimientoService {
+public interface Tipo_MovimientoService {
 
 	public abstract Tipo_MovimientoModel findByidtipoMovimiento(int idtipoMovimiento);
 	public abstract List<Tipo_MovimientoModel> listAllMovimientos();

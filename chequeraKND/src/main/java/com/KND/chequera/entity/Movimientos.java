@@ -24,7 +24,7 @@ public class Movimientos {
 	@Column(name = "m_monto")
 	private Double m_monto;
 	@Column(name = "m_fecha")
-	private Date m_fecha;
+	private String m_fecha;
 	@Column(name = "m_status")
 	private Boolean m_status;
 
@@ -38,8 +38,8 @@ public class Movimientos {
 
 	public Movimientos() {
 	}
-
-	public Movimientos(int idmovimiento, String m_concepto, Double m_monto, Date m_fecha, Boolean m_status,
+	
+	public Movimientos(int idmovimiento, String m_concepto, Double m_monto, String m_fecha, Boolean m_status,
 			Tipo_Movimiento tipo_movimiento, Chequera chequera) {
 		super();
 		this.idmovimiento = idmovimiento;
@@ -75,11 +75,11 @@ public class Movimientos {
 		this.m_monto = m_monto;
 	}
 
-	public Date getM_fecha() {
+	public String getM_fecha() {
 		return m_fecha;
 	}
 
-	public void setM_fecha(Date m_fecha) {
+	public void setM_fecha(String m_fecha) {
 		this.m_fecha = m_fecha;
 	}
 

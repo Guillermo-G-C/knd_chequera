@@ -60,7 +60,7 @@ public class ChequeraServiceImpl implements ChequeraService{
 			chequerasModel.add(chequeraCoverter.chequeraToChequeraModel(chequera));
 			//LOG.info("Cliente: "+chequera.getClientes().getC_nombre());
 		}
-		LOG.info("METHOD: listAllChequeras(), PARAMS: "+chequerasModel.size());
+		//LOG.info("METHOD: listAllChequeras(), PARAMS: "+chequerasModel.size());
 		//LOG.info("Chequera by Cliente"+chequeraRepository.findByclientes(clientesRepository.findByidclientes(1)));
 		return chequerasModel;
 	}
@@ -74,7 +74,7 @@ public class ChequeraServiceImpl implements ChequeraService{
 		
 		chequeraModel.setClientes(cliente);
 		chequeraModel.setBancos(banco);
-		LOG.info("ChequeraModel: "+chequeraModel.toString());
+		//LOG.info("ChequeraModel: "+chequeraModel.toString());
 		Chequera chequera = chequeraRepository.save(chequeraCoverter.chequeraModelToChequera(chequeraModel));
 		return chequeraCoverter.chequeraToChequeraModel(chequera);
 	}

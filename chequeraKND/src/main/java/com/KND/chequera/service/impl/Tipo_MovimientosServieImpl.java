@@ -11,13 +11,13 @@ import com.KND.chequera.converter.Tipo_MovimientoConverter;
 import com.KND.chequera.entity.Tipo_Movimiento;
 import com.KND.chequera.model.Tipo_MovimientoModel;
 import com.KND.chequera.repository.Tipo_MovimientoRepository;
-import com.KND.chequera.service.Tipo_MobimientoService;
+import com.KND.chequera.service.Tipo_MovimientoService;
 
-@Service("tipo_movimientoService")
-public class Tipo_MovimientosServieImpl implements Tipo_MobimientoService{
+@Service("tipo_MovimientoService")
+public class Tipo_MovimientosServieImpl implements Tipo_MovimientoService{
 
 	@Autowired
-	@Qualifier("tipo_movimientoRepository")
+	@Qualifier("tipo_MovimientoRepository")
 	private Tipo_MovimientoRepository tipo_MovimientoRepository;
 	
 	@Autowired

@@ -2,23 +2,31 @@ package com.KND.chequera.model;
 
 import java.util.Date;
 
+import com.KND.chequera.entity.Chequera;
+import com.KND.chequera.entity.Tipo_Movimiento;
+
 public class MovimientosModel {
 
 	private int idmovimientos;
 	private String m_concepto;
 	private Double m_monto;
-	private Date m_fecha;
+	private String m_fecha;
 	private Boolean m_status;
+	private Tipo_Movimiento tipo_Movimiento;
+	private Chequera chequera;
 	
 	public MovimientosModel() {}
-	
-	public MovimientosModel(int idmovimientos, String m_concepto, Double m_monto, Date m_fecha, Boolean m_status) {
+
+	public MovimientosModel(int idmovimientos, String m_concepto, Double m_monto, String m_fecha, Boolean m_status,
+			Tipo_Movimiento tipo_Movimiento, Chequera chequera) {
 		super();
 		this.idmovimientos = idmovimientos;
 		this.m_concepto = m_concepto;
 		this.m_monto = m_monto;
 		this.m_fecha = m_fecha;
 		this.m_status = m_status;
+		this.tipo_Movimiento = tipo_Movimiento;
+		this.chequera = chequera;
 	}
 
 	public int getIdmovimientos() {
@@ -45,11 +53,11 @@ public class MovimientosModel {
 		this.m_monto = m_monto;
 	}
 
-	public Date getM_fecha() {
+	public String getM_fecha() {
 		return m_fecha;
 	}
 
-	public void setM_fecha(Date m_fecha) {
+	public void setM_fecha(String m_fecha) {
 		this.m_fecha = m_fecha;
 	}
 
@@ -59,6 +67,22 @@ public class MovimientosModel {
 
 	public void setM_status(Boolean m_status) {
 		this.m_status = m_status;
+	}
+
+	public Tipo_Movimiento getTipo_Movimiento() {
+		return tipo_Movimiento;
+	}
+
+	public void setTipo_Movimiento(Tipo_Movimiento tipo_Movimiento) {
+		this.tipo_Movimiento = tipo_Movimiento;
+	}
+
+	public Chequera getChequera() {
+		return chequera;
+	}
+
+	public void setChequera(Chequera chequera) {
+		this.chequera = chequera;
 	}
 	
 }
