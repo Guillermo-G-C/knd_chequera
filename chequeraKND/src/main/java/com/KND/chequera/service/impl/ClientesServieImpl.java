@@ -43,9 +43,9 @@ public class ClientesServieImpl  implements ClientesService{
 	}
 
 	@Override
-	public ClienteModel addClientes(ClienteModel cliente) {
-		// TODO Auto-generated method stub
-		return null;
+	public ClienteModel addClientes(ClienteModel clienteModel) {
+		Clientes cliente = clientesRepository.save(clientesConverter.clientesModelToCliente(clienteModel));
+		return clientesConverter.cientesToClienteModel(cliente);
 	}
 
 	@Override

@@ -20,16 +20,16 @@ public class Clientes {
 	@Column(name = "idclientes")
 	private int idclientes;
 	@Column(name = "c_nombre")
-	@Size(min = 10, max = 50)
+	//@Size(min = 10, max = 50)
 	private String c_nombre;
 	@Column(name = "c_apaterno")
-	@Size(min = 10, max = 50)
+	//@Size(min = 10, max = 50)
 	private String c_apaterno;
 	@Column(name = "c_amaterno")
-	@Size(min = 10, max = 50)
+	//@Size(min = 10, max = 50)
 	private String c_amaterno;
 	@Column(name = "c_direccion")
-	@Size(min = 10, max = 100)
+	//@Size(min = 10, max = 100)
 	private String c_direccion;
 	@Column(name = "c_estado")
 	@Size(min = 10, max = 50)

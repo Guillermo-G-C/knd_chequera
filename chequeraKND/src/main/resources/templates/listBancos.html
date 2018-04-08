@@ -7,6 +7,8 @@
 <body>
 	<h1>Bancos</h1>
 	
+	<a th:href="@{/bancos/bancosform}"><button>Agregar Banco</button></a>
+	
 	<div th:if="${result==1}">Agregado Correctamente!</div>
 	<div th:if="${result==0}">Erro al agregar Banco</div>
 	
