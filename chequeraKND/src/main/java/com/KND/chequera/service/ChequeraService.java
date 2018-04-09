@@ -9,6 +9,7 @@ public interface ChequeraService {
 	public abstract ChequeraModel findByidchequera(int idchequera);
 	public abstract List<ChequeraModel> listAllChequeras();
 	public abstract ChequeraModel addChequera(ChequeraModel chequeraModel, int idCliente, int idBanco);
+	public abstract ChequeraModel addChequera(ChequeraModel chequeraModel, int idCliente);
 	public abstract int removeChequera(int idchequera);
 	public abstract ChequeraModel updateChequera(ChequeraModel chequeraModel);
 	

@@ -1,3 +1,6 @@
+server:
+  address: localhost
+  port: 8080
 spring:
   banner:
     location: auxiliares/banner.txt
@@ -20,9 +23,22 @@ spring:
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-      #naming:
-       # implicit-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
         #dialect: org.hibernate.dialect.Oracle11gDialect
+        
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: otggc21@gmail.com
+    password: Gato2018*
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: true

@@ -149,5 +149,14 @@ public class ClienteModel {
 	public void setChequeras(Set<Chequera> chequeras) {
 		this.chequeras = chequeras;
 	}
+
+	@Override
+	public String toString() {
+		return "ClienteModel [idclientes=" + idclientes + ", c_nombre=" + c_nombre + ", c_apaterno=" + c_apaterno
+				+ ", c_amaterno=" + c_amaterno + ", c_direccion=" + c_direccion + ", c_estado=" + c_estado
+				+ ", c_codigo_postal=" + c_codigo_postal + ", c_telefono=" + c_telefono + ", c_correo=" + c_correo
+				+ ", c_fecha_nacimiento=" + c_fecha_nacimiento + ", c_rfc=" + c_rfc + ", c_status=" + c_status
+				+ ", chequeras=" + chequeras + "]";
+	}
 	
 }

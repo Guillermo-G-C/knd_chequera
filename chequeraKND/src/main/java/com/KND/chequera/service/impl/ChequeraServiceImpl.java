@@ -78,6 +78,18 @@ public class ChequeraServiceImpl implements ChequeraService{
 		Chequera chequera = chequeraRepository.save(chequeraCoverter.chequeraModelToChequera(chequeraModel));
 		return chequeraCoverter.chequeraToChequeraModel(chequera);
 	}
+	
+	@Override
+	public ChequeraModel addChequera(ChequeraModel chequeraModel, int idCliente) {
+		LOG.info("addChequera() -- ChequeraServiceImpl, IdCliente: "+idCliente);
+		Clientes cliente = clientesRepository.findByidclientes(idCliente);
+		//LOG.info("Cliente repository: "+cliente.toString());
+		
+		chequeraModel.setClientes(cliente);
+		//LOG.info("ChequeraModel: "+chequeraModel.toString());
+		Chequera chequera = chequeraRepository.save(chequeraCoverter.chequeraModelToChequera(chequeraModel));
+		return chequeraCoverter.chequeraToChequeraModel(chequera);
+	}
 
 	@Override
 	public int removeChequera(int idchequera) {

@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Movimientos de la Chequera: <span th:text="${chequera.idchequera}"></span></h1>
-
+	<h2>Entidad: <span th:text="${chequera.getBancos().b_entidad}"></span></h2>
 	<h2>Saldo: <span th:text="${chequera.ch_saldo}"></span></h2>
 
 	<a th:href="@{/movimientos/movimientosform(chequera=${chequera.idchequera})}">
@@ -31,7 +31,10 @@
 				<th><span th:text="${movimiento.idmovimiento}"></span></th>
 				<th><span th:text="${chequera.idchequera}"></span></th>
 				<th><span th:text="${movimiento.m_concepto}"></span></th>
-				<th><span th:text="${movimiento.m_monto}"></span></th>
+				<!-- Abono -->
+				<th th:if="${movimiento.getTipo_movimiento().tm_operacion=='Abono'}"><span th:text="${movimiento.m_monto}"></span></th>
+				<!-- Cargo -->
+				<th th:unless="${movimiento.getTipo_movimiento().tm_operacion=='Abono'}"><span th:text="'-'+${movimiento.m_monto}"></span></th>
 				<th><span th:text="${movimiento.m_fecha}"></span></th>
 				<th><span th:text="${movimiento.getTipo_movimiento().tm_operacion}"></span></th>
 				<th><span th:text="${movimiento.m_status}"></span></th>

@@ -3,6 +3,8 @@ package com.KND.chequera.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,13 @@ import com.KND.chequera.converter.MovimientosConverter;
 import com.KND.chequera.entity.Chequera;
 import com.KND.chequera.entity.Movimientos;
 import com.KND.chequera.entity.Tipo_Movimiento;
+import com.KND.chequera.model.MailModel;
 import com.KND.chequera.model.MovimientosModel;
 import com.KND.chequera.repository.ChequeraRepository;
 import com.KND.chequera.repository.MovimientosRepository;
 import com.KND.chequera.repository.Tipo_MovimientoRepository;
 import com.KND.chequera.service.MovimientosService;
+import com.KND.chequera.service.SendMailService;
 
 @Service("movimientoService")
 public class MovimientosServiceImpl implements MovimientosService {
@@ -37,6 +41,10 @@ public class MovimientosServiceImpl implements MovimientosService {
 	@Autowired
 	@Qualifier("tipo_MovimientoRepository")
 	private Tipo_MovimientoRepository tipo_MovimientoRepository;
+	
+	@Autowired
+	@Qualifier("sendMailService")
+	private SendMailService sendMailService;
 	
 	private static final Log LOG = LogFactory.getLog(MovimientosServiceImpl.class);
 	
@@ -63,6 +71,8 @@ public class MovimientosServiceImpl implements MovimientosService {
 		Chequera chequera = chequeraRepository.findByidchequera(idChequera);
 		Tipo_Movimiento tipo_Movimiento = tipo_MovimientoRepository.findByidtipoMovimiento(idTipoMovimiento);
 		
+		MailModel mailModel = new MailModel();
+		
 		String operacion = tipo_Movimiento.getTm_operacion();
 		double monto = movimientosModel.getM_monto();
 		double saldo = chequera.getCh_saldo();
@@ -75,7 +85,7 @@ public class MovimientosServiceImpl implements MovimientosService {
 			newsaldo = saldo+monto;
 			chequera.setCh_saldo(newsaldo);
 		}
-		LOG.info("Saldo: "+saldo+", Operación: "+operacion+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
+		LOG.info("Operación: "+operacion+", Saldo: "+saldo+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
 		
 		movimientosModel.setChequera(chequera);
 		movimientosModel.setTipo_Movimiento(tipo_Movimiento);
@@ -85,6 +95,19 @@ public class MovimientosServiceImpl implements MovimientosService {
 		
 		//Guardar Saldo
 		chequeraRepository.save(chequera);
+		
+		//Enviar correo
+		mailModel.setFrom("chequera@chequera.com");
+		mailModel.setTo(chequera.getClientes().getC_correo());
+		mailModel.setSubject(operacion+", a la chequera"+chequera.getIdchequera());
+		mailModel.setContent("Operación: "+operacion+", Saldo: "+saldo+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
+		
+		/*try {
+			sendMailService.sendMailMessage(mailModel);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		
 		return movimientosConverter.movimientosToMovimientoModel(movimiento);
 	}
