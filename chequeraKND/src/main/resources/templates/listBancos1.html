@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Bancos</h1>
+	
+	<a th:href="@{/bancos/bancosform}"><button>Agregar Banco</button></a>
+	
+	<div th:if="${result==1}">Agregado Correctamente!</div>
+	<div th:if="${result==0}">Erro al agregar Banco</div>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>ID Banco</th>
+				<th>Sucursal</th>
+				<th>Entidad</th>
+				<th>Dirección</th>
+				<th>Status</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="banco : ${listbancos}">
+				<th><span th:text="${banco.idbancos}"></span></th>
+				<th><span th:text="${banco.b_sucursal}"></span></th>
+				<th><span th:text="${banco.b_entidad}"></span></th>
+				<th><span th:text="${banco.b_direccion}"></span></th>
+				<th><span th:text="${banco.b_status}"></span></th>
+				<th>
+					<a >
+						<button>Editar</button>
+					</a>
+					<a th:href="@{/bancos/removebanco?id=__${banco.idbancos}__}">
+						<button>Eliminar</button>
+					</a>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>

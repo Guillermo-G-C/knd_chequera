@@ -28,8 +28,9 @@ public class BancosController {
 	private static final Log LOG = LogFactory.getLog(BancosController.class);
 	
 	@GetMapping("/listbancos")
-	public ModelAndView listAllBancos() {
+	public ModelAndView listAllBancos(Model model) {
 		ModelAndView mav = new ModelAndView(ViewConstant.LIST_BANCOS_VIEW);
+		model.addAttribute("bancoModel", new BancoModel());
 		mav.addObject("listbancos", bancoService.listAllBancos());
 		
 		return mav;
@@ -57,9 +58,9 @@ public class BancosController {
 	}
 	
 	@GetMapping("removebanco")
-	public ModelAndView removeBanco(@RequestParam(name="id", required=true) int id) {
+	public String removeBanco(@RequestParam(name="id", required=true) int id) {
 		bancoService.removeBancos(id);
-		return listAllBancos();
+		return "redirect:/bancos/listbancos";
 	}
 	
 	
