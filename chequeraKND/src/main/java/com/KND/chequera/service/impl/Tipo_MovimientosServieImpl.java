@@ -3,6 +3,7 @@ package com.KND.chequera.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jfree.util.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -32,13 +33,14 @@ public class Tipo_MovimientosServieImpl implements Tipo_MovimientoService{
 
 	@Override
 	public List<Tipo_MovimientoModel> listAllMovimientos() {
+		Log.info("METHOD: listAllMovimientos()");
 		List<Tipo_Movimiento> tipo_movimientos = tipo_MovimientoRepository.findAll();
 		List<Tipo_MovimientoModel> tipo_movimientoModel = new ArrayList<Tipo_MovimientoModel>();
 		
 		for(Tipo_Movimiento t_m : tipo_movimientos) {
 			tipo_movimientoModel.add(tipo_MovimientoConverter.tipoMovimientoModelToTipoMovimiento(t_m));
+			Log.info("TipoMovimiento: "+t_m.toString());
 		}
-		
 		return tipo_movimientoModel;
 	}
 

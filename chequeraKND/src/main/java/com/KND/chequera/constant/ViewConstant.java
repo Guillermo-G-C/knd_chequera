@@ -15,4 +15,6 @@ public class ViewConstant {
 	
 	public static final String LIST_MOVIMIENTOS_CHEQUERAS_VIEW = "listMovimientosChequeras";
 	public static final String ADD_MOVIMIENTO_VIEW = "addMovimiento";
+	
+	public static final String ADD_EDOCUENTA_VIEW = "addEdoCuenta";
 }

@@ -93,7 +93,7 @@ public class ChequeraServiceImpl implements ChequeraService{
 
 	@Override
 	public int removeChequera(int idchequera) {
-		chequeraRepository.deleteById(idchequera);
+		chequeraRepository.delete(idchequera);
 		return 0;
 	}
 

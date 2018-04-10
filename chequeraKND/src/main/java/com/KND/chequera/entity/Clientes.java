@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 @Table(name = "clientes")
 public class Clientes {
 	
+	@Id
+	@GeneratedValue
 	@Column(name = "idclientes")
 	private int idclientes;
 	@Column(name = "c_nombre")
@@ -49,6 +51,7 @@ public class Clientes {
 	@Column(name = "c_status")
 	private boolean c_status;
 	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="clientes")
 	private Set<Chequera> chequeras = new HashSet<>();
 
 	public Clientes() {
@@ -76,8 +79,7 @@ public class Clientes {
 		this.chequeras = chequeras;
 	}
 
-	@Id
-	@GeneratedValue
+	
 	public int getIdclientes() {
 		return idclientes;
 	}
@@ -173,8 +175,7 @@ public class Clientes {
 	public void setC_status(boolean c_status) {
 		this.c_status = c_status;
 	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="clientes")
+	
 	public Set<Chequera> getChequeras() {
 		return chequeras;
 	}

@@ -1,9 +1,13 @@
 package com.KND.chequera.service.impl;
 
+import java.sql.Date;
+//import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.MessagingException;
+//import javax.mail.MessagingException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,15 +19,16 @@ import com.KND.chequera.converter.MovimientosConverter;
 import com.KND.chequera.entity.Chequera;
 import com.KND.chequera.entity.Movimientos;
 import com.KND.chequera.entity.Tipo_Movimiento;
+import com.KND.chequera.model.EstadoCuentaModel;
 import com.KND.chequera.model.MailModel;
 import com.KND.chequera.model.MovimientosModel;
 import com.KND.chequera.repository.ChequeraRepository;
 import com.KND.chequera.repository.MovimientosRepository;
 import com.KND.chequera.repository.Tipo_MovimientoRepository;
 import com.KND.chequera.service.MovimientosService;
-import com.KND.chequera.service.SendMailService;
+//import com.KND.chequera.service.SendMailService;
 
-@Service("movimientoService")
+@Service("movimientosService")
 public class MovimientosServiceImpl implements MovimientosService {
 	
 	@Autowired
@@ -44,7 +49,7 @@ public class MovimientosServiceImpl implements MovimientosService {
 	
 	@Autowired
 	@Qualifier("sendMailService")
-	private SendMailService sendMailService;
+	//private SendMailService sendMailService;
 	
 	private static final Log LOG = LogFactory.getLog(MovimientosServiceImpl.class);
 	
@@ -64,6 +69,55 @@ public class MovimientosServiceImpl implements MovimientosService {
 		}
 		
 		return movimientosModel;
+	}
+	
+	@Override
+	public List<EstadoCuentaModel> listAllMovimientosEdoCuenta(int idChequera) {
+		List<Movimientos> movimientos = movimientosRepository.findAll(); 
+		List<EstadoCuentaModel> edoCuentaModel = new ArrayList<EstadoCuentaModel>();
+		
+		for(Movimientos movimiento : movimientos) {
+			edoCuentaModel.add(movimientosConverter.movimientosToEstadoCuentaModel(movimiento));
+		}
+		
+		return edoCuentaModel;
+	}
+	
+	@Override
+	public List<EstadoCuentaModel> listAllMovimientosEnRangoDeFechas(String fechaInicio, String fechaCorte) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		/*java.util.Date utilDate = new java.util.Date();
+	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());*/
+	    
+	    java.sql.Date sqlInicio=Date.valueOf(fechaInicio);
+	    java.sql.Date sqlCorte=Date.valueOf(fechaCorte);
+	    
+	    java.util.Date utilInicio = new java.util.Date(sqlInicio.getTime());
+	    java.util.Date utilCorte = new java.util.Date(sqlCorte.getTime());
+		/*
+		Date fechaInicioF=null;
+		Date fechaCorteF=null;
+		
+		try {
+			fechaInicioF=dateFormat.parse(fechaInicio);
+			fechaCorteF=dateFormat.parse(fechaCorte);
+			
+			LOG.info("FechaInicio con formato yyyy-MM-dd: "+dateFormat.format(fechaInicioF).toString());
+			LOG.info("FechaCorte con formato yyyy-MM-dd: "+dateFormat.format(fechaCorteF).toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		List<Movimientos> movimientos = movimientosRepository.findByMFechaAfterAndMFechaBefore(sqlInicio, sqlCorte);
+		List<EstadoCuentaModel> edoCuentaModel = new ArrayList<EstadoCuentaModel>();
+		
+		for(Movimientos movimiento : movimientos) {
+			edoCuentaModel.add(movimientosConverter.movimientosToEstadoCuentaModel(movimiento));
+		}
+		
+		return edoCuentaModel;
 	}
 
 	@Override
@@ -97,11 +151,11 @@ public class MovimientosServiceImpl implements MovimientosService {
 		chequeraRepository.save(chequera);
 		
 		//Enviar correo
-		mailModel.setFrom("chequera@chequera.com");
+		/*mailModel.setFrom("chequera@chequera.com");
 		mailModel.setTo(chequera.getClientes().getC_correo());
 		mailModel.setSubject(operacion+", a la chequera"+chequera.getIdchequera());
 		mailModel.setContent("Operación: "+operacion+", Saldo: "+saldo+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
-		
+		*/
 		/*try {
 			sendMailService.sendMailMessage(mailModel);
 		} catch (MessagingException e) {
@@ -136,7 +190,7 @@ public class MovimientosServiceImpl implements MovimientosService {
 		
 		chequeraRepository.save(chequera);
 		
-		movimientosRepository.deleteById(idMovimiento);
+		movimientosRepository.delete(idMovimiento);
 		return 0;
 	}
 

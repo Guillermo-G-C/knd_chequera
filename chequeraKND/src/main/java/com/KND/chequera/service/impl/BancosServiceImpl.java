@@ -50,7 +50,7 @@ public class BancosServiceImpl implements BancosService{
 
 	@Override
 	public int removeBancos(int idbancos) {
-		bancosRepository.deleteById(idbancos);
+		bancosRepository.delete(idbancos);
 		return 0;
 	}
 

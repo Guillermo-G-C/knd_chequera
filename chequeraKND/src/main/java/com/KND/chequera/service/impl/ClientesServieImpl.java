@@ -50,7 +50,7 @@ public class ClientesServieImpl  implements ClientesService{
 
 	@Override
 	public int removeClientes(int idclientes) {
-		clientesRepository.deleteById(idclientes);
+		clientesRepository.delete(idclientes);
 		return 0;
 	}
 

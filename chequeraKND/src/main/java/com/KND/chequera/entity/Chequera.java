@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,12 +18,13 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="chequera")
 public class Chequera {
-
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idchequera")
 	private int idchequera;
 	@Column(name="ch_fecha_apertura")
-	//@Size(min = 1, max = 50)
+	@Size(min = 1, max = 50)
 	private String ch_fecha_apertura;
 	@Column(name="ch_saldo")
 	private double  ch_saldo;
@@ -33,10 +35,15 @@ public class Chequera {
 	@Column(name="ch_status")
 	private boolean ch_status;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="idclientes")
 	private Clientes clientes;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="idbancos")
 	private Bancos bancos;
 	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="chequera")
 	private Set<Movimientos> movimientos = new HashSet<>();
 	
 	public Chequera() {
@@ -55,9 +62,7 @@ public class Chequera {
 		this.bancos = bancos;
 		this.movimientos = movimientos;
 	}
-
-	@Id
-	@GeneratedValue
+	
 	public int getIdchequera() {
 		return idchequera;
 	}
@@ -105,9 +110,7 @@ public class Chequera {
 	public void setCh_status(boolean ch_status) {
 		this.ch_status = ch_status;
 	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="idclientes")
+	
 	public Clientes getClientes() {
 		return clientes;
 	}
@@ -116,8 +119,7 @@ public class Chequera {
 		this.clientes = clientes;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="idbancos")
+	
 	public Bancos getBancos() {
 		return bancos;
 	}
@@ -125,8 +127,7 @@ public class Chequera {
 	public void setBancos(Bancos bancos) {
 		this.bancos = bancos;
 	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="chequera")
+	
 	public Set<Movimientos> getMovimientos() {
 		return movimientos;
 	}

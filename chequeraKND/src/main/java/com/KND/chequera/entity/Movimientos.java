@@ -1,6 +1,7 @@
 package com.KND.chequera.entity;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,8 +24,8 @@ public class Movimientos {
 	private String m_concepto;
 	@Column(name = "m_monto")
 	private Double m_monto;
-	@Column(name = "m_fecha")
-	private String m_fecha;
+	@Column(name = "mFecha")
+	private Date mFecha;
 	@Column(name = "m_status")
 	private Boolean m_status;
 
@@ -38,14 +39,14 @@ public class Movimientos {
 
 	public Movimientos() {
 	}
-	
-	public Movimientos(int idmovimiento, String m_concepto, Double m_monto, String m_fecha, Boolean m_status,
+
+	public Movimientos(int idmovimiento, String m_concepto, Double m_monto, Date mFecha, Boolean m_status,
 			Tipo_Movimiento tipo_movimiento, Chequera chequera) {
 		super();
 		this.idmovimiento = idmovimiento;
 		this.m_concepto = m_concepto;
 		this.m_monto = m_monto;
-		this.m_fecha = m_fecha;
+		this.mFecha = mFecha;
 		this.m_status = m_status;
 		this.tipo_movimiento = tipo_movimiento;
 		this.chequera = chequera;
@@ -75,12 +76,12 @@ public class Movimientos {
 		this.m_monto = m_monto;
 	}
 
-	public String getM_fecha() {
-		return m_fecha;
+	public Date getmFecha() {
+		return mFecha;
 	}
 
-	public void setM_fecha(String m_fecha) {
-		this.m_fecha = m_fecha;
+	public void setmFecha(Date mFecha) {
+		this.mFecha = mFecha;
 	}
 
 	public Boolean getM_status() {

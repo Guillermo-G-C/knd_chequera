@@ -24,7 +24,7 @@ import com.KND.chequera.service.Tipo_MovimientoService;
 public class MovimientosController {
 	
 	@Autowired
-	@Qualifier("movimientoService")
+	@Qualifier("movimientosService")
 	private MovimientosService movimientoService;
 	
 	@Autowired
@@ -48,6 +48,7 @@ public class MovimientosController {
 	public String movimientoForm(
 			Model model,
 			@RequestParam(name="chequera", required=true)int idchequera) {
+		LOG.info("METHOD: MovimientoForm()");
 		model.addAttribute("movimientoModel", new MovimientosModel());
 		model.addAttribute("tiposMovimientos", tipo_MovimientoService.listAllMovimientos());
 		model.addAttribute("chequera", idchequera);

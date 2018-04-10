@@ -13,6 +13,10 @@
 		<button>Nuevo Movimiento</button>
 	</a>
 	
+	<a th:href="@{/reporte/estadodecuentaform(idChequera=${chequera.idchequera})}">
+		<button>Generar estado de cuenta</button>
+	</a>
+	
 	<table>
 		<thead>
 			<tr>
@@ -35,7 +39,7 @@
 				<th th:if="${movimiento.getTipo_movimiento().tm_operacion=='Abono'}"><span th:text="${movimiento.m_monto}"></span></th>
 				<!-- Cargo -->
 				<th th:unless="${movimiento.getTipo_movimiento().tm_operacion=='Abono'}"><span th:text="'-'+${movimiento.m_monto}"></span></th>
-				<th><span th:text="${movimiento.m_fecha}"></span></th>
+				<th><span th:text="${movimiento.mFecha}"></span></th>
 				<th><span th:text="${movimiento.getTipo_movimiento().tm_operacion}"></span></th>
 				<th><span th:text="${movimiento.m_status}"></span></th>
 				<th>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Generar Estado de cuenta</h1>
+	<form action="" th:action="@{/reporte/estadodecueta}">
+		<fieldset>
+		<legend>Generar reporte en un rango de fechas</legend>
+		idChequera <input type="text" name="idChequera" th:value="${idChequera}"/>
+		<br />
+		Rango de fechas <input type="date" name="fechaInicio" data-date-format="DD/MMMM/YYYY"/> a <input type="date" name="fechaCorte"/>
+		<br />
+		<button type="submit">
+			Guardar
+		</button>
+		</fieldset>
+	</form>
+	
+	
+	<form action="" th:action="@{/reporte/estadodecueta}">
+		<fieldset>
+		<legend>Generar reporte mensual</legend>
+		idChequera <input type="text" name="idChequera" th:value="${idChequera}"/>
+		<br />
+		Mes <input type="month" name="fechaCorte"/>
+		<br />
+		<button type="submit">
+			Guardar
+		</button>
+		</fieldset>
+	</form>
+</body>
+</html>

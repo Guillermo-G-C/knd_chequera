@@ -15,18 +15,21 @@ import javax.persistence.Table;
 @Table(name="bancos")
 public class Bancos {
 
-	//@Column(name="idbancos")
+	@Id
+	@GeneratedValue
+	@Column(name="idbancos")
 	private int idbancos;
-	//@Column(name="b_sucursal")
+	@Column(name="b_sucursal")
 	private String b_sucursal;
-	//@Column(name="b_entidad")
+	@Column(name="b_entidad")
 	private String b_entidad;
-	//@Column(name="b_direccion")
+	@Column(name="b_direccion")
 	private String b_direccion;
-	//@Column(name="b_status")
+	@Column(name="b_status")
 	private boolean b_status;
 	
-	//private Set<Chequera> chequera = new HashSet<>();
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="bancos")
+	private Set<Chequera> chequera = new HashSet<>();
 	
 	public Bancos() {}
 
@@ -38,11 +41,10 @@ public class Bancos {
 		this.b_entidad = b_entidad;
 		this.b_direccion = b_direccion;
 		this.b_status = b_status;
-		//this.chequera = chequera;
+		this.chequera = chequera;
 	}
 	
-	@Id
-	@GeneratedValue
+	
 	public int getIdbancos() {
 		return idbancos;
 	}
@@ -82,14 +84,13 @@ public class Bancos {
 	public void setB_status(boolean b_status) {
 		this.b_status = b_status;
 	}
-
-	/*@OneToMany(fetch = FetchType.EAGER, mappedBy="bancos")
+	
 	public Set<Chequera> getChequera() {
 		return chequera;
 	}
 
 	public void setChequera(Set<Chequera> chequera) {
 		this.chequera = chequera;
-	}*/
+	}
 	
 }

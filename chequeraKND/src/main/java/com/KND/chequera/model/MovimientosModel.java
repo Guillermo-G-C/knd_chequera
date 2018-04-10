@@ -1,6 +1,8 @@
 package com.KND.chequera.model;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import com.KND.chequera.entity.Chequera;
 import com.KND.chequera.entity.Tipo_Movimiento;
@@ -10,20 +12,20 @@ public class MovimientosModel {
 	private int idmovimientos;
 	private String m_concepto;
 	private Double m_monto;
-	private String m_fecha;
+	private Date mFecha;
 	private Boolean m_status;
 	private Tipo_Movimiento tipo_Movimiento;
 	private Chequera chequera;
 	
 	public MovimientosModel() {}
-
-	public MovimientosModel(int idmovimientos, String m_concepto, Double m_monto, String m_fecha, Boolean m_status,
+	
+	public MovimientosModel(int idmovimientos, String m_concepto, Double m_monto, Date mFecha, Boolean m_status,
 			Tipo_Movimiento tipo_Movimiento, Chequera chequera) {
 		super();
 		this.idmovimientos = idmovimientos;
 		this.m_concepto = m_concepto;
 		this.m_monto = m_monto;
-		this.m_fecha = m_fecha;
+		this.mFecha = mFecha;
 		this.m_status = m_status;
 		this.tipo_Movimiento = tipo_Movimiento;
 		this.chequera = chequera;
@@ -52,13 +54,13 @@ public class MovimientosModel {
 	public void setM_monto(Double m_monto) {
 		this.m_monto = m_monto;
 	}
-
-	public String getM_fecha() {
-		return m_fecha;
+	
+	public Date getmFecha() {
+		return mFecha;
 	}
 
-	public void setM_fecha(String m_fecha) {
-		this.m_fecha = m_fecha;
+	public void setmFecha(Date mFecha) {
+		this.mFecha = mFecha;
 	}
 
 	public Boolean getM_status() {
@@ -84,5 +86,14 @@ public class MovimientosModel {
 	public void setChequera(Chequera chequera) {
 		this.chequera = chequera;
 	}
+
+	@Override
+	public String toString() {
+		return "MovimientosModel [idmovimientos=" + idmovimientos + ", m_concepto=" + m_concepto + ", m_monto="
+				+ m_monto + ", mFecha=" + mFecha + ", m_status=" + m_status + ", tipo_Movimiento=" + tipo_Movimiento
+				+ ", chequera=" + chequera + "]";
+	}
+
+	
 	
 }

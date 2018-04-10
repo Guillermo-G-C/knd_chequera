@@ -1,4 +1,4 @@
-package com.KND.chequera.service.impl;
+/*package com.KND.chequera.service.impl;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -34,3 +34,4 @@ public class SendMailServiceImpl implements SendMailService {
 	}
 
 }
+*/
