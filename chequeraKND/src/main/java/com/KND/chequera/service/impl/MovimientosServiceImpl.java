@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.KND.chequera.converter.ChequeraConverter;
 import com.KND.chequera.converter.MovimientosConverter;
 import com.KND.chequera.entity.Chequera;
 import com.KND.chequera.entity.Movimientos;
@@ -25,6 +26,7 @@ import com.KND.chequera.model.MovimientosModel;
 import com.KND.chequera.repository.ChequeraRepository;
 import com.KND.chequera.repository.MovimientosRepository;
 import com.KND.chequera.repository.Tipo_MovimientoRepository;
+import com.KND.chequera.service.ChequeraService;
 import com.KND.chequera.service.MovimientosService;
 //import com.KND.chequera.service.SendMailService;
 
@@ -42,6 +44,10 @@ public class MovimientosServiceImpl implements MovimientosService {
 	@Autowired
 	@Qualifier("chequeraRepository")
 	private ChequeraRepository chequeraRepository;
+	
+	@Autowired
+	@Qualifier("chequeraConverter")
+	private ChequeraConverter chequeraConverter;
 	
 	@Autowired
 	@Qualifier("tipo_MovimientoRepository")
@@ -111,6 +117,45 @@ public class MovimientosServiceImpl implements MovimientosService {
 		}*/
 		
 		List<Movimientos> movimientos = movimientosRepository.findByMFechaAfterAndMFechaBefore(sqlInicio, sqlCorte);
+		List<EstadoCuentaModel> edoCuentaModel = new ArrayList<EstadoCuentaModel>();
+		
+		for(Movimientos movimiento : movimientos) {
+			edoCuentaModel.add(movimientosConverter.movimientosToEstadoCuentaModel(movimiento));
+		}
+		
+		return edoCuentaModel;
+	}
+	
+	@Override
+	public List<EstadoCuentaModel> listAllMovimientosEnRangoDeFechasAndChequera(String fechaInicio, String fechaCorte, int idChequera) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		/*java.util.Date utilDate = new java.util.Date();
+	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());*/
+	    
+	    java.sql.Date sqlInicio=Date.valueOf(fechaInicio);
+	    java.sql.Date sqlCorte=Date.valueOf(fechaCorte);
+	    
+	    java.util.Date utilInicio = new java.util.Date(sqlInicio.getTime());
+	    java.util.Date utilCorte = new java.util.Date(sqlCorte.getTime());
+		/*
+		Date fechaInicioF=null;
+		Date fechaCorteF=null;
+		
+		try {
+			fechaInicioF=dateFormat.parse(fechaInicio);
+			fechaCorteF=dateFormat.parse(fechaCorte);
+			
+			LOG.info("FechaInicio con formato yyyy-MM-dd: "+dateFormat.format(fechaInicioF).toString());
+			LOG.info("FechaCorte con formato yyyy-MM-dd: "+dateFormat.format(fechaCorteF).toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+	    
+	    Chequera chequera = chequeraRepository.findByidchequera(idChequera);
+		
+		List<Movimientos> movimientos = movimientosRepository.findByMFechaAfterAndMFechaBeforeAndChequeraEquals(sqlInicio, sqlCorte, chequera);
 		List<EstadoCuentaModel> edoCuentaModel = new ArrayList<EstadoCuentaModel>();
 		
 		for(Movimientos movimiento : movimientos) {

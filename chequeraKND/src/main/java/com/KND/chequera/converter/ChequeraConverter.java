@@ -8,9 +8,9 @@ import com.KND.chequera.entity.Chequera;
 import com.KND.chequera.model.ChequeraModel;
 
 @Component("chequeraConverter")
-public class ChequeraCoverter {
+public class ChequeraConverter {
 
-	private static final Log LOG =LogFactory.getLog(ChequeraCoverter.class);
+	private static final Log LOG =LogFactory.getLog(ChequeraConverter.class);
 
 	//Entity -->to --> Model
 	public ChequeraModel chequeraToChequeraModel(Chequera ch) {

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.KND.chequera.converter.ChequeraCoverter;
+import com.KND.chequera.converter.ChequeraConverter;
 import com.KND.chequera.converter.ClientesConverter;
 import com.KND.chequera.entity.Bancos;
 import com.KND.chequera.entity.Chequera;
@@ -37,7 +37,7 @@ public class ChequeraServiceImpl implements ChequeraService{
 	
 	@Autowired
 	@Qualifier("chequeraConverter")
-	private ChequeraCoverter chequeraCoverter;
+	private ChequeraConverter chequeraCoverter;
 	
 	@Autowired
 	@Qualifier("clientesConverter")

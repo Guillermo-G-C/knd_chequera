@@ -49,7 +49,8 @@ public class EstadoDeCuentaServiceImpl implements EstadoDeCuentaService{
 		//List<MovimientosModel> listMovimientosModel = new ArrayList<MovimientosModel>();
 		
 		chequeraModel=chequeraService.findByidchequera(idChequera);
-		listMovimientosModel= movimientosService.listAllMovimientosEnRangoDeFechas(fechaInicio, fechaCorte);
+		
+		listMovimientosModel= movimientosService.listAllMovimientosEnRangoDeFechasAndChequera(fechaInicio, fechaCorte, idChequera);
 		movimientosJRDS=new JRBeanCollectionDataSource(listMovimientosModel);
 		
 		//List<EstadoCuentaModel> listEstadoCuentaModel = movimientosService.listAllMovimientosEdoCuenta(idChequera);

@@ -15,7 +15,7 @@
 			Fecha: <input type="date" th:field="*{mFecha}"/>
 			<br />
 			Tipo Movimiento: <select required="required" name="idTipoMovimiento">
-				<option value="">---Tipo de movimient---</option>
+				<option value="">---Tipo de movimiento---</option>
 				<option th:each="tm : ${tiposMovimientos}" th:value="${tm.idtipo_movimiento}" th:text="${tm.tm_operacion}">Operación</option>
 			</select>
 			<br />
