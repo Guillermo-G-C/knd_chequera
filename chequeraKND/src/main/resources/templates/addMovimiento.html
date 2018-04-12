@@ -7,10 +7,13 @@
 <body>
 	<h1>Agregar Movimiento</h1>
 	
-	<form action="" th:action="@{/movimientos/addmovimiento}" th:object="${movimientoModel}" method="post">
+	<h2>Chequera: <span th:text="${chequera.idchequera}"></span></h2>
+	<h2>Saldo <span id="saldo" th:text="${chequera.ch_saldo}"></span></h2>
+	
+	<form id="formChequera" action="" th:action="@{/movimientos/addmovimiento}" th:object="${movimientoModel}" method="post">
 			Concepto: <input type="text" th:field="*{m_concepto}"/>
 			<br />
-			Monto: <input type="text" th:field="*{m_monto}"/>
+			Monto: <input type="text" th:field="*{m_monto}" required="required"/>
 			<br />
 			Fecha: <input type="date" th:field="*{mFecha}"/>
 			<br />
@@ -19,7 +22,7 @@
 				<option th:each="tm : ${tiposMovimientos}" th:value="${tm.idtipo_movimiento}" th:text="${tm.tm_operacion}">Operación</option>
 			</select>
 			<br />
-			IdChequera: <input type="text" name="idChequera" th:value="${chequera}"/>
+			IdChequera: <input type="text" id="idChequera" name="idChequera" th:value="${chequera.idchequera}"/>
 			<br />
 			Status: <input type="text" th:field="*{m_status}"/>
 			<br />
@@ -28,5 +31,35 @@
 			</button>
 	</form>
 	
+	
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+	
+	$(document).ready(function(){
+
+		//alert("Validar monto");
+		
+		var saldo = 0.0;
+		saldo=parseFloat($("body #saldo").text());
+	    
+		$("#formChequera #m_monto").keyup(function(){
+			var monto = parseFloat($("#formChequera #m_monto").val());
+			//alert(monto+" Saldo: "+saldo);
+			if(monto>saldo){
+				alert("Error el movimiento no puede ser mayor al saldo");
+			}
+		});
+	    
+	});
+	
+	/*function validarFormulario(){
+        $("#formChequera").validate();
+     }
+	
+	$(document).ready(function(){
+	    validarFormulario();
+	 });*/
+	</script>
 </body>
 </html>

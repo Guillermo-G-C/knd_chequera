@@ -51,7 +51,7 @@ public class MovimientosController {
 		LOG.info("METHOD: MovimientoForm()");
 		model.addAttribute("movimientoModel", new MovimientosModel());
 		model.addAttribute("tiposMovimientos", tipo_MovimientoService.listAllMovimientos());
-		model.addAttribute("chequera", idchequera);
+		model.addAttribute("chequera", chequeraService.findByidchequera(idchequera));
 		
 		return ViewConstant.ADD_MOVIMIENTO_VIEW;
 	}
