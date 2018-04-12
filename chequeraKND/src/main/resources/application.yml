@@ -27,6 +27,9 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
         #dialect: org.hibernate.dialect.Oracle11gDialect
         
+  thymeleaf:
+    cache: false
+        
   #mail:
     #default-encoding: UTF-8
     #host: smtp.gmail.com

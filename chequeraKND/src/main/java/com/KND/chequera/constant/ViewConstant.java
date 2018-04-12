@@ -17,4 +17,6 @@ public class ViewConstant {
 	public static final String ADD_MOVIMIENTO_VIEW = "addMovimiento";
 	
 	public static final String ADD_EDOCUENTA_VIEW = "addEdoCuenta";
+	
+	public static final String INDEX_VIEW = "index";
 }
