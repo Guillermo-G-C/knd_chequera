@@ -1,46 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<title>Insert title here</title>
+    <!-- Favicon icon -->
+    <!--link rel="icon" type="image/png" sizes="16x16" th:href="@{assets/images/favicon.png}"/-->
+    <title>ChequeraKND</title>
+    <!-- Bootstrap Core CSS -->
+    <link th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <!-- You can change the theme colors from here -->
+    <link th:href="@{/css/colors/blue.css}" id="theme" rel="stylesheet"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<body>
-	<h1>Bancos</h1>
+
+<body class="fix-header card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> 
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        
+        <div th:include="fragment/menu">
+        </div>
+
+        
+
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor m-b-0 m-t-0">chequeraKND</h3>
+                    </div>
+                    <div class="col-md-7 col-4 align-self-center">
+                        <div class="d-flex m-t-10 justify-content-end">
+                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                                <div class="chart-text m-r-10">
+                                    <h6 class="m-b-0"><small>THIS MONTH</small></h6>
+                                    <h4 class="m-t-0 text-info">$58,356</h4></div>
+                                <div class="spark-chart">
+                                    <div id="monthchart"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                                <div class="chart-text m-r-10">
+                                    <h6 class="m-b-0"><small>LAST MONTH</small></h6>
+                                    <h4 class="m-t-0 text-primary">$48,356</h4></div>
+                                <div class="spark-chart">
+                                    <div id="lastmonthchart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h1>Bancos</h1>
 	
-	<a th:href="@{/bancos/bancosform}"><button>Agregar Banco</button></a>
-	
-	<div th:if="${result==1}">Agregado Correctamente!</div>
-	<div th:if="${result==0}">Erro al agregar Banco</div>
-	
-	<table>
-		<thead>
-			<tr>
-				<th>ID Banco</th>
-				<th>Sucursal</th>
-				<th>Entidad</th>
-				<th>Dirección</th>
-				<th>Status</th>
-				<th>Acciones</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="banco : ${listbancos}">
-				<th><span th:text="${banco.idbancos}"></span></th>
-				<th><span th:text="${banco.b_sucursal}"></span></th>
-				<th><span th:text="${banco.b_entidad}"></span></th>
-				<th><span th:text="${banco.b_direccion}"></span></th>
-				<th><span th:text="${banco.b_status}"></span></th>
-				<th>
-					<a >
-						<button>Editar</button>
-					</a>
-					<a th:href="@{/bancos/removebanco?id=__${banco.idbancos}__}">
-						<button>Eliminar</button>
-					</a>
-				</th>
-			</tr>
-		</tbody>
-	</table>
-	
+								<a th:href="@{/bancos/bancosform}"><button>Agregar Banco</button></a>
+								
+								<div th:if="${result==1}">Agregado Correctamente!</div>
+								<div th:if="${result==0}">Erro al agregar Banco</div>
+								
+								<table>
+									<thead>
+										<tr>
+											<th>ID Banco</th>
+											<th>Sucursal</th>
+											<th>Entidad</th>
+											<th>Dirección</th>
+											<th>Status</th>
+											<th>Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="banco : ${listbancos}">
+											<th><span th:text="${banco.idbancos}"></span></th>
+											<th><span th:text="${banco.b_sucursal}"></span></th>
+											<th><span th:text="${banco.b_entidad}"></span></th>
+											<th><span th:text="${banco.b_direccion}"></span></th>
+											<th><span th:text="${banco.b_status}"></span></th>
+											<th>
+												<a >
+													<button>Editar</button>
+												</a>
+												<a th:href="@{/bancos/removebanco?id=__${banco.idbancos}__}">
+													<button>Eliminar</button>
+												</a>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer">
+                © 2018 KND
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script th:src="@{/assets/plugins/bootstrap/js/popper.min.js}"></script>
+    <script th:src="@{/assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script th:src="@{/js/jquery.slimscroll.js}"></script>
+    <!--Wave Effects -->
+    <script th:src="@{/js/waves.js}"></script>
+    <!--Menu sidebar -->
+    <script th:src="@{/js/sidebarmenu.js}"></script>
+    <!--stickey kit -->
+    <script th:src="@{/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js}"></script>
+    <script th:src="@{/assets/plugins/sparkline/jquery.sparkline.min.js}"></script>
+    <!--Custom JavaScript -->
+    <script th:src="@{/js/custom.min.js}"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script th:src="@{/assets/plugins/styleswitcher/jQuery.style.switcher.js}"></script>
 </body>
+
 </html>

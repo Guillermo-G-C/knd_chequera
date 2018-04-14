@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.KND.chequera.entity.Chequera;
@@ -16,8 +17,5 @@ public interface MovimientosRepository extends JpaRepository<Movimientos, Serial
 	//Buscar Mobimientos por idMovimiento
 	public abstract Movimientos findByidmovimiento(int idMovimientos);
 	public abstract List<Movimientos> findAll();
-	List<Movimientos> findByMFechaAfter(Date fechaInicio);
-	List<Movimientos> findByMFechaAfterAndMFechaBefore(Date fechaInicio, Date fechaCorte);
-	List<Movimientos> findByMFechaAfterAndMFechaBeforeAndChequeraEquals(Date fechaInicio, Date fechaCorte, Chequera chequera);
-	//List<Movimientos> findByMFechaStartingWithAndMFechaEndingWith(String fechaInicio, String fechaCorte);
+	List<Movimientos> findByMFechaGreaterThanEqualAndMFechaLessThanEqualAndChequeraEquals(Date fechaInicio, Date fechaCorte , Chequera chequera);
 }

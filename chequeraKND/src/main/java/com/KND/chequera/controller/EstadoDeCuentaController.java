@@ -40,6 +40,33 @@ public class EstadoDeCuentaController {
 	@Qualifier("estadoDeCuentaService")
 	private EstadoDeCuentaService estadoDeCuentaService;
 	
+	@GetMapping("/estadodecuentaform")
+	public String edoCuentaForm(
+			Model model,
+			@RequestParam(name="idChequera", required=true) int idChequera) {
+		//model.addAttribute("estadoCuentaModel", new EstadoCuentaModel());
+		model.addAttribute("idChequera", idChequera);
+		return ViewConstant.ADD_EDOCUENTA_VIEW;
+	}
+	
+	@GetMapping("/estadodecuetamensual")
+	public ModelAndView estadoDeCuentaMensual(
+			@RequestParam(name="idChequera", required=true) int idChequera,
+			@RequestParam(name="yearMonth", required=true) String yearMonth) {
+		
+		//Variables
+		JasperReportsPdfView cerView = new JasperReportsPdfView();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		
+		//
+		cerView.setUrl("classpath:reports/estado_de_cuenta.jrxml");
+		cerView.setApplicationContext(applicationContext);
+		
+		parameters=estadoDeCuentaService.EdoCuentaMensual(idChequera, yearMonth);
+		//
+		return new ModelAndView(cerView, parameters);
+	}
+	
 	@GetMapping("/estadodecueta")
 	public ModelAndView estadoDeCuenta(
 			@RequestParam(name="idChequera", required=true) int idChequera,
@@ -57,14 +84,5 @@ public class EstadoDeCuentaController {
 		parameters=estadoDeCuentaService.EdoCuentaEnRangoDeFechas(idChequera, fechaInicio, fechaCorte);
 		//
 		return new ModelAndView(cerView, parameters);
-	}
-	
-	@GetMapping("/estadodecuentaform")
-	public String edoCuentaForm(
-			Model model,
-			@RequestParam(name="idChequera", required=true) int idChequera) {
-		//model.addAttribute("estadoCuentaModel", new EstadoCuentaModel());
-		model.addAttribute("idChequera", idChequera);
-		return ViewConstant.ADD_EDOCUENTA_VIEW;
 	}
 }
