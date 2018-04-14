@@ -64,6 +64,29 @@ public class EstadoDeCuentaServiceImpl implements EstadoDeCuentaService{
 		
 		return parameters;
 	}
+	
+	@Override
+	public Map<String, Object> EdoCuentaMensual(int idChequera, String yearMonth) {
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		ChequeraModel chequeraModel = new ChequeraModel();
+		JRBeanCollectionDataSource movimientosJRBDS =new JRBeanCollectionDataSource(null);
+		List<EstadoCuentaModel> listMovimientosModel = new ArrayList<EstadoCuentaModel>();
+		
+		chequeraModel=chequeraService.findByidchequera(idChequera);
+		
+		listMovimientosModel= movimientosService.listAllMovimientosMensualAndChequera(yearMonth, idChequera);
+		movimientosJRBDS=new JRBeanCollectionDataSource(listMovimientosModel);
+		
+		parameters.put("banco", chequeraModel.getBancos().getB_entidad());
+		parameters.put("chequera", Integer.toString(chequeraModel.getIdchequera()));
+		parameters.put("fechaInicio", yearMonth);
+		parameters.put("fechaFin", yearMonth);
+		parameters.put("datasource", movimientosJRBDS);
+		
+		return parameters;
+	}
+
 
 	@Override
 	public Map<String, Object> EdoCuentaMensual() {

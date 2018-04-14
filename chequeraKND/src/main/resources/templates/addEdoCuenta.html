@@ -20,15 +20,15 @@
 	</form>
 	
 	
-	<form action="" th:action="@{/reporte/estadodecueta}">
+	<form action="" th:action="@{/reporte/estadodecuetamensual}">
 		<fieldset>
 		<legend>Generar reporte mensual</legend>
 		idChequera <input type="text" name="idChequera" th:value="${idChequera}"/>
 		<br />
-		Mes <input type="month" name="fechaCorte"/>
+		Mes <input type="month" name="yearMonth"/>
 		<br />
 		<button type="submit">
-			Guardar
+			Generar
 		</button>
 		</fieldset>
 	</form>

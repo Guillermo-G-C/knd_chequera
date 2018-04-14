@@ -6,5 +6,6 @@ public interface EstadoDeCuentaService {
 
 	public abstract Map<String, Object> EdoCuentaEnRangoDeFechas(int idChequera, String fechaInicio, String fechaCorte);
 	public abstract Map<String, Object> EdoCuentaMensual();
+	Map<String, Object> EdoCuentaMensual(int idChequera, String yearMonth);
 	
 }

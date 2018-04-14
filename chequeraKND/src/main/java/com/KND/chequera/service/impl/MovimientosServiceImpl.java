@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 //import javax.mail.MessagingException;
@@ -78,90 +79,49 @@ public class MovimientosServiceImpl implements MovimientosService {
 	}
 	
 	@Override
-	public List<EstadoCuentaModel> listAllMovimientosEdoCuenta(int idChequera) {
-		List<Movimientos> movimientos = movimientosRepository.findAll(); 
-		List<EstadoCuentaModel> edoCuentaModel = new ArrayList<EstadoCuentaModel>();
-		
-		for(Movimientos movimiento : movimientos) {
-			edoCuentaModel.add(movimientosConverter.movimientosToEstadoCuentaModel(movimiento));
-		}
-		
-		return edoCuentaModel;
-	}
-	
-	@Override
-	public List<EstadoCuentaModel> listAllMovimientosEnRangoDeFechas(String fechaInicio, String fechaCorte) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		
-		/*java.util.Date utilDate = new java.util.Date();
-	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());*/
-	    
-	    java.sql.Date sqlInicio=Date.valueOf(fechaInicio);
-	    java.sql.Date sqlCorte=Date.valueOf(fechaCorte);
-	    
-	    java.util.Date utilInicio = new java.util.Date(sqlInicio.getTime());
-	    java.util.Date utilCorte = new java.util.Date(sqlCorte.getTime());
-		/*
-		Date fechaInicioF=null;
-		Date fechaCorteF=null;
-		
-		try {
-			fechaInicioF=dateFormat.parse(fechaInicio);
-			fechaCorteF=dateFormat.parse(fechaCorte);
-			
-			LOG.info("FechaInicio con formato yyyy-MM-dd: "+dateFormat.format(fechaInicioF).toString());
-			LOG.info("FechaCorte con formato yyyy-MM-dd: "+dateFormat.format(fechaCorteF).toString());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
-		List<Movimientos> movimientos = movimientosRepository.findByMFechaAfterAndMFechaBefore(sqlInicio, sqlCorte);
-		List<EstadoCuentaModel> edoCuentaModel = new ArrayList<EstadoCuentaModel>();
-		
-		for(Movimientos movimiento : movimientos) {
-			edoCuentaModel.add(movimientosConverter.movimientosToEstadoCuentaModel(movimiento));
-		}
-		
-		return edoCuentaModel;
-	}
-	
-	@Override
 	public List<EstadoCuentaModel> listAllMovimientosEnRangoDeFechasAndChequera(String fechaInicio, String fechaCorte, int idChequera) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
-		/*java.util.Date utilDate = new java.util.Date();
-	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());*/
-	    
-	    java.sql.Date sqlInicio=Date.valueOf(fechaInicio);
+		java.sql.Date sqlInicio=Date.valueOf(fechaInicio);
 	    java.sql.Date sqlCorte=Date.valueOf(fechaCorte);
-	    
-	    java.util.Date utilInicio = new java.util.Date(sqlInicio.getTime());
-	    java.util.Date utilCorte = new java.util.Date(sqlCorte.getTime());
-		/*
-		Date fechaInicioF=null;
-		Date fechaCorteF=null;
 		
-		try {
-			fechaInicioF=dateFormat.parse(fechaInicio);
-			fechaCorteF=dateFormat.parse(fechaCorte);
-			
-			LOG.info("FechaInicio con formato yyyy-MM-dd: "+dateFormat.format(fechaInicioF).toString());
-			LOG.info("FechaCorte con formato yyyy-MM-dd: "+dateFormat.format(fechaCorteF).toString());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-	    
 	    Chequera chequera = chequeraRepository.findByidchequera(idChequera);
 		
-		List<Movimientos> movimientos = movimientosRepository.findByMFechaAfterAndMFechaBeforeAndChequeraEquals(sqlInicio, sqlCorte, chequera);
+		List<Movimientos> movimientos = movimientosRepository.findByMFechaGreaterThanEqualAndMFechaLessThanEqualAndChequeraEquals(sqlInicio, sqlCorte, chequera);
 		List<EstadoCuentaModel> edoCuentaModel = new ArrayList<EstadoCuentaModel>();
 		
 		for(Movimientos movimiento : movimientos) {
 			edoCuentaModel.add(movimientosConverter.movimientosToEstadoCuentaModel(movimiento));
 		}
 		
+		return edoCuentaModel;
+	}
+	
+	@Override
+	public List<EstadoCuentaModel> listAllMovimientosMensualAndChequera(String yearMonth, int idChequera) {
+		
+		/**/
+		String[] s = yearMonth.split("-");
+		String year = s[0];
+		String month = s[1];
+		//ultimo dia del mes
+		Calendar cal=Calendar.getInstance();
+		cal.set(Integer.parseInt(year), Integer.parseInt(month)-1, 1);
+		int ultimo = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+		//
+		java.sql.Date sqlInicio=Date.valueOf(year+"-"+month+"-"+1);
+	    java.sql.Date sqlCorte=Date.valueOf(year+"-"+month+"-"+ ultimo);
+	    LOG.info("Fecha inicio: "+sqlInicio);
+	    LOG.info("Fecha corte: "+sqlCorte);
+		/**/
+	    
+		Chequera chequera = chequeraRepository.findByidchequera(idChequera);
+	    
+		List<Movimientos> movimientos = movimientosRepository.findByMFechaGreaterThanEqualAndMFechaLessThanEqualAndChequeraEquals(sqlInicio, sqlCorte, chequera);
+		List<EstadoCuentaModel> edoCuentaModel = new ArrayList<EstadoCuentaModel>();
+		for(Movimientos movimiento : movimientos) {
+			edoCuentaModel.add(movimientosConverter.movimientosToEstadoCuentaModel(movimiento));
+		}
 		return edoCuentaModel;
 	}
 

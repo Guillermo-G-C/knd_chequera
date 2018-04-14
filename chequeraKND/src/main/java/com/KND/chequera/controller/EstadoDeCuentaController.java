@@ -59,6 +59,24 @@ public class EstadoDeCuentaController {
 		return new ModelAndView(cerView, parameters);
 	}
 	
+	@GetMapping("/estadodecuetamensual")
+	public ModelAndView estadoDeCuentaMensual(
+			@RequestParam(name="idChequera", required=true) int idChequera,
+			@RequestParam(name="yearMonth", required=true) String yearMonth) {
+		
+		//Variables
+		JasperReportsPdfView cerView = new JasperReportsPdfView();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		
+		//
+		cerView.setUrl("classpath:reports/estado_de_cuenta.jrxml");
+		cerView.setApplicationContext(applicationContext);
+		
+		parameters=estadoDeCuentaService.EdoCuentaMensual(idChequera, yearMonth);
+		//
+		return new ModelAndView(cerView, parameters);
+	}
+	
 	@GetMapping("/estadodecuentaform")
 	public String edoCuentaForm(
 			Model model,

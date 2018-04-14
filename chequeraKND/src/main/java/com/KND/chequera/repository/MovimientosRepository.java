@@ -20,4 +20,5 @@ public interface MovimientosRepository extends JpaRepository<Movimientos, Serial
 	List<Movimientos> findByMFechaAfterAndMFechaBefore(Date fechaInicio, Date fechaCorte);
 	List<Movimientos> findByMFechaAfterAndMFechaBeforeAndChequeraEquals(Date fechaInicio, Date fechaCorte, Chequera chequera);
 	//List<Movimientos> findByMFechaStartingWithAndMFechaEndingWith(String fechaInicio, String fechaCorte);
+	List<Movimientos> findByMFechaGreaterThanEqualAndMFechaLessThanEqualAndChequeraEquals(Date fechaInicio, Date fechaCorte , Chequera chequera);
 }

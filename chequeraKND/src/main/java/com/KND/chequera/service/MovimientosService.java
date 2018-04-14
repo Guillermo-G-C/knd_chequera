@@ -10,10 +10,9 @@ public interface MovimientosService {
 
 	public abstract MovimientosModel findByidmovimiento(int idmovimientos);
 	public abstract List<MovimientosModel> listAllMovimientos();
-	public abstract List<EstadoCuentaModel> listAllMovimientosEdoCuenta(int idChequera);
-	public abstract List<EstadoCuentaModel> listAllMovimientosEnRangoDeFechas(String fechaInicio, String fechaCorte);
 	public List<EstadoCuentaModel> listAllMovimientosEnRangoDeFechasAndChequera(String fechaInicio, String fechaCorte, int idChequera);
 	public abstract MovimientosModel addMovimiento(MovimientosModel movimientosModel, int idChequera, int idTipoMovimiento);
 	public abstract int removeMovimiento(int idMovimiento);
 	public abstract MovimientosModel updateMovimiento();
+	List<EstadoCuentaModel> listAllMovimientosMensualAndChequera(String yearMonth, int idChequera);
 }
