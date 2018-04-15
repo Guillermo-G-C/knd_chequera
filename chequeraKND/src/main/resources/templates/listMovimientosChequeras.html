@@ -83,9 +83,12 @@
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-12">
+                    	
+                    	<input type="checkbox" id="basic_checkbox_2" class="filled-in" checked=""/>               
+	                    <!-- Table movimientos-->
                         <div class="card">
                             <div class="card-body">
-                                <h1>Movimientos de la Chequera: <span th:text="${chequera.idchequera}"></span></h1>
+                            	<h1>Movimientos de la Chequera: <span th:text="${chequera.idchequera}"></span></h1>
 								<h2>Entidad: <span th:text="${chequera.getBancos().b_entidad}"></span></h2>
 								<h2>Saldo: <span th:text="${chequera.ch_saldo}"></span></h2>
 
@@ -96,45 +99,76 @@
 								<a th:href="@{/reporte/estadodecuentaform(idChequera=${chequera.idchequera})}">
 									<button>Generar estado de cuenta</button>
 								</a>
-								
-								<table>
-									<thead>
-										<tr>
-											<th>ID Movimiento</th>
-											<th>Chequera</th>
-											<th>Concepto</th>
-											<th>Monto</th>
-											<th>Fecha</th>
-											<th>Tipo Movimiento</th>
-											<th>Status</th>
-											<th>Acciones</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:each="movimiento : ${chequera.getMovimientos()}">
-											<th><span th:text="${movimiento.idmovimiento}"></span></th>
-											<th><span th:text="${chequera.idchequera}"></span></th>
-											<th><span th:text="${movimiento.m_concepto}"></span></th>
-											<!-- Abono -->
-											<th th:if="${movimiento.getTipo_movimiento().tm_operacion=='Abono'}"><span th:text="${movimiento.m_monto}"></span></th>
-											<!-- Cargo -->
-											<th th:unless="${movimiento.getTipo_movimiento().tm_operacion=='Abono'}"><span th:text="'-'+${movimiento.m_monto}"></span></th>
-											<th><span th:text="${movimiento.mFecha}"></span></th>
-											<th><span th:text="${movimiento.getTipo_movimiento().tm_operacion}"></span></th>
-											<th><span th:text="${movimiento.m_status}"></span></th>
-											<th>
-												<a >
-													<button>Editar</button>
-												</a>
-												<a th:href="@{/movimientos/removemovimientochequera(idChequera=${chequera.idchequera},idMovimiento=${movimiento.idmovimiento})}">
-													<button>Eliminar</button>
-												</a>
-											</th>
-										</tr>
-									</tbody>
-								</table>
+								<br />
+                                <!--h4 class="card-title">Data Export</h4>
+                                <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF &amp; Print</h6-->
+                                <div class="table-responsive m-t-40">
+                                	<!--table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%"-->
+                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+												<th>ID Movimiento</th>
+												<th>Chequera</th>
+												<th>Concepto</th>
+												<th>Monto</th>
+												<th>Fecha</th>
+												<th>Tipo Movimiento</th>
+												<th>Status</th>
+												<th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>ID Movimiento</th>
+												<th>Chequera</th>
+												<th>Concepto</th>
+												<th>Monto</th>
+												<th>Fecha</th>
+												<th>Tipo Movimiento</th>
+												<th>Status</th>
+												<th>Acciones</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <tr th:each="movimiento : ${chequera.getMovimientos()}">
+												<th><span th:text="${movimiento.idmovimiento}"></span></th>
+												<th><span th:text="${chequera.idchequera}"></span></th>
+												<th><span th:text="${movimiento.m_concepto}"></span></th>
+												<!-- Abono -->
+												<th th:if="${movimiento.getTipo_movimiento().tm_operacion=='Abono'}"><span th:text="'$'+${movimiento.m_monto}"></span></th>
+												<!-- Cargo -->
+												<th th:unless="${movimiento.getTipo_movimiento().tm_operacion=='Abono'}"><span th:text="'$-'+${movimiento.m_monto}"></span></th>
+												<th>
+													<span class="text-muted"><i class="fa fa-clock-o">
+														</i><span th:text="${movimiento.mFecha}"></span> 
+													</span>
+												</th>
+												<th><span th:text="${movimiento.getTipo_movimiento().tm_operacion}"></span></th>
+												<th th:if="${movimiento.m_status=='true'}">
+													<span th:text="${movimiento.m_status}">
+														x
+													</span>
+												</th>
+												<th th:unless="${movimiento.m_status=='true'}">
+													<span th:text="${movimiento.m_status}">
+														x
+													</span>
+												</th>
+												<th>
+													<a >
+														<button>Editar</button>
+													</a>
+													<a th:href="@{/movimientos/removemovimientochequera(idChequera=${chequera.idchequera},idMovimiento=${movimiento.idmovimiento})}">
+														<button>Eliminar</button>
+													</a>
+												</th>
+											</tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+                        <!-- Fin table movimientos -->
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -179,6 +213,66 @@
     <script th:src="@{/assets/plugins/sparkline/jquery.sparkline.min.js}"></script>
     <!--Custom JavaScript -->
     <script th:src="@{/js/custom.min.js}"></script>
+    <!-- This is data table -->
+    <script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script type="text/javascript" th:inline="javascript">
+    	$(document).ready(function() {	
+        	$('#myTable').DataTable();
+            $(document).ready(function() {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function(settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function(group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function() {
+                    var currentOrder = table.order()[0];
+                    /*<![CDATA[*/
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }/*]]>*/
+                });
+            });
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        
+        });
+    </script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
