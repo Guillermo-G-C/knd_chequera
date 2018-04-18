@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.KND.chequera.constant.ViewConstant;
 import com.KND.chequera.model.ClienteModel;
@@ -42,12 +43,16 @@ public class ClientesController {
 	}
 	
 	@PostMapping("addcliente")
-	public String addCliente(@ModelAttribute("clienteModel") ClienteModel clienteModel) {
+	public String addCliente(
+			@ModelAttribute("clienteModel") ClienteModel clienteModel,
+			RedirectAttributes redirectAttributes) {
 		LOG.info("METHOD: addBanco() --PARAMS "+clienteModel.toString());
 		
 		if(null != clientesService.addClientes(clienteModel)) {
+			redirectAttributes.addFlashAttribute("result", 1);
 			LOG.info("Result: 1");
 		}else{
+			redirectAttributes.addFlashAttribute("result", 2);
 			LOG.info("Result: 0");
 		}
 		
@@ -55,9 +60,20 @@ public class ClientesController {
 	}
 	
 	@GetMapping("removecliente")
-	public ModelAndView removeCliente(@RequestParam(name="cliente", required=true) int idCliente){
-		clientesService.removeClientes(idCliente);
-		return listAllCliente();
+	public String removeCliente(
+			@RequestParam(name="cliente", required=true) int idCliente,
+			RedirectAttributes redirectAttributes){
+		
+		try {
+			clientesService.removeClientes(idCliente);
+			redirectAttributes.addFlashAttribute("resultE", 1);
+		}catch (Exception e) {
+			// TODO: handle exception
+			LOG.info("Error al eliminar: "+e.getMessage());
+			redirectAttributes.addFlashAttribute("resultE", 2);
+		}
+		
+		return "redirect:/clientes/listclientes";
 	}
 	
 }

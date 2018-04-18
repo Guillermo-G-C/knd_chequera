@@ -32,11 +32,10 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <div id="main-wrapper">
-        
+		
+		<!-- Incluir menu -->        
         <div th:include="fragment/menu">
         </div>
-
-        
 
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
@@ -51,7 +50,7 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">chequeraKND</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Bancos</h3>
                     </div>
                     <div class="col-md-7 col-4 align-self-center">
                         <div class="d-flex m-t-10 justify-content-end">
@@ -85,46 +84,68 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h1>Bancos</h1>
-	
-								<a th:href="@{/bancos/bancosform}"><button>Agregar Banco</button></a>
-								
-								<div th:if="${result==1}">Agregado Correctamente!</div>
-								<div th:if="${result==0}">Erro al agregar Banco</div>
-								
-								<table>
-									<thead>
-										<tr>
-											<th>ID Banco</th>
-											<th>Sucursal</th>
-											<th>Entidad</th>
-											<th>Dirección</th>
-											<th>Status</th>
-											<th>Acciones</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:each="banco : ${listbancos}">
-											<th><span th:text="${banco.idbancos}"></span></th>
-											<th><span th:text="${banco.b_sucursal}"></span></th>
-											<th><span th:text="${banco.b_entidad}"></span></th>
-											<th><span th:text="${banco.b_direccion}"></span></th>
-											<th><span th:text="${banco.b_status}"></span></th>
-											<th>
-												<a >
-													<button>Editar</button>
-												</a>
-												<a th:href="@{/bancos/removebanco?id=__${banco.idbancos}__}">
-													<button>Eliminar</button>
-												</a>
-											</th>
-										</tr>
-									</tbody>
-								</table>
+                                <h1>Listado de Bancos</h1>
+                               	<a th:href="@{/bancos/bancosform}">
+   	                                <button type="button" class="btn waves-effect waves-light btn-lg btn-info"><i class="fa fa-plus"></i> Agregar Banco</button>
+       							</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                
+                <div class="row">
+                	<!-- Registrar -->
+                    <div class="col-12" th:if="${result}"><!-- th:if="${result}" -->
+						<div th:if="${result==1}" class="alert alert-success alert-rounded">  Banco registrado con exito!.
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+						</div>
+                    	<div th:if="${result==2}" class="alert alert-danger alert-rounded">  Error al registrar Banco.
+	                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+	                    </div>
+	                </div>
+	                
+	                <!-- Eliminar -->
+	                <div  class="col-12" th:if="${resultE}"> <!--th:if="${resultE}"  -->    
+	                    <div th:if="${resultE==1}" class="alert alert-success alert-rounded">  Banco eliminado correctamente.
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+						</div>
+                    	<div th:if="${resultE==2}" class="alert alert-danger alert-rounded">  Error al eliminar Banco.
+	                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+	                    </div>
+                    </div>
+                </div>
+                
+                <!-- Bancos -->
+                <div class="row">
+                    <!-- .col -->
+                    <div class="col-md-6 col-lg-6 col-xlg-4" th:each="banco : ${listbancos}">
+                        <div class="card card-body">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                	<span>ID: </span><span th:text="${banco.idbancos}"></span>
+                                	<br />
+                                    <h3 class="box-title m-b-0">Sucursal: <span th:text="${banco.b_sucursal}"></span></h3>
+                                    <div>Entidad: <span th:text="${banco.b_entidad}"></span></div>
+                                    <div >Dirección: <span th:text="${banco.b_direccion}"></span></div>
+                                    <div>Status: <span title="Status" th:text="${banco.b_status}"> </span> </div>
+                                    <hr />
+                                    <div>
+                                    	<a >
+                                    		<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i> Editar</button>
+                                    	</a>
+                                    	<a th:href="@{/bancos/removebanco?id=__${banco.idbancos}__}">
+                                    		<button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
+                                    	</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- Fin Bancos -->
+                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

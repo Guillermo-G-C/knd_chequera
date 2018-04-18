@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.KND.chequera.constant.ViewConstant;
 import com.KND.chequera.model.MovimientosModel;
@@ -61,12 +62,16 @@ public class MovimientosController {
 			@ModelAttribute("movimientoModel") MovimientosModel movimientoModel, 
 			Model model,
 			@RequestParam(name="idChequera", required=true)int idChequera,
-			@RequestParam(name="idTipoMovimiento", required=true) int idTipoMovimiento) {
+			@RequestParam(name="idTipoMovimiento", required=true) int idTipoMovimiento,
+			RedirectAttributes redirectAttributes) {
+		
 		LOG.info("METHOD: addMovimiento() --PARAMS "+movimientoModel.toString()+" IdChequera: "+idChequera+" IdTipoMovimiento: "+idTipoMovimiento);
 		if(null != movimientoService.addMovimiento(movimientoModel, idChequera, idTipoMovimiento)) {
-			
+			redirectAttributes.addFlashAttribute("result", 1);
+			LOG.info("Result: 1");
 		}else {
-			
+			redirectAttributes.addFlashAttribute("result", 2);
+			LOG.info("Result: 0");
 		}
 		
 		return "redirect:/movimientos/listmovimientoschequera?chequera="+idChequera;
@@ -75,8 +80,17 @@ public class MovimientosController {
 	@GetMapping("removemovimientochequera")
 	public String removeMovimientoChequera(
 			@RequestParam(name="idChequera", required=true) int idChequera,
-			@RequestParam(name="idMovimiento", required=true) int idMovimiento) {
-		movimientoService.removeMovimiento(idMovimiento);
+			@RequestParam(name="idMovimiento", required=true) int idMovimiento,
+			RedirectAttributes redirectAttributes) {
+		try {
+			movimientoService.removeMovimiento(idMovimiento);
+			redirectAttributes.addFlashAttribute("resultE", 1);
+		}catch (Exception e) {
+			// TODO: handle exception
+			LOG.info("Error al eliminar: "+e.getMessage());
+			redirectAttributes.addFlashAttribute("resultE", 2);
+		}
+			
 		return "redirect:/movimientos/listmovimientoschequera?chequera="+idChequera;
 	} 
 	

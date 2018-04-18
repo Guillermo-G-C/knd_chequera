@@ -81,38 +81,51 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                <!-- Form Bancos -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h1>Agregar Chequera</h1>
-
-								<form action="" th:action="@{/chequeras/addchequera}" th:object="${chequeraModel}" method="post">
-									Fecha apertura: <input type="date" th:field="*{ch_fecha_apertura}"/>
-									<br />
-									Saldo: <input type="text" th:field="*{ch_saldo}"/>
-									<br />
-									Abono: <input type="text" th:field="*{ch_abono}"/>
-									<br />
-									Cargo: <input type="text" th:field="*{ch_cargo}"/>
-									<br />
-									Cliente: <input type="text" name="idCliente" th:value="${cliente}"/>
-									<br />
-									Banco: <select name="idBanco" required="required">
-										<option value="">---Banco---</option>
+                                <h1 class="card-title">Agregar Chequera</h1>
+                                <h6 class="card-subtitle">Ingresar todos los campos del formulario.</h6>
+                                <form class="floating-labels m-t-40" action="" th:action="@{/chequeras/addchequera}" th:object="${chequeraModel}" method="post">
+                                    <div class="form-group m-b-40">
+                                        <input type="date" class="form-control" th:field="*{ch_fecha_apertura}" required="required"/>
+                                        <span class="bar"></span>
+                                        <label for="input1">Fecha Apertura</label>
+                                    </div>
+                                    <div class="form-group m-b-40">
+                                        <input type="text" disabled="disabled" class="form-control" th:field="*{ch_saldo}" required="required"/>
+                                        <span class="bar"></span>
+                                        <label for="input2">Saldo</label>
+                                    </div>
+                                    <input type="hidden" name="idCliente" th:value="${cliente}"/>
+                                    
+									<div class="form-group">
+                                       <label>Banco</label>
+                                       <select name="idBanco" class="form-control" required="required">
+										<option  value=""></option>
 										<option th:each="banco : ${bancos}" th:value="${banco.idbancos}" th:text="${banco.b_entidad}"></option>
-									</select>
-									<br />
-									Status: <input type="text" th:field="*{ch_status}"/>
-									<br />
-									<button type="submit">
-										Guardar
-									</button>
-								</form>
+                                       </select>
+                                   </div>
+                                    
+                                    <div class="form-group m-b-40">
+									    <div class="checkbox checkbox-success">  
+		                                    <input name="ch_status" id="ch_status" type="checkbox" class="filled-in" checked="" />
+		                                    <label for="ch_status">Status</label>
+		                                </div>
+									</div>
+	                                
+                                    <button type="submit" class="btn waves-effect waves-light btn-block btn-info"><i class="fa fa-heart"></i> Registrar Banco</button>
+                                    
+                                </form>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
+                <!-- Fin Form Bancos -->
+                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

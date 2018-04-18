@@ -81,76 +81,118 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h1>Agregar Cliente</h1>
-	<form th:action="@{/clientes/addcliente}" th:object="${clienteModel}" method="post">
-		Nombre: <input type="text" th:field="*{c_nombre}"/>
-		<br />
-		Apellido Paterno: <input type="text" th:field="*{c_apaterno}"/>
-		<br />
-		Apellido Materno: <input type="text" th:field="*{c_amaterno}"/>
-		<br />
-		Dirección: <input type="text" th:field="*{c_direccion}"/>
-		<br />
-		Estado:<select th:field="*{c_estado}">
-	<option  value="">---Todo México---</option>
-		<option value="Aguascalientes">Aguascalientes</option>
-		<option value="Baja California">Baja California</option>
-		<option value="Baja California Sur">Baja California Sur</option>
-		<option value="Campeche">Campeche</option>
-		<option value="Coahuila de Zaragoza">Coahuila de Zaragoza</option>
-		<option value="Colima">Colima</option>
-		<option value="Chiapas">Chiapas</option>
-		<option value="Chihuahua">Chihuahua</option>
-		<option value="Distrito Federal">Distrito Federal</option>
-		<option value="Durango">Durango</option>
-		<option value="Guanajuato">Guanajuato</option>
-		<option value="Guerrero">Guerrero</option>
-		<option value="Hidalgo">Hidalgo</option>
-		<option value="Jalisco">Jalisco</option>
-		<option value="México">México</option>
-		<option value="Michoacán de Ocampo">Michoacán de Ocampo</option>
-		<option value="Morelos">Morelos</option>
-		<option value="Nayarit">Nayarit</option>
-		<option value="Nuevo León">Nuevo León</option>
-		<option value="Oaxaca">Oaxaca</option>
-		<option value="Puebla">Puebla</option>
-		<option value="Querétaro">Querétaro</option>
-		<option value="Quintana Roo">Quintana Roo</option>
-		<option value="San Luis Potosí">San Luis Potosí</option>
-		<option value="Sinaloa">Sinaloa</option>
-		<option value="Sonora">Sonora</option>
-		<option value="Tabasco">Tabasco</option>
-		<option value="Tamaulipas">Tamaulipas</option>
-		<option value="Tlaxcala">Tlaxcala</option>
-		<option value="Veracruz de Ignacio de la Llave">Veracruz de Ignacio de la Llave</option>
-		<option value="Yucatán">Yucatán</option>
-		<option value="Zacatecas">Zacatecas</option>
-</select>
-		<br />
-		Codigo Postal: <input type="text" th:field="*{c_codigo_postal}"/>
-		<br />
-		Telefono: <input type="text" th:field="*{c_telefono}"/>
-		<br />
-		Email: <input type="text" th:field="*{c_correo}"/>
-		<br />
-		Fecha de Nacimiento: <input type="date" th:field="*{c_fecha_nacimiento}"/>
-		<br />
-		RFC: <input type="text" th:field="*{c_rfc}"/>
-		<br />
-		Status: <input type="text" th:field="*{c_status}"/>
-		<br />
-		<button type="submit">
-			Guardar
-		</button>
-	</form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                <!-- Form Bancos -->
+               <div class="row">
+                   <div class="col-12">
+                       <div class="card">
+                           <div class="card-body">
+                               <h1 class="card-title">Agregar Cliente</h1>
+                               <!--h6 class="card-subtitle">Just add class to the form.</h6-->
+                               <form class="floating-labels m-t-40" th:action="@{/clientes/addcliente}" th:object="${clienteModel}" method="post">
+                                   <div class="form-group m-b-40">
+                                       <input type="text" class="form-control" th:field="*{c_nombre}" required="required"/>
+                                       <span class="bar"></span>
+                                       <label for="input1">Nombre</label>
+                                   </div>
+                                   <div class="form-group m-b-40">
+                                       <input type="text" class="form-control" th:field="*{c_apaterno}" required="required"/>
+                                       <span class="bar"></span>
+                                       <label for="input1">Apellido paterno</label>
+                                   </div>
+                                   <div class="form-group m-b-40">
+                                       <input type="text" class="form-control" th:field="*{c_amaterno}" required="required"/>
+                                       <span class="bar"></span>
+                                       <label for="input1">Apellido Paterno</label>
+                                   </div>
+                                   <div class="form-group m-b-40">
+                                       <input type="text" class="form-control" th:field="*{c_direccion}" required="required"/>
+                                       <span class="bar"></span>
+                                       <label for="input1">Dirección</label>
+                                   </div>
+
+									<div class="form-group">
+                                       <label>Estado</label>
+                                       <select th:field="*{c_estado}" class="form-control" required="required">
+                                           <option  value=""></option>
+											<option value="Aguascalientes">Aguascalientes</option>
+											<option value="Baja California">Baja California</option>
+											<option value="Baja California Sur">Baja California Sur</option>
+											<option value="Campeche">Campeche</option>
+											<option value="Coahuila de Zaragoza">Coahuila de Zaragoza</option>
+											<option value="Colima">Colima</option>
+											<option value="Chiapas">Chiapas</option>
+											<option value="Chihuahua">Chihuahua</option>
+											<option value="Distrito Federal">Distrito Federal</option>
+											<option value="Durango">Durango</option>
+											<option value="Guanajuato">Guanajuato</option>
+											<option value="Guerrero">Guerrero</option>
+											<option value="Hidalgo">Hidalgo</option>
+											<option value="Jalisco">Jalisco</option>
+											<option value="México">México</option>
+											<option value="Michoacán de Ocampo">Michoacán de Ocampo</option>
+											<option value="Morelos">Morelos</option>
+											<option value="Nayarit">Nayarit</option>
+											<option value="Nuevo León">Nuevo León</option>
+											<option value="Oaxaca">Oaxaca</option>
+											<option value="Puebla">Puebla</option>
+											<option value="Querétaro">Querétaro</option>
+											<option value="Quintana Roo">Quintana Roo</option>
+											<option value="San Luis Potosí">San Luis Potosí</option>
+											<option value="Sinaloa">Sinaloa</option>
+											<option value="Sonora">Sonora</option>
+											<option value="Tabasco">Tabasco</option>
+											<option value="Tamaulipas">Tamaulipas</option>
+											<option value="Tlaxcala">Tlaxcala</option>
+											<option value="Veracruz de Ignacio de la Llave">Veracruz de Ignacio de la Llave</option>
+											<option value="Yucatán">Yucatán</option>
+											<option value="Zacatecas">Zacatecas</option>
+                                       </select>
+                                   </div>
+                                   
+                                   <div class="form-group m-b-40">
+                                       <input type="number" class="form-control" th:field="*{c_codigo_postal}" required="required"/>
+                                       <span class="bar"></span>
+                                       <label for="input1">Codigo Postal</label>
+                                   </div>
+                                   <div class="form-group m-b-40">
+                                       <input type="tel" class="form-control" th:field="*{c_telefono}" required="required"/>
+                                       <span class="bar"></span>
+                                       <label for="input1">Telefono</label>
+                                   </div>
+                                   <div class="form-group m-b-40">
+                                       <input type="email" class="form-control" th:field="*{c_correo}" required="required"/>
+                                       <span class="bar"></span>
+                                       <label for="input1">Email</label>
+                                   </div>
+                                   <div class="form-group m-b-40">
+                                       <input type="date" class="form-control" th:field="*{c_fecha_nacimiento}" required="required"/>
+                                       <span class="bar"></span>
+                                       <label for="input1">Fecha de Nacimiento</label>
+                                   </div>
+                                   <div class="form-group m-b-40">
+                                       <input type="text" class="form-control" th:field="*{c_rfc}" required="required"/>
+                                       <span class="bar"></span>
+                                       <label for="input1">RFC</label>
+                                   </div>
+                                   
+                                   <div class="form-group m-b-40">
+									    <div class="checkbox checkbox-success">  
+		                                    <input name="c_status" id="c_status" type="checkbox" class="filled-in" checked="" />
+		                                    <label for="c_status">Status</label>
+		                                </div>
+									</div>
+                                
+                                   <button type="submit" class="btn waves-effect waves-light btn-block btn-info"><i class="fa fa-heart"></i> Registrar Cliente</button>
+                                   
+                               </form>
+                           </div>
+                       </div>
+                       
+                   </div>
+               </div>
+               <!-- Fin Form Bancos -->
+              
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

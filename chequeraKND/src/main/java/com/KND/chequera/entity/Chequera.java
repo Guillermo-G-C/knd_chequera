@@ -23,6 +23,10 @@ public class Chequera {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idchequera")
 	private int idchequera;
+	@Column(name="chClaveInterbancaria")
+	private String chClaveInterbancaria;
+	@Column(name="chNumCuenta")
+	private String chNumCuenta;
 	@Column(name="ch_fecha_apertura")
 	@Size(min = 1, max = 50)
 	private String ch_fecha_apertura;
@@ -49,10 +53,13 @@ public class Chequera {
 	public Chequera() {
 	}
 
-	public Chequera(int idchequera, String ch_fecha_apertura, double ch_saldo, double ch_abono, double ch_cargo,
-			boolean ch_status, Clientes clientes, Bancos bancos, Set<Movimientos> movimientos) {
+	public Chequera(int idchequera, String chClaveInterbancaria, String chNumCuenta, String ch_fecha_apertura,
+			double ch_saldo, double ch_abono, double ch_cargo, boolean ch_status, Clientes clientes, Bancos bancos,
+			Set<Movimientos> movimientos) {
 		super();
 		this.idchequera = idchequera;
+		this.chClaveInterbancaria = chClaveInterbancaria;
+		this.chNumCuenta = chNumCuenta;
 		this.ch_fecha_apertura = ch_fecha_apertura;
 		this.ch_saldo = ch_saldo;
 		this.ch_abono = ch_abono;
@@ -62,8 +69,8 @@ public class Chequera {
 		this.bancos = bancos;
 		this.movimientos = movimientos;
 	}
-	
-	public int getIdchequera() {
+
+		public int getIdchequera() {
 		return idchequera;
 	}
 
@@ -71,6 +78,22 @@ public class Chequera {
 		this.idchequera = idchequera;
 	}
 
+	public String getChClaveInterbancaria() {
+		return chClaveInterbancaria;
+	}
+
+	public void setChClaveInterbancaria(String chClaveInterbancaria) {
+		this.chClaveInterbancaria = chClaveInterbancaria;
+	}
+
+	public String getChNumCuenta() {
+		return chNumCuenta;
+	}
+
+	public void setChNumCuenta(String chNumCuenta) {
+		this.chNumCuenta = chNumCuenta;
+	}
+	
 	public String getCh_fecha_apertura() {
 		return ch_fecha_apertura;
 	}

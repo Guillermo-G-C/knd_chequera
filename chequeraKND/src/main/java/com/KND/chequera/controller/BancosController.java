@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.KND.chequera.constant.ViewConstant;
 import com.KND.chequera.model.BancoModel;
@@ -42,24 +43,37 @@ public class BancosController {
 	}
 	
 	@PostMapping("/addbanco")
-	public String addBancos(@ModelAttribute("bancoModel") BancoModel bancoModel, Model model) {
+	public String addBancos(
+			@ModelAttribute("bancoModel") BancoModel bancoModel,
+			Model model,
+			RedirectAttributes redirectAttributes) {
 		LOG.info("METHOD: addBanco() --PARAMS "+bancoModel.toString());
 
 		if(null != bancoService.addBanco(bancoModel)) {
-			//model.addAttribute("result", 1);
+			redirectAttributes.addFlashAttribute("result", 1);
 			LOG.info("Result: 1");
 		}else {
-			//model.addAttribute("result", 0);
+			redirectAttributes.addFlashAttribute("result", 2);
 			LOG.info("Result: 0");
 		}
 		return "redirect:/bancos/listbancos";
-		//return ViewConstant.LIST_BANCOS_VIEW;
 	}
 	
 	@GetMapping("removebanco")
-	public ModelAndView removeBanco(@RequestParam(name="id", required=true) int id) {
-		bancoService.removeBancos(id);
-		return listAllBancos();
+	public String removeBanco(
+			@RequestParam(name="id", required=true) int id,
+			RedirectAttributes redirectAttributes) {
+		
+		try {
+			bancoService.removeBancos(id);
+			redirectAttributes.addFlashAttribute("resultE", 1);
+		}catch (Exception e) {
+			// TODO: handle exception
+			LOG.info("Error al eliminar: "+e.getMessage());
+			redirectAttributes.addFlashAttribute("resultE", 2);
+		}
+		
+		return "redirect:/bancos/listbancos";
 	}
 	
 	

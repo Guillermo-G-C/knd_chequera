@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+
 import com.KND.chequera.entity.Bancos;
 import com.KND.chequera.entity.Clientes;
 import com.KND.chequera.entity.Movimientos;
@@ -11,6 +13,8 @@ import com.KND.chequera.entity.Movimientos;
 public class ChequeraModel {
 
 	private int idchequera;
+	private String chClaveInterbancaria;
+	private String chNumCuenta;
 	private String ch_fecha_apertura;
 	private double  ch_saldo;
 	private double ch_abono;
@@ -23,10 +27,13 @@ public class ChequeraModel {
 	public ChequeraModel() {
 	}
 	
-	public ChequeraModel(int idchequera, String ch_fecha_apertura, double ch_saldo, double ch_abono, double ch_cargo,
-			boolean ch_status, Clientes clientes, Bancos bancos, Set<Movimientos> movimientos) {
+	public ChequeraModel(int idchequera, String chClaveInterbancaria, String chNumCuenta, String ch_fecha_apertura,
+			double ch_saldo, double ch_abono, double ch_cargo, boolean ch_status, Clientes clientes, Bancos bancos,
+			Set<Movimientos> movimientos) {
 		super();
 		this.idchequera = idchequera;
+		this.chClaveInterbancaria = chClaveInterbancaria;
+		this.chNumCuenta = chNumCuenta;
 		this.ch_fecha_apertura = ch_fecha_apertura;
 		this.ch_saldo = ch_saldo;
 		this.ch_abono = ch_abono;
@@ -36,13 +43,29 @@ public class ChequeraModel {
 		this.bancos = bancos;
 		this.movimientos = movimientos;
 	}
-	
+
 	public int getIdchequera() {
 		return idchequera;
 	}
 
 	public void setIdchequera(int idchequera) {
 		this.idchequera = idchequera;
+	}
+	
+	public String getChClaveInterbancaria() {
+		return chClaveInterbancaria;
+	}
+
+	public void setChClaveInterbancaria(String chClaveInterbancaria) {
+		this.chClaveInterbancaria = chClaveInterbancaria;
+	}
+
+	public String getChNumCuenta() {
+		return chNumCuenta;
+	}
+
+	public void setChNumCuenta(String chNumCuenta) {
+		this.chNumCuenta = chNumCuenta;
 	}
 
 	public String getCh_fecha_apertura() {

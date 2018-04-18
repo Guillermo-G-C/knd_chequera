@@ -19,6 +19,7 @@ import com.KND.chequera.repository.BancosRepository;
 import com.KND.chequera.repository.ChequeraRepository;
 import com.KND.chequera.repository.ClientesRepository;
 import com.KND.chequera.service.ChequeraService;
+import com.KND.chequera.utilities.CalcularDatosChequera;
 
 @Service("chequeraService")
 public class ChequeraServiceImpl implements ChequeraService{
@@ -42,6 +43,10 @@ public class ChequeraServiceImpl implements ChequeraService{
 	@Autowired
 	@Qualifier("clientesConverter")
 	private ClientesConverter clientesConverter;
+	
+	@Autowired
+	@Qualifier("calcularDatosChequera")
+	private CalcularDatosChequera calcularDatosChequera;
 
 	private static final Log LOG = LogFactory.getLog(ChequeraServiceImpl.class);
 	
@@ -69,12 +74,20 @@ public class ChequeraServiceImpl implements ChequeraService{
 	public ChequeraModel addChequera(ChequeraModel chequeraModel, int idCliente, int idBanco) {
 		LOG.info("addChequera() -- ChequeraServiceImpl, IdCliente: "+idCliente);
 		Clientes cliente = clientesRepository.findByidclientes(idCliente);
-		//LOG.info("Cliente repository: "+cliente.toString());
 		Bancos banco = bancosRepository.findByidbancos(idBanco);
 		
 		chequeraModel.setClientes(cliente);
 		chequeraModel.setBancos(banco);
-		//LOG.info("ChequeraModel: "+chequeraModel.toString());
+		
+		String chNumCuenta = calcularDatosChequera.calculaNumeroCuenta(chequeraModel.getBancos().getIdbancos(), chequeraModel.getClientes().getIdclientes());
+		String chClaveInterbancaria = calcularDatosChequera.calculaClaveIntervancaria(chNumCuenta);
+		
+		chequeraModel.setChNumCuenta(chNumCuenta);
+		chequeraModel.setChClaveInterbancaria(chClaveInterbancaria);
+		
+		chequeraModel.setCh_cargo(0);
+		chequeraModel.setCh_abono(0);
+		
 		Chequera chequera = chequeraRepository.save(chequeraCoverter.chequeraModelToChequera(chequeraModel));
 		return chequeraCoverter.chequeraToChequeraModel(chequera);
 	}

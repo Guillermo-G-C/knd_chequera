@@ -83,7 +83,6 @@
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-12">
-                    	
                     	<input type="checkbox" id="basic_checkbox_2" class="filled-in" checked=""/>               
 	                    <!-- Table movimientos-->
                         <div class="card">
@@ -93,13 +92,44 @@
 								<h2>Saldo: <span th:text="${chequera.ch_saldo}"></span></h2>
 
 								<a th:href="@{/movimientos/movimientosform(chequera=${chequera.idchequera})}">
-									<button>Nuevo Movimiento</button>
-								</a>
+   	                                <button type="button" class="btn waves-effect waves-light btn-lg btn-info"><i class="fa fa-plus"></i>Nuevo Movimiento</button>
+       							</a>
 								
 								<a th:href="@{/reporte/estadodecuentaform(idChequera=${chequera.idchequera})}">
-									<button>Generar estado de cuenta</button>
-								</a>
-								<br />
+   	                                <button type="button" class="btn waves-effect waves-light btn-lg btn-info"><i class="ti-bar-chart"></i> Generar estado de cuenta</button>
+       							</a>
+       						</div>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="row">
+                	<!-- Registrar -->
+                    <div class="col-12" th:if="${result}"><!-- th:if="${result}" -->
+						<div th:if="${result==1}" class="alert alert-success alert-rounded">  Movimiento registrado con exito!.
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+						</div>
+                    	<div th:if="${result==2}" class="alert alert-danger alert-rounded">  Error al registrar Movimiento.
+	                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+	                    </div>
+	                </div>
+	                
+	                <!-- Eliminar -->
+	                <div  class="col-12" th:if="${resultE}"> <!--th:if="${resultE}"  -->    
+	                    <div th:if="${resultE==1}" class="alert alert-success alert-rounded">  Movimiento eliminado correctamente.
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+						</div>
+                    	<div th:if="${resultE==2}" class="alert alert-danger alert-rounded">  Error al eliminar Movimiento.
+	                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+	                    </div>
+                    </div>
+                </div>		
+								
+				<div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                            				
                                 <!--h4 class="card-title">Data Export</h4>
                                 <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF &amp; Print</h6-->
                                 <div class="table-responsive m-t-40">
@@ -155,12 +185,14 @@
 													</span>
 												</th>
 												<th>
-													<a >
-														<button>Editar</button>
-													</a>
-													<a th:href="@{/movimientos/removemovimientochequera(idChequera=${chequera.idchequera},idMovimiento=${movimiento.idmovimiento})}">
-														<button>Eliminar</button>
-													</a>
+													<div>
+				                                    	<a>
+				                                    		<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i> Editar</button>
+				                                    	</a>
+				                                    	<a th:href="@{/movimientos/removemovimientochequera(idChequera=${chequera.idchequera},idMovimiento=${movimiento.idmovimiento})}">
+				                                    		<button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
+				                                    	</a>
+				                                    </div>
 												</th>
 											</tr>
                                         </tbody>

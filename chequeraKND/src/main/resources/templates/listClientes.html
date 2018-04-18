@@ -4,7 +4,7 @@
 <head>
     <!-- Favicon icon -->
     <!--link rel="icon" type="image/png" sizes="16x16" th:href="@{assets/images/favicon.png}"/-->
-    <title>ChequeraKND</title>
+    <title>Clientes - ChequeraKND</title>
     <!-- Bootstrap Core CSS -->
     <link th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -51,7 +51,7 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">chequeraKND</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Clientes</h3>
                     </div>
                     <div class="col-md-7 col-4 align-self-center">
                         <div class="d-flex m-t-10 justify-content-end">
@@ -81,62 +81,94 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-body">
-                                <h1>Clientes</h1>
-                                <a th:href="@{/clientes/clientesform}"><button>Agregar Cliente</button></a>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>ID Cliente</th>
-                                            <th>Nombre</th>
-                                            <th>Dirección</th>
-                                            <th>Estado</th>
-                                            <th>Codigo Postal</th>
-                                            <th>Telefono</th>
-                                            <th>Email</th>
-                                            <th>Fecha Nacimiento</th>
-                                            <th>RFC</th>
-                                            <th>Status</th>
-                                            <th>Acciones</th>
-                                            <th>Ver Chequeras...</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="cliente : ${listClientes}">
-                                            <th><span th:text="${cliente.idclientes}"></span></th>
-                                            <th><span th:text="${cliente.c_nombre}+' '+${cliente.c_apaterno}+' '+${cliente.c_amaterno}"></span></th>
-                                            <th><span th:text="${cliente.c_direccion}"></span></th>
-                                            <th><span th:text="${cliente.c_estado}"></span></th>
-                                            <th><span th:text="${cliente.c_codigo_postal}"></span></th>
-                                            <th><span th:text="${cliente.c_telefono}"></span></th>
-                                            <th><span th:text="${cliente.c_correo}"></span></th>
-                                            <th><span th:text="${cliente.c_fecha_nacimiento}"></span></th>
-                                            <th><span th:text="${cliente.c_rfc}"></span></th>
-                                            <th><span th:text="${cliente.c_status}"></span></th>
-                                            <th>
-                                                <a >
-                                                    <button>Editar</button>
-                                                </a>
-                                                <a th:href="@{/clientes/removecliente?cliente=__${cliente.idclientes}__}">
-                                                    <button>Eliminar</button>
-                                                </a>
-                                            </th>
-                                            <th>
-                                                <a th:href="@{/chequeras/listChequerasbycliente?cliente=__${cliente.idclientes}__}">
-                                                    <button>Ver Chequeras...</button>
-                                                </a>
-                                            </th>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="card-body"><h1>Clientes</h1>
+                                <a th:href="@{/clientes/clientesform}">
+   	                                <button type="button" class="btn waves-effect waves-light btn-lg btn-info"><i class="fa fa-plus"></i> Agregar Cliente</button>
+       							</a>
                             </div>
                         </div>
-	
                     </div>
                 </div>
+                
+                <!-- Mensajes -->
+                <div class="row">
+                	<!-- Registrar -->
+                    <div class="col-12" th:if="${result}"><!-- th:if="${result}" -->
+						<div th:if="${result==1}" class="alert alert-success alert-rounded">  Cliente registrado con exito!.
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+						</div>
+                    	<div th:if="${result==2}" class="alert alert-danger alert-rounded">  Error al registrar Cliente.
+	                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+	                    </div>
+	                </div>
+	                
+	                <!-- Eliminar -->
+	                <div  class="col-12" th:if="${resultE}"> <!--th:if="${resultE}"  -->    
+	                    <div th:if="${resultE==1}" class="alert alert-success alert-rounded">  Cliente eliminado correctamente.
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+						</div>
+                    	<div th:if="${resultE==2}" class="alert alert-danger alert-rounded">  Error al eliminar Cliente.
+	                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+	                    </div>
+                    </div>
+                </div>
+                
+                <!-- Clientes -->
+                <div class="row">
+                
+                	<div th:each="cliente : ${listClientes}" class="col-md-6 col-lg-6 col-xlg-4">
+                        <div class="card card-body">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-3 text-center">
+	                                <br />
+	                                <br />
+	                                <a href="#"><img src="../assets/images/users/user.png" alt="user" class="img-circle img-responsive"/></a>
+                                </div>
+                                <div class="col-md-8 col-lg-9">
+	                                <span>ID: </span><span th:text="${cliente.idclientes}"></span>
+                                    <h3 Th:text="${cliente.c_nombre}+' '+${cliente.c_apaterno}+' '+${cliente.c_amaterno}" class="box-title m-b-0">Johnathan Doe</h3>                                    
+                                    <br />
+                                    <b>Dirección: </b><span th:text="${cliente.c_direccion}"></span>
+                                    <br />
+                                    <b>Estado: </b><span th:text="${cliente.c_estado}"></span>
+                                    <br />
+                                    <b>Codigo Postal: </b><span th:text="${cliente.c_codigo_postal}"></span>
+                                    <br />
+                                    <b>Telefono: </b><span th:text="${cliente.c_telefono}"></span>
+                                    <br />
+                                    <b>Email: </b><span th:text="${cliente.c_correo}"></span>
+                                    <br />
+                                    <b>Fec. Nac.: </b><span th:text="${cliente.c_fecha_nacimiento}"></span>
+                                    <br />
+                                    <b>FRC: </b><span th:text="${cliente.c_rfc}"></span>
+                                    <br />
+                                    <b>Status: </b><span th:text="${cliente.c_status}"></span>
+                                    <hr />
+                                    <div>
+                                    	<a >
+                                    		<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i> Editar</button>
+                                    	</a>
+                                    	<a th:href="@{/clientes/removecliente?cliente=__${cliente.idclientes}__}">
+                                    		<button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
+                                    	</a>
+                                    </div>
+                                    <hr />
+                                    
+                                    <a th:href="@{/chequeras/listChequerasbycliente?cliente=__${cliente.idclientes}__}">
+                                        <button type="button" class="btn waves-effect waves-light btn-block btn-success">Ver Chequeras...</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- Fin Clientes -->
+                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

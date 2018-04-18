@@ -51,7 +51,7 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">chequeraKND</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Estado de Cuenta</h3>
                     </div>
                     <div class="col-md-7 col-4 align-self-center">
                         <div class="d-flex m-t-10 justify-content-end">
@@ -86,36 +86,59 @@
                         <div class="card">
                             <div class="card-body">
                                 <h1>Generar Estado de cuenta</h1>
-								<form action="" th:action="@{/reporte/estadodecueta}">
-									<fieldset>
-									<legend>Generar reporte en un rango de fechas</legend>
-									idChequera <input type="text" name="idChequera" th:value="${idChequera}"/>
-									<br />
-									Rango de fechas <input type="date" name="fechaInicio" data-date-format="DD/MMMM/YYYY"/> a <input type="date" name="fechaCorte"/>
-									<br />
-									<button type="submit">
-										Generar
-									</button>
-									</fieldset>
-								</form>
-								
-								
-								<form action="" th:action="@{/reporte/estadodecuetamensual}">
-									<fieldset>
-									<legend>Generar reporte mensual</legend>
-									idChequera <input type="text" name="idChequera" th:value="${idChequera}"/>
-									<br />
-									Mes <input type="month" name="yearMonth"/>
-									<br />
-									<button type="submit">
-										Generar
-									</button>
-									</fieldset>
-								</form>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- EdoCuenta -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-body">
+                            <h3 class="box-title m-b-0">Generar Estado de cuenta En rango de fechas</h3>
+                            <p class="text-muted m-b-30 font-13"> Ingresar la fecha de inicio y la fecha de fin </p>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <form th:action="@{/reporte/estadodecueta}" class="form-material m-t-40 row">
+                                    	<!-- IDChequera -->
+                                    	<input type="hidden" name="idChequera" th:value="${idChequera}"/>
+                                        <div class="form-group col-md-6 m-t-20">
+	                                        <label><span class="help"> Fecha de Inicio</span></label>
+	                                        <input type="date" name="fechaInicio" class="form-control form-control-line" required="required"/> 
+                                        </div>
+                                        <div class="form-group col-md-6 m-t-20">
+	                                        <label><span class="help"> Fecha de Corte</span></label>
+	                                        <input type="date" name="fechaCorte" class="form-control form-control-line" value="Some text value..." required="required"/> 
+                                        </div>
+                                        <br />
+                                        <div class="form-group col-md-12">
+	                                    	<button type="submit" class="btn waves-effect waves-light btn-block btn-info"><i class="ti-bar-chart"></i> Generar estado de cuenta</button>
+                                    	</div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-body">
+                            <h3 class="box-title m-b-0">Generar estado de cuenta Mensual</h3>
+                            <p class="text-muted m-b-30 font-13"> Selecciona el mes deseado </p>
+                            <form th:action="@{/reporte/estadodecuetamensual}" class="form-material m-t-40">
+                                <input type="hidden" name="idChequera" th:value="${idChequera}"/>
+                                <div class="form-group">
+	                                <label><span class="help"> Mes</span></label>
+	                                <input type="month" name="yearMonth" class="form-control form-control-line" required="required"/> 
+                                </div>
+                                <br />
+                                <div class="form-group">
+	                                <button type="submit" class="btn waves-effect waves-light btn-block btn-info"><i class="ti-bar-chart"></i> Generar estado de cuenta</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin EdoCuenta -->
+                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

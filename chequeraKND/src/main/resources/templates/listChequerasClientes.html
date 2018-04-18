@@ -81,59 +81,90 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h1>Chequeras de <span th:text="${cliente.c_nombre}+' '+${cliente.c_apaterno}+' '+${cliente.c_amaterno}"></span></h1>
-	
-								<a th:href="@{/chequeras/chequeraform(cliente=${cliente.idclientes})}"><button>Nueva Chequera +</button></a>
-								
-								<table>
-									<thead>
-										<tr>
-											<th>ID Chequera</th>
-											<th>Cliente</th>
-											<th>Fecha apertura</th>
-											<th>Saldo</th>
-											<th>Abonos</th>
-											<th>Cargos</th>
-											<th>Banco</th>
-											<th>Status</th>
-											<th>Acciones</th>
-											<th>Movimientos</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:each="chequera : ${cliente.getChequeras()}">
-											<th><span th:text="${chequera.idchequera}"></span></th>
-											<th><span th:text="${cliente.c_nombre}"></span></th>
-											<th><span th:text="${chequera.ch_fecha_apertura}"></span></th>
-											<th><span th:text="${chequera.ch_saldo}"></span></th>
-											<th><span th:text="${chequera.ch_abono}"></span></th>
-											<th><span th:text="${chequera.ch_cargo}"></span></th>
-											<th><span th:text="${chequera.getBancos().getB_entidad()}"></span></th>
-											<th><span th:text="${chequera.ch_status}"></span></th>
-											<th>
-												<a >
-													<button>Editar</button>
-												</a>
-												<a th:href="@{/chequeras/removechequeracliente(chequera=${chequera.idchequera},cliente=${cliente.idclientes})}">
-													<button>Eliminar</button>
-												</a>
-											</th>
-											<th>
-												<a th:href="@{/movimientos/listmovimientoschequera(chequera=${chequera.idchequera}) }">
-													<button>Movimientos...</button>
-												</a>
-											</th>
-										</tr>
-									</tbody>
-								</table>
+                            	<h1>Chequeras de <span th:text="${cliente.c_nombre}+' '+${cliente.c_apaterno}+' '+${cliente.c_amaterno}"></span></h1>
+                                <a th:href="@{/chequeras/chequeraform(cliente=${cliente.idclientes})}">
+   	                                <button type="button" class="btn waves-effect waves-light btn-lg btn-info"><i class="fa fa-plus"></i> Agregar Chequera</button>
+       							</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Mensajes -->
+                <div class="row">
+                	<!-- Registrar -->
+                    <div class="col-12" th:if="${result}"><!-- th:if="${result}" -->
+						<div th:if="${result==1}" class="alert alert-success alert-rounded">  Chequera registrado con exito!.
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+						</div>
+                    	<div th:if="${result==2}" class="alert alert-danger alert-rounded">  Error al registrar Chequera.
+	                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+	                    </div>
+	                </div>
+	                
+	                <!-- Eliminar -->
+	                <div  class="col-12" th:if="${resultE}"> <!--th:if="${resultE}"  -->    
+	                    <div th:if="${resultE==1}" class="alert alert-success alert-rounded">  Chequera eliminado correctamente.
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+						</div>
+                    	<div th:if="${resultE==2}" class="alert alert-danger alert-rounded">  Error al eliminar Chequera.
+	                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+	                    </div>
+                    </div>
+                </div>
+                
+                <!-- Chequerars -->
+			   <div class="row">
+				    <div class="col-md-6" th:each="chequera : ${cliente.getChequeras()}">
+				        <div class="card card-outline-info">
+				            <div class="card-header">
+				                <h4 class="m-b-0 text-white">N° Cuetan: <span th:text="${chequera.chNumCuenta}"></span></h4>
+				                <h4 class="m-b-0 text-white">Clave: <span th:text="${chequera.chClaveInterbancaria}" ></span></h4>
+				            </div>
+				            <div class="card-body">
+				                <h3 class="card-title">Saldo: <span th:text="${chequera.ch_saldo}"></span></h3>
+				                <p class="card-text">
+									<b>Fecha de apertura: </b><span th:text="${chequera.ch_fecha_apertura}"></span>
+									<br />
+									<span th:text="${chequera.getBancos().getB_entidad()}"></span>
+									<br />
+									<span th:text="${chequera.ch_status}"></span>
+									
+									<div th:if="${chequera.ch_status==true}" class="checkbox checkbox-success">  
+										<input name="b_status" id="b_status" type="checkbox" class="filled-in" checked="" />
+										<label for="b_status">Status</label>
+									</div>
+									
+									<div th:unless="${chequera.ch_status==true}" class="checkbox checkbox-success">  
+										<input name="b_status" id="b_status" type="checkbox"/>
+										<label for="b_status">Status</label>
+									</div>
+								</p>
+				                <hr />
+				                <div>
+                                	<a >
+                                		<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i> Editar</button>
+                                	</a>
+                                	<a th:href="@{/chequeras/removechequeracliente(chequera=${chequera.idchequera},cliente=${cliente.idclientes})}">
+                                		<button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
+                                	</a>
+                                </div>
+								<hr />
+								<a th:href="@{/movimientos/listmovimientoschequera(chequera=${chequera.idchequera}) }">
+								    <button type="button" class="btn waves-effect waves-light btn-block btn-success">Ver Movimientos...</button>
+                                </a>
+				                
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				<!-- Fin Chequeras -->
+                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

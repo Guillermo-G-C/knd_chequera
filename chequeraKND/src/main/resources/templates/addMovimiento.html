@@ -81,39 +81,60 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                
+                <!-- Form Bancos -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h1>Agregar Movimiento</h1>
-								
-								<h2>Chequera: <span th:text="${chequera.idchequera}"></span></h2>
-								<h2>Saldo <span id="saldo" th:text="${chequera.ch_saldo}"></span></h2>
-								
-								<form id="formChequera" action="" th:action="@{/movimientos/addmovimiento}" th:object="${movimientoModel}" method="post">
-										Concepto: <input type="text" th:field="*{m_concepto}"/>
-										<br />
-										Monto: <input type="text" th:field="*{m_monto}" required="required"/>
-										<br />
-										Fecha: <input type="date" th:field="*{mFecha}"/>
-										<br />
-										Tipo Movimiento: <select required="required" name="idTipoMovimiento">
-											<option value="">---Tipo de movimiento---</option>
-											<option th:each="tm : ${tiposMovimientos}" th:value="${tm.idtipo_movimiento}" th:text="${tm.tm_operacion}">Operación</option>
-										</select>
-										<br />
-										IdChequera: <input type="text" id="idChequera" name="idChequera" th:value="${chequera.idchequera}"/>
-										<br />
-										Status: <input type="text" th:field="*{m_status}"/>
-										<br />
-										<button type="submit">
-											Guardar
-										</button>
-								</form>
+                                <h1 class="card-title">Agregar movimiento</h1>
+                                <!--h6 class="card-subtitle">Just add class to the form.</h6-->
+                                <form id="formChequera2" th:action="@{/movimientos/addmovimiento}" th:object="${movimientoModel}" method="post" class="floating-labels m-t-40">
+                                    
+                                    <!-- IDChequera -->
+                                    <input type="hidden" id="idChequera" name="idChequera" th:value="${chequera.idchequera}"/>
+                                    
+                                    <div class="form-group">
+                                       <label>Tipo de movimiento</label>
+                                       <select name="idTipoMovimiento" class="form-control" required="required">
+										<option  value=""></option>
+										<option th:each="tm : ${tiposMovimientos}" th:value="${tm.idtipo_movimiento}" th:text="${tm.tm_operacion}">Operación</option>
+                                       </select>
+                                   </div>
+                                    
+                                    <div class="form-group m-b-40">
+                                        <input type="text" class="form-control" th:field="*{m_concepto}" required="required"/>
+                                        <span class="bar"></span>
+                                        <label for="input1">Concepto</label>
+                                    </div>
+                                    <div class="form-group m-b-40">
+                                        <input type="number" class="form-control" th:field="*{m_monto}" required="required"/>
+                                        <span class="bar"></span>
+                                        <label for="input2">Monto</label>
+                                    </div>
+                                    <div class="form-group m-b-40">
+                                        <input type="date" class="form-control" th:field="*{mFecha}" required="required"/>
+                                        <span class="bar"></span>
+                                        <label for="input1">Fecha Apertura</label>
+                                    </div>
+                                    
+                                    <div class="form-group m-b-40">
+									    <div class="checkbox checkbox-success">  
+		                                    <input name="m_status" id="m_status" type="checkbox" class="filled-in" checked="" />
+		                                    <label for="m_status">Status</label>
+		                                </div>
+									</div>
+	                                
+                                    <button type="submit" class="btn waves-effect waves-light btn-block btn-info"><i class="fa fa-heart"></i> Registrar Banco</button>
+                                    
+                                </form>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
+                <!-- Fin Form Bancos -->
+                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -174,6 +195,14 @@
 			$("#formChequera #m_monto").keyup(function(){
 				var monto = parseFloat($("#formChequera #m_monto").val());
 				//alert(monto+" Saldo: "+saldo);
+				if(monto>saldo){
+					alert("Error el movimiento no puede ser mayor al saldo");
+				}
+			});
+			
+			$("#formChequera2 #m_monto").keyup(function(){
+				var monto = parseFloat($("#formChequera2 #m_monto").val());
+				//alert("Monto: "+monto);
 				if(monto>saldo){
 					alert("Error el movimiento no puede ser mayor al saldo");
 				}

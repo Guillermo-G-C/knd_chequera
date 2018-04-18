@@ -81,28 +81,48 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                <!-- Form Bancos -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h1>Agregar Banco</h1>
-								<form action="" th:action="@{/bancos/addbanco}" th:object="${bancoModel}" method="post">
-									Sucursal: <input type="text" th:field="*{b_sucursal}"/>
-									<br/>
-									Entidad: <input type="text" th:field="*{b_entidad}"/>
-									<br/>
-									Dirección: <input type="text" th:field="*{b_direccion}"/>
-									<br/>
-									Status: <input type="text" th:field="*{b_status}"/>
-									<br/>
-									<button type="submit">
-										Guardar
-									</button>
-								</form>
+                                <h1 class="card-title">Agregar banco</h1>
+                                <!--h6 class="card-subtitle">Just add class to the form.</h6-->
+                                <form class="floating-labels m-t-40" th:action="@{/bancos/addbanco}" th:object="${bancoModel}" method="post">
+                                    
+                                    <div class="form-group m-b-40">
+                                        <input type="text" class="form-control" th:field="*{b_sucursal}" required="required"/>
+                                        <span class="bar"></span>
+                                        <label for="input1">Sucursal</label>
+                                    </div>
+                                    <div class="form-group m-b-40">
+                                        <input type="text" class="form-control" th:field="*{b_entidad}" required="required"/>
+                                        <span class="bar"></span>
+                                        <label for="input2">Entidad</label>
+                                    </div>
+                                    <div class="form-group m-b-40">
+                                        <input type="text" class="form-control" id="input5" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="input with tooltip!!" th:field="*{b_direccion}" required="required"/>
+                                        <span class="bar"></span>
+                                        <label for="input5">Dirección</label>
+                                    </div>
+                                    
+                                    <div class="form-group m-b-40">
+									    <div class="checkbox checkbox-success">  
+		                                    <input name="b_status" id="b_status" type="checkbox" class="filled-in" checked="" />
+		                                    <label for="b_status">Status</label>
+		                                </div>
+									</div>
+	                                
+                                    <button type="submit" class="btn waves-effect waves-light btn-block btn-info"><i class="fa fa-heart"></i> Registrar Banco</button>
+                                    
+                                </form>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
+                <!-- Fin Form Bancos -->
+                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
