@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -51,7 +52,7 @@ public class Clientes {
 	@Column(name = "c_status")
 	private boolean c_status;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="clientes")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="clientes"/*, cascade = CascadeType.ALL*/)
 	private Set<Chequera> chequeras = new HashSet<>();
 
 	public Clientes() {

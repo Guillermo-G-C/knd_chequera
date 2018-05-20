@@ -3,6 +3,7 @@ package com.KND.chequera.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +25,7 @@ public class Tipo_Movimiento {
 	@Column(name = "tm_descripcion")
 	private String tm_descripcion;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="tipo_movimiento")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="tipo_movimiento"/*,cascade = CascadeType.ALL*/)
 	private Set<Movimientos> movimientos = new HashSet<>();
 	
 	public Tipo_Movimiento() {

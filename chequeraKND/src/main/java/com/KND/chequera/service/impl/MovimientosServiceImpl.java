@@ -1,14 +1,13 @@
 package com.KND.chequera.service.impl;
 
 import java.sql.Date;
-//import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-//import javax.mail.MessagingException;
+import javax.mail.MessagingException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,7 +28,7 @@ import com.KND.chequera.repository.MovimientosRepository;
 import com.KND.chequera.repository.Tipo_MovimientoRepository;
 import com.KND.chequera.service.ChequeraService;
 import com.KND.chequera.service.MovimientosService;
-//import com.KND.chequera.service.SendMailService;
+import com.KND.chequera.service.SendMailService;
 
 @Service("movimientosService")
 public class MovimientosServiceImpl implements MovimientosService {
@@ -56,7 +55,7 @@ public class MovimientosServiceImpl implements MovimientosService {
 	
 	@Autowired
 	@Qualifier("sendMailService")
-	//private SendMailService sendMailService;
+	private SendMailService sendMailService;
 	
 	private static final Log LOG = LogFactory.getLog(MovimientosServiceImpl.class);
 	
@@ -144,7 +143,7 @@ public class MovimientosServiceImpl implements MovimientosService {
 			newsaldo = saldo+monto;
 			chequera.setCh_saldo(newsaldo);
 		}
-		LOG.info("Operación: "+operacion+", Saldo: "+saldo+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
+		LOG.info("Operación: "+movimientosModel.getM_concepto()+", Saldo: "+saldo+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
 		
 		movimientosModel.setChequera(chequera);
 		movimientosModel.setTipo_Movimiento(tipo_Movimiento);
@@ -156,17 +155,17 @@ public class MovimientosServiceImpl implements MovimientosService {
 		chequeraRepository.save(chequera);
 		
 		//Enviar correo
-		/*mailModel.setFrom("chequera@chequera.com");
+		mailModel.setFrom("chequera@chequera.com");
 		mailModel.setTo(chequera.getClientes().getC_correo());
-		mailModel.setSubject(operacion+", a la chequera"+chequera.getIdchequera());
+		mailModel.setSubject(operacion+", a la chequera"+chequera.getChNumCuenta());
 		mailModel.setContent("Operación: "+operacion+", Saldo: "+saldo+", Monto: "+monto+", Nuevo Saldo: "+newsaldo);
-		*/
-		/*try {
+		
+		try {
 			sendMailService.sendMailMessage(mailModel);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 		return movimientosConverter.movimientosToMovimientoModel(movimiento);
 	}

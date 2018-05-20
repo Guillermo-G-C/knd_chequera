@@ -28,7 +28,7 @@ public class Bancos {
 	@Column(name="b_status")
 	private boolean b_status;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="bancos")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="bancos"/*, cascade = CascadeType.ALL*/)
 	private Set<Chequera> chequera = new HashSet<>();
 	
 	public Bancos() {}

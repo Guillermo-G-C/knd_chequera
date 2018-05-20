@@ -3,6 +3,7 @@ package com.KND.chequera.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,15 +40,15 @@ public class Chequera {
 	@Column(name="ch_status")
 	private boolean ch_status;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY/*, cascade = CascadeType.ALL*/)
 	@JoinColumn(name="idclientes")
 	private Clientes clientes;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER/*, cascade = CascadeType.ALL*/)
 	@JoinColumn(name="idbancos")
 	private Bancos bancos;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="chequera")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="chequera"/*, cascade = CascadeType.ALL*/)
 	private Set<Movimientos> movimientos = new HashSet<>();
 	
 	public Chequera() {

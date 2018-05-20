@@ -85,22 +85,24 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                Bienvenido!!!
+                                Utilerias!!!
                             </div>
                         </div>
                     </div>
                 </div>
                 
+                
                 <div class="row">
-                	<!-- Registrar -->
-                    <div class="col-12" th:if="${resultV}"><!-- th:if="${result}" -->
-						<div th:if="${resultV==1}" class="alert alert-success alert-rounded">  Tipo de movimientos registrado con exito!.
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-						</div>
-                    	<div th:if="${resultV==2}" class="alert alert-danger alert-rounded">  Error al registrar Tipo de movimientos.
-	                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-	                    </div>
-	                </div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2>Eliminar movimientos</h2>
+                                <form th:action="@{/utilerias/removeallmovimientos}" method="post">
+                                	<button type="submit" class="btn waves-effect waves-light btn-lg btn-danger"><i class="fa fa-plus"></i> Eliminar Movimientos</button>
+	       						</form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- ============================================================== -->

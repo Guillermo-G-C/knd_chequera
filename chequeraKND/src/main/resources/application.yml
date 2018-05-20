@@ -1,6 +1,6 @@
 server:
   address: localhost
-  port: 8888
+  port: 8810
 banner:
     location: auxiliares/banner.txt
 spring:  
@@ -30,17 +30,17 @@ spring:
   thymeleaf:
     cache: false
         
-  #mail:
-    #default-encoding: UTF-8
-    #host: smtp.gmail.com
-    #username: otggc21@gmail.com
-    #password: Gato2018*
-    #port: 587
-    #properties:
-      #mail:
-        #smtp:
-          #auth: true
-          #starttls:
-            #enable: true
-    #protocol: smtp
-    #test-connection: true
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: otggc21@gmail.com
+    password: Gato2018*
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: true

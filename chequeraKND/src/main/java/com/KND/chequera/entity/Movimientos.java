@@ -3,6 +3,7 @@ package com.KND.chequera.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,11 +30,11 @@ public class Movimientos {
 	@Column(name = "m_status")
 	private Boolean m_status;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER/*, cascade = CascadeType.ALL*/)
 	@JoinColumn(name = "tm_idtipo_movimiento")
 	private Tipo_Movimiento tipo_movimiento;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER/*, cascade = CascadeType.ALL*/)
 	@JoinColumn(name = "ch_idchequera")
 	private Chequera chequera;
 
